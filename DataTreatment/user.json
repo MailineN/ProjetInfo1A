@@ -1,0 +1,1 @@
+[{"type": "Administrateur", "ID": {"username": "admin", "mdp": "admin"}}, {"type": "DataScientist", "ID": {"username": "data", "mdp": "data"}}, {"type": "Geographe", "ID": {"username": "geo", "mdp": "geo"}}]
