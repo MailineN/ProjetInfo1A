@@ -18,12 +18,14 @@ class Main_menu:
         clear()
         welcome = Figlet(font='big')
         print(welcome.renderText('Bienvenue'))
+        print( )
         input("Appuyez sur Entrer pour lancer l'application : ")
+
         
     def Banner(self): 
         """[Non utilisée]
         """        
-        print("༼ つ ಥ_ಥ ༽つ ༼ つ ಥ_ಥ ༽つ ༼ つ ಥ_ಥ ༽つ ༼ つ ಥ_ಥ ༽つ ༼ つ ಥ_ಥ ༽つ")
+        print(" ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ ")
         print("\n")
 
     def Au_revoir(self): 
@@ -31,10 +33,10 @@ class Main_menu:
         """       
         clear() 
         print("\n")
-        print("༼ つ ಥ_ಥ ༽つ ༼ つ ಥ_ಥ ༽つ ༼ つ ಥ_ಥ ༽つ ༼ つ ಥ_ಥ ༽つ ༼ つ ಥ_ಥ ༽つ")
+        print(" ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ ")
         print("\n")
         bye = Figlet(font='big')
-        print(bye.renderText('Au revoir'))
+        print(bye.renderText('Au  revoir'))
 
     def new_menu(self, previous_menu):
         """Affichage du menu actuel

@@ -18,7 +18,7 @@ class Ouvert:
         clear()
         display = Figlet(font='big')
         print(display.renderText('Menu :'))
-        print("༼ つ ಥ_ಥ ༽つ ༼ つ ಥ_ಥ ༽つ ༼ つ ಥ_ಥ ༽つ ༼ つ ಥ_ಥ ༽つ ༼ つ ಥ_ಥ ༽つ")
+        print(" ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ ")
         print("\n")
         
         if len(self.previous_menu["path"]) != 0:
@@ -39,7 +39,7 @@ class Ouvert:
             print("• {} [{}]".format(opt,i+1))
 
         print('\n{:^63}\n'.format('Saisissez votre choix \n'))
-        print("༼ つ ಥ_ಥ ༽つ ༼ つ ಥ_ಥ ༽つ ༼ つ ಥ_ಥ ༽つ ༼ つ ಥ_ಥ ༽つ ༼ つ ಥ_ಥ ༽つ \n")
+        print(" ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ \n")
         
         while True : 
             choix = input("Choix : ")
