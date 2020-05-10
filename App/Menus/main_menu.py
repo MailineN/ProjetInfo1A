@@ -33,8 +33,7 @@ class Main_menu:
         """       
         clear() 
         print("\n")
-        print(" ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ  ʕ – ᴥ – ʔ ")
-        print("\n")
+        print(" ⎛⎝(•̀ ‿•)⎠⎞  ⎛⎝(•̀ ‿•)⎠⎞ ⎛⎝(•̀ ‿•)⎠⎞ ⎛⎝(•̀ ‿•)⎠⎞ ⎛⎝(•̀ ‿•)⎠⎞ ⎛⎝(•̀ ‿•)⎠⎞ ⎛⎝(•̀ ‿•)⎠⎞ \n")
         bye = Figlet(font='big')
         print(bye.renderText('Au  revoir'))
 

@@ -364,7 +364,7 @@ class Geographe(Individu):
             print("Le pays entré n'existe pas, un nouveau pays va être crée")
         finally :
             # La fonction demande à l'utilisateur s'il souhaite ajouter des informations
-            complementaire = input('Nous allons maintenant ajouter des information complémentaires, cette étape est obligatoire\nAppuyez sur Entrer pour continuer')
+            input('Nous allons maintenant ajouter des information complémentaires, cette étape est obligatoire\nAppuyez sur Entrer pour continuer')
             liste_info = []
             while True :
                 superficie = input('Entrez la superficie du pays en km2 totale:')
