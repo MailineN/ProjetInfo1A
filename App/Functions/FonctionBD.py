@@ -84,7 +84,7 @@ def get_code(nom_pays):
     Raises:
         NameError: Le pays n'est pas dans la base
     """
-    with open("DataTreatment/country.json") as json_file: 
+    with open("App\Functions\DataTreatment\country.json") as json_file: 
         data =json.load(json_file)    
 
     code = ''

@@ -1,5 +1,5 @@
 from pyfiglet import Figlet
-from FonctionBD import clear
+from App.Functions.FonctionBD import clear
 
 class Ouvert: 
     """Ensemble des méthodes permettant l'ouverture et l'affichage d'un menu 

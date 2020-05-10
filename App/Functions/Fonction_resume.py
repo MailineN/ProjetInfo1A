@@ -1,14 +1,13 @@
 # Importation des donnees
 
 import json
-from Menus.menu_ouvert import Ouvert
 
 # Fonction resume
 
 def resume_information(critere):
     nb_pays_max = input("Entrez le nombre de pays max : ")
     nb_pays_max = int(nb_pays_max)
-    with open("DataTreatment/country.json") as json_file:
+    with open(r"App\Functions\DataTreatment\country.json") as json_file:
         data = json.load(json_file)
 
     #------------------------------------------------------------------------------

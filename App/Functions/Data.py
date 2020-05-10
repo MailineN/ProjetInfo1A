@@ -1,9 +1,11 @@
 """Importation et traitement des données du fichier json 
 """### Importation des donnees ### 
 import json
-with open("DataTreatment/Country - Backup - FirstVer.json") as json_file:
-    data = json.load(json_file)
 from FonctionBD import pays_vide
+
+
+with open("App\Functions\DataTreatment\Country - Backup - FirstVer.json") as json_file:
+    data = json.load(json_file)
 
 
 ### Tentative de suppression des valeurs manquantes ####
@@ -18,7 +20,7 @@ def clean_table(data):
     Returns : 
         data_clean {list of dict} -- Base de donnée nettoyée 
     """    
-    n=len( data)
+    n=len(data)
     Table=[]
     for i in range(n):
         Intermed=11*[0]
@@ -112,8 +114,9 @@ def clean_table(data):
 
 data_clean = clean_table(data) 
 
-with open("country.json", "w") as write_file:
+with open("App\Functions\DataTreatment\country.json", "w") as write_file:
     json.dump(data_clean, write_file)
+
 
 
 

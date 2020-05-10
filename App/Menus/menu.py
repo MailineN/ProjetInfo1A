@@ -1,12 +1,12 @@
 """Déroulement des menus en partant du menu principal et fonctions annexes sur les menus 
 """
 
-from Acteurs import Individu
-from Acteurs import Consultant
-from Acteurs import Geographe
-from Acteurs import DataScientist
-from Acteurs import Admin
-from Menus.menu_ouvert import Ouvert
+from App.Functions.Acteurs import Individu
+from App.Functions.Acteurs import Consultant
+from App.Functions.Acteurs import Geographe
+from App.Functions.Acteurs import DataScientist
+from App.Functions.Acteurs import Admin
+from .menu_ouvert import Ouvert
 
 
 def connexion(previous_menu): 

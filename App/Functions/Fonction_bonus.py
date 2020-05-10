@@ -26,8 +26,8 @@ def clustering(methode):
             df {pandas dataframe} -- Dataframe contenant les informations pays 
             pays {list} -- Liste des pays 
         """    
-        filename="DataTreatment/country.json"
-        with open(filename) as json_file:
+
+        with open(r"App\Functions\DataTreatment\country.json") as json_file:
             data = json.load(json_file)     
 
         pays=[]         

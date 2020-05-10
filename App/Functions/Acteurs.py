@@ -4,12 +4,13 @@
 import json
 import numpy
 import matplotlib.pyplot as plt
-import FonctionBD as fbd
-from Menus.menu_ouvert import Ouvert
-from Menus.menu_ferme import Ferme
+from . import FonctionBD as fbd
+from App.Menus.menu_ouvert import Ouvert
+from App.Menus.menu_ferme import Ferme
 import getpass
-from Fonction_resume import resume_information
-import Fonction_bonus as cat
+from . import Fonction_resume as r
+from . import Fonction_bonus as b
+
 
 class Individu:     
     def __init__(self):
@@ -59,8 +60,8 @@ class Individu:
         """    
         # Chargement de la base de données 
         nom_ou_code_pays = input("Entrez le nom ou le code du pays : ")
-        filename="DataTreatment/country.json"
-        with open(filename) as json_file:
+
+        with open(r"App\Functions\DataTreatment\country.json") as json_file:
             data = json.load(json_file)
          
         if fbd.is_number(nom_ou_code_pays):
@@ -68,7 +69,8 @@ class Individu:
         else : 
             try : 
                 nom_ou_code_pays = fbd.get_code(nom_ou_code_pays)
-            except : 
+            except Exception as e :
+                print(e) 
                 input("Pays introuvable, appuyez sur Entrer pour continuer ")
                 return(Ouvert(previous_menu))
 
@@ -195,10 +197,10 @@ class Consultant(Individu):
             input("La suggestion entrée est vide, aucune modification apportée \nAppuyez sur Entrer pour retourner au menu précédent ")
             return(Ouvert(previous_menu))
         # Ajout de la suggestion dans la base de données
-        with open("Suggestions.json") as json_file: 
+        with open(r"App\Functions\DataTreatment\Suggestions.json") as json_file: 
             sugges =json.load(json_file)
         sugges.append(liste_info)
-        with open("Suggestions.json", "w") as write_file:
+        with open(r"App\Functions\DataTreatment\Suggestions.json", "w") as write_file:
             json.dump(sugges, write_file)
 
         print("Votre proposition a bien été enregistrée")
@@ -214,7 +216,7 @@ class Geographe(Individu):
     def connexion(self): 
         """ Fonction permettant de se connecter en tant que Géographe
         """       
-        with open("DataTreatment/user.json") as json_file:
+        with open(r"App\Functions\DataTreatment\user.json") as json_file:
             users = json.load(json_file)
 
         lcomptes = fbd.account_list(users)
@@ -253,8 +255,7 @@ class Geographe(Individu):
             input( "Appuyez sur Entrer pour continuer")
             return(Ouvert(previous))
 
-        filename="DataTreatment/country.json"
-        with open(filename) as json_file:
+        with open(r"App\Functions\DataTreatment\country.json") as json_file:
             data = json.load(json_file)
 
         nouveau_pays = True
@@ -350,7 +351,7 @@ class Geographe(Individu):
             print("Votre pays a bien été initialisé ")
             if len(liste_info) >0 : 
                 if liste_info[0] not in ['None','none']: 
-                    entree['Geography']['Area']['total']['text'] = str(liste_info[0])+"sq km; "+str(liste_info[1])+" sq km (metropolitan "+ Nom +")"
+                    entree['Geography']['Area']['total']['text'] = str(liste_info[0])+" sq km; "+str(liste_info[1])+" sq km (metropolitan "+ Nom +")"
                 if liste_info[1] not in ['None','none']: 
                     entree['People and Society']['Population']['text'] = liste_info[2]
                 if liste_info[2] not in ['None','none']: 
@@ -378,13 +379,13 @@ class Geographe(Individu):
                 if liste_info[13] not in ['None','none']: 
                     entree['People and Society']['Age structure']['65 years and over']['text'] = str(liste_info[26])+"% (male "+str(liste_info[27])+"% / female "+str(liste_info[28])+")"
                 print('Vos informations complementaires ont bien ete enregistrees')
-            with open("DataTreatment/country.json") as json_file: 
+            with open(r"App\Functions\DataTreatment\country.json") as json_file: 
                 data =json.load(json_file)
             if nouveau_pays : 
                 data.append(entree)
             else :
                 data[code]= entree 
-            with open("DataTreatment/country.json", "w") as write_file:
+            with open(r"App\Functions\DataTreatment\country.json", "w") as write_file:
                 json.dump(data, write_file)
 
         print("Votre ajout a bien été enregistrée")
@@ -406,11 +407,11 @@ class Geographe(Individu):
             input( "Appuyez sur Entrer pour continuer")
             return(Ouvert(previous))
 
-        with open("Suggestions.json") as json_file: 
+        with open(r"App\Functions\DataTreatment\Suggestions.json") as json_file: 
             sugges =json.load(json_file)
 
         
-        with open("DataTreatment/country.json") as json_file:
+        with open(r"App\Functions\DataTreatment\country.json") as json_file:
             data = json.load(json_file)
 
         n = len(sugges)
@@ -420,7 +421,7 @@ class Geographe(Individu):
             print("#####################################################")
             print("Voici la suggestion : ") 
             print("Nom du pays : ", nom_pays)
-            print("Superficie du pays : ", str(liste_info[0])+"sq km; "+str(liste_info[1])+" sq km (metropolitan "+ nom_pays +")")
+            print("Superficie du pays : ", str(liste_info[0])+" sq km; "+str(liste_info[1])+" sq km (metropolitan "+ nom_pays +")")
             print("Population du pays : ", liste_info[2])
             print("Croissance démographique du pays : ", str(liste_info[3])+"% (2016 est.)")
             print("Inflation du pays : ", str(liste_info[4])+"% (2016 est.) ++ "+str(liste_info[5])+"% (2015 est.)")
@@ -448,7 +449,7 @@ class Geographe(Individu):
                 # Test de présence du pays
                 if len(liste_info) >0 : 
                     if liste_info[0] not in ['None','none']: 
-                        data[nom_pays]['Geography']['Area']['total']['text'] = str(liste_info[0])+"sq km; "+str(liste_info[1])+" sq km (metropolitan "+ nom_pays +")"
+                        data[nom_pays]['Geography']['Area']['total']['text'] = str(liste_info[0])+" sq km; "+str(liste_info[1])+" sq km (metropolitan "+ nom_pays +")"
                     if liste_info[1] not in ['None','none']: 
                         data[nom_pays]['People and Society']['Population']['text'] = liste_info[2]
                     if liste_info[2] not in ['None','none']: 
@@ -484,7 +485,7 @@ class Geographe(Individu):
         
         print("La liste de suggestion est vide")
 
-        with open("Suggestions.json", "w") as write_file:
+        with open(r"App\Functions\DataTreatment\Suggestions.json", "w") as write_file:
             json.dump(sugges, write_file)
         input("Appuyez sur Entrer pour continuer ")
 
@@ -500,7 +501,7 @@ class DataScientist(Consultant):
     def connexion(self): 
         """ Fonction permettant de se connecter en tant que DataScientist
         """       
-        with open("DataTreatment/user.json") as json_file:
+        with open(r"App\Functions\DataTreatment\user.json") as json_file:
             users = json.load(json_file)
 
         lcomptes = fbd.account_list(users)
@@ -529,7 +530,7 @@ class DataScientist(Consultant):
             input( "Appuyez sur Entrer pour continuer")
             return(Ouvert(previous_menu))
         try :
-            resume_information(critere)
+            r.resume_information(critere)
         except Exception as e: 
             print(e) 
             input("Une erreur dans d'argument s'est produite \n Appuyz sur Entrer pour continuer ")
@@ -541,12 +542,13 @@ class DataScientist(Consultant):
             input( "Appuyez sur Entrer pour continuer")
             return(Ouvert(previous_menu))
         try :
-            cat.clustering(methode)
+            b.clustering(methode)
         except Exception as e: 
             print(e) 
             input("Une erreur dans d'argument s'est produite \n Appuyz sur Entrer pour continuer ")
 
         return(Ouvert(previous_menu))
+
     def representationgraphique(self,previous_menu,critere):
         """ Fonction permettant de générer une représentation graphique du critère demandé et des boxplots des classes d'âges
 
@@ -562,8 +564,7 @@ class DataScientist(Consultant):
             input( "Appuyez sur Entrer pour continuer")
             return(Ouvert(previous_menu))
         
-        filename="DataTreatment/country.json"
-        with open(filename) as json_file:
+        with open(r"App\Functions\DataTreatment\country.json") as json_file:
             data = json.load(json_file)     
             
         tranche1=[]
@@ -799,7 +800,7 @@ class Admin(Geographe, DataScientist):
     def connexion(self): 
         """ Fonction permettant de se connecter en tant qu'Administrateur
         """       
-        with open("DataTreatment/user.json") as json_file:
+        with open(r"App\Functions\DataTreatment\user.json") as json_file:
             users = json.load(json_file)
         lcomptes = fbd.account_list(users)
         lmdp = fbd.password_list(users)
@@ -840,8 +841,7 @@ class Admin(Geographe, DataScientist):
             input( "Appuyez sur Entrer pour continuer ")
             return(Ouvert(previous_menu))
 
-        filename="DataTreatment/country.json"
-        with open(filename) as json_file:
+        with open(r"App\Functions\DataTreatment\country.json") as json_file:
             data = json.load(json_file)
 
         nom_ou_code_pays = input("Entrez le nom ou le code du pays : ")
@@ -852,7 +852,7 @@ class Admin(Geographe, DataScientist):
             nom_ou_code_pays = fbd.get_code(nom_ou_code_pays)
 
         del data[nom_ou_code_pays]
-        with open("DataTreatment/country.json", "w") as write_file:
+        with open(r"App\Functions\DataTreatment\country.json", "w") as write_file:
             json.dump(data, write_file)
 
         print("Votre suppression a bien été enregistrée")
@@ -870,7 +870,7 @@ class Admin(Geographe, DataScientist):
             input("\n""Appuyez sur Entrer pour continuer ")
             return(Ouvert(previous_menu))
 
-        with open("DataTreatment/user.json") as json_file:
+        with open(r"App\Functions\DataTreatment\user.json") as json_file:
             users = json.load(json_file)
 
         new = {}
@@ -891,7 +891,7 @@ class Admin(Geographe, DataScientist):
     
         print("L'utilisateur",id_user,"vient d'etre cree et va etre ajouter a la base")
         users.append(new)
-        with open("DataTreatment/user.json", "w") as write_file:
+        with open(r"App\Functions\DataTreatment\user.json", "w") as write_file:
             json.dump(users, write_file)
 
         return(Ouvert(previous_menu))
@@ -905,7 +905,7 @@ class Admin(Geographe, DataScientist):
             input("\n""Appuyez sur Entrer pour continuer ")
             return(Ouvert(previous_menu))
 
-        with open("DataTreatment/user.json") as json_file:
+        with open(r"App\Functions\DataTreatment\user.json") as json_file:
             users = json.load(json_file)
 
         liste = fbd.account_list(users)
@@ -916,7 +916,7 @@ class Admin(Geographe, DataScientist):
             del users[numero]
         else : 
             print("Aucun changement effectué")
-        with open("DataTreatment/user.json", "w") as write_file:
+        with open(r"App\Functions\DataTreatment\user.json", "w") as write_file:
             json.dump(users, write_file)
 
         return(Ouvert(previous_menu))
