@@ -126,71 +126,161 @@ class Consultant(Individu):
         liste_info = []
         Nom = input("Entrer le nom du pays de la suggestion : ") 
         liste_info.append(Nom)
-        superficie = input('Entrez la superficie du pays en km2 totale, tapez None pour passer la question :')
+        while True :
+            superficie = input('Entrez la superficie du pays en km2 totale:')
+            if fbd.is_number(superficie): 
+                break
         liste_info.append(superficie)
-        superficie2 = input('Entrez la superficie du pays en km2 métropolitaine, tapez None pour passer la question :')
+        while True :
+            superficie2 = input('Entrez la superficie du pays en km2 métropolitaine:')
+            if fbd.is_number(superficie2): 
+                break
         liste_info.append(superficie2)
-        pop = input('Entrez la population du pays, tapez None pour passer la question :')
+        while True :
+            pop = input('Entrez la population du pays:')
+            if fbd.is_number(pop): 
+                break
         liste_info.append(pop)
-        crois = input('Entrez la croissance demographique du pays en pourcentage , tapez None pour passer la question :')
+        while True :
+            crois = input('Entrez la croissance demographique du pays en pourcentage :')
+            if fbd.is_number(crois): 
+                break
         liste_info.append(crois)
-        inflation = input('Entrez l\'inflation du pays en pourcentage pour l\'année 2016, tapez None pour passer la question :')
+        while True :
+            inflation = input('Entrez l\'inflation du pays en pourcentage pour l\'année 2016:')
+            if fbd.is_number(inflation): 
+                break
         liste_info.append(inflation)
-        inflation2 = input('Entrez l\'inflation du pays en pourcentage pour l\'année 2015, tapez None pour passer la question :')
+        while True : 
+            inflation2 = input('Entrez l\'inflation du pays en pourcentage pour l\'année 2015:')
+            if fbd.is_number(inflation2): 
+                break
         liste_info.append(inflation2)
-        dette = input('Entrez la dette en dollars - unité incluse (trillion, billion...) - pour l\'année 2016, tapez None pour passer la question :')
+        while True : 
+            dette = input('Entrez la dette en dollars - unité incluse (trillion, billion...) - pour l\'année 2016:')
+            if fbd.is_number(dette): 
+                break
         liste_info.append(dette)
-        dette2 = input('Entrez la dette en dollars - unité incluse (trillion, billion...) - pour l\'année 2016, tapez None pour passer la question :')
+        while True :
+            dette2 = input('Entrez la dette en dollars - unité incluse (trillion, billion...) - pour l\'année 2016:')
+            if fbd.is_number(crois): 
+                break
         liste_info.append(dette2)
-        chom = input('Entrez la taux de chomage du pays en pourcentage pour l\'année 2015, tapez None pour passer la question :')
+        while True : 
+            chom = input('Entrez la taux de chomage du pays en pourcentage pour l\'année 2015:')
+            if fbd.is_number(chom): 
+                break
         liste_info.append(chom)
-        chom2 = input('Entrez la taux de chomage du pays en pourcentage pour l\'année 2016, tapez None pour passer la question :')
+        while True : 
+            chom2 = input('Entrez la taux de chomage du pays en pourcentage pour l\'année 2016:')
+            if fbd.is_number(chom2): 
+                break
         liste_info.append(chom2)
-        sante = input('Entrez le taux de depense en sante du pays en pourcentage pour l\'année 2014, tapez None pour passer la question :')
+        while True : 
+            sante = input('Entrez le taux de depense en sante du pays en pourcentage pour l\'année 2014:')
+            if fbd.is_number(sante): 
+                break
         liste_info.append(sante)
-        edu = input('Entrez le taux de depense en education du pays en pourcentage pour l\'année 2013, tapez None pour passer la question :')
+        while True : 
+            edu = input('Entrez le taux de depense en education du pays en pourcentage pour l\'année 2013:')
+            if fbd.is_number(edu): 
+                break
         liste_info.append(edu)
-        army = input('Entrez le taux de depense militaire du pays en pourcentage pour 2014, tapez None pour passer la question :')
+        while True : 
+            army = input('Entrez le taux de depense militaire du pays en pourcentage pour 2014:')
+            if fbd.is_number(army): 
+                break
         liste_info.append(army)
-        army2 = input('Entrez le taux de depense militaire du pays en pourcentage pour 2013, tapez None pour passer la question :')
+        while True : 
+            army2 = input('Entrez le taux de depense militaire du pays en pourcentage pour 2013:')
+            if fbd.is_number(army2): 
+                break
         liste_info.append(army2)
-        army3 = input('Entrez le taux de depense militaire du pays en pourcentage pour 2012, tapez None pour passer la question :')
+        while True : 
+            army3 = input('Entrez le taux de depense militaire du pays en pourcentage pour 2012:')
+            if fbd.is_number(army3): 
+                break
         liste_info.append(army3)
 
         # Entree des 5 classes d\'age
-        age1 = input('Entrez le pourcentage de la classe [0-14] ans total, tapez None pour passer la question :')
+        while True : 
+            age1 = input('Entrez le pourcentage de la classe [0-14] ans total:')
+            if fbd.is_number(age1): 
+                break
         liste_info.append(age1)
-        age1_1 = input('Entrez le pourcentage de la classe [0-14] ans masculin, tapez None pour passer la question :')
+        while True :
+            age1_1 = input('Entrez le pourcentage de la classe [0-14] ans masculin:')
+            if fbd.is_number(age1_1): 
+                break
         liste_info.append(age1_1)
-        age1_2 = input('Entrez le pourcentage de la classe [0-14] ans feminin, tapez None pour passer la question :')
+        while True : 
+            age1_2 = input('Entrez le pourcentage de la classe [0-14] ans feminin:')
+            if fbd.is_number(age1_2): 
+                break
         liste_info.append(age1_2)
 
-        age2 = input('Entrez le pourcentage de la classe [0-14] ans total, tapez None pour passer la question :')
+        while True : 
+            age2 = input('Entrez le pourcentage de la classe [15-24] ans total:')
+            if fbd.is_number(age2): 
+                break
         liste_info.append(age2)
-        age2_1 = input('Entrez le pourcentage de la classe [0-14] ans masculin, tapez None pour passer la question :')
+        while True :
+            age2_1 = input('Entrez le pourcentage de la classe [15-24] ans masculin:')
+            if fbd.is_number(age2_1): 
+                break
         liste_info.append(age2_1)
-        age2_2 = input('Entrez le pourcentage de la classe [0-14] ans feminin, tapez None pour passer la question :')
+        while True : 
+            age2_2 = input('Entrez le pourcentage de la classe [15-24] ans feminin:')
+            if fbd.is_number(age2_2): 
+                break
         liste_info.append(age2_2)
 
-        age3 = input('Entrez le pourcentage de la classe [25-54] ans total, tapez None pour passer la question :')
+        while True : 
+            age3 = input('Entrez le pourcentage de la classe [25-54] ans total:')
+            if fbd.is_number(age3): 
+                break
         liste_info.append(age3)
-        age3_1 = input('Entrez le pourcentage de la classe [25-54] ans masculin, tapez None pour passer la question :')
+        while True :
+            age3_1 = input('Entrez le pourcentage de la classe [25-54] ans masculin:')
+            if fbd.is_number(age3_1): 
+                break
         liste_info.append(age3_1)
-        age3_2 = input('Entrez le pourcentage de la classe [25-54] ans feminin, tapez None pour passer la question :')
+        while True : 
+            age3_2 = input('Entrez le pourcentage de la classe [25-54] ans feminin:')
+            if fbd.is_number(age3_2): 
+                break
         liste_info.append(age3_2)
 
-        age4 = input('Entrez le pourcentage de la classe [55-64] ans total, tapez None pour passer la question :')
+        while True : 
+            age4 = input('Entrez le pourcentage de la classe [55-64] ans total:')
+            if fbd.is_number(age4): 
+                break
         liste_info.append(age4)
-        age4_1 = input('Entrez le pourcentage de la classe [55-64] ans masculin, tapez None pour passer la question :')
+        while True :
+            age4_1 = input('Entrez le pourcentage de la classe [55-64] ans masculin:')
+            if fbd.is_number(age4_1): 
+                break
         liste_info.append(age4_1)
-        age4_2 = input('Entrez le pourcentage de la classe [55-64] ans feminin, tapez None pour passer la question :')
+        while True : 
+            age4_2 = input('Entrez le pourcentage de la classe [55-64] ans feminin:')
+            if fbd.is_number(age4_2): 
+                break
         liste_info.append(age4_2)
 
-        age5 = input('Entrez le pourcentage de la classe [65 ans et plus] total, tapez None pour passer la question :')
+        while True : 
+            age5 = input('Entrez le pourcentage de la classe [+65] ans total:')
+            if fbd.is_number(age5): 
+                break
         liste_info.append(age5)
-        age5_1 = input('Entrez le pourcentage de la classe [65 ans et plus] masculin, tapez None pour passer la question :')
+        while True :
+            age5_1 = input('Entrez le pourcentage de la classe [+65] ans masculin:')
+            if fbd.is_number(age1_1): 
+                break
         liste_info.append(age5_1)
-        age5_2 = input('Entrez le pourcentage de la classe [65 ans et plus] feminin, tapez None pour passer la question :')
+        while True : 
+            age5_2 = input('Entrez le pourcentage de la classe [+65] ans feminin:')
+            if fbd.is_number(age5_2): 
+                break
         liste_info.append(age5_2)
 
         if len(liste_info)== 0 : 
@@ -274,82 +364,170 @@ class Geographe(Individu):
             print("Le pays entré n'existe pas, un nouveau pays va être crée")
         finally :
             # La fonction demande à l'utilisateur s'il souhaite ajouter des informations
-            complementaire = input('Voulez vous ajouter des informations ? (Y/N)')
+            complementaire = input('Nous allons maintenant ajouter des information complémentaires, cette étape est obligatoire\nAppuyez sur Entrer pour continuer')
             liste_info = []
-            # Si l'utilisateur accepte 
-            if complementaire in ["Y","y"]: 
-                superficie = input('Entrez la superficie du pays en km2 totale, tapez None pour passer la question :')
-                liste_info.append(superficie)
-                superficie2 = input('Entrez la superficie du pays en km2 métropolitaine, tapez None pour passer la question :')
-                liste_info.append(superficie2)
-                pop = input('Entrez la population du pays, tapez None pour passer la question :')
-                liste_info.append(pop)
-                crois = input('Entrez la croissance demographique du pays en pourcentage , tapez None pour passer la question :')
-                liste_info.append(crois)
-                inflation = input('Entrez l\'inflation du pays en pourcentage pour l\'année 2016, tapez None pour passer la question :')
-                liste_info.append(inflation)
-                inflation2 = input('Entrez l\'inflation du pays en pourcentage pour l\'année 2015, tapez None pour passer la question :')
-                liste_info.append(inflation2)
-                dette = input('Entrez la dette en dollars - unité incluse (trillion, billion...) - pour l\'année 2016, tapez None pour passer la question :')
-                liste_info.append(dette)
-                dette2 = input('Entrez la dette en dollars - unité incluse (trillion, billion...) - pour l\'année 2016, tapez None pour passer la question :')
-                liste_info.append(dette2)
-                chom = input('Entrez la taux de chomage du pays en pourcentage pour l\'année 2015, tapez None pour passer la question :')
-                liste_info.append(chom)
-                chom2 = input('Entrez la taux de chomage du pays en pourcentage pour l\'année 2016, tapez None pour passer la question :')
-                liste_info.append(chom2)
-                sante = input('Entrez le taux de depense en sante du pays en pourcentage pour l\'année 2014, tapez None pour passer la question :')
-                liste_info.append(sante)
-                edu = input('Entrez le taux de depense en education du pays en pourcentage pour l\'année 2013, tapez None pour passer la question :')
-                liste_info.append(edu)
-                army = input('Entrez le taux de depense militaire du pays en pourcentage pour 2014, tapez None pour passer la question :')
-                liste_info.append(army)
-                army2 = input('Entrez le taux de depense militaire du pays en pourcentage pour 2013, tapez None pour passer la question :')
-                liste_info.append(army2)
-                army3 = input('Entrez le taux de depense militaire du pays en pourcentage pour 2012, tapez None pour passer la question :')
-                liste_info.append(army3)
+            while True :
+                superficie = input('Entrez la superficie du pays en km2 totale:')
+                if fbd.is_number(superficie): 
+                    break
+            liste_info.append(superficie)
+            while True :
+                superficie2 = input('Entrez la superficie du pays en km2 métropolitaine:')
+                if fbd.is_number(superficie2): 
+                    break
+            liste_info.append(superficie2)
+            while True :
+                pop = input('Entrez la population du pays:')
+                if fbd.is_number(pop): 
+                    break
+            liste_info.append(pop)
+            while True :
+                crois = input('Entrez la croissance demographique du pays en pourcentage :')
+                if fbd.is_number(crois): 
+                    break
+            liste_info.append(crois)
+            while True :
+                inflation = input('Entrez l\'inflation du pays en pourcentage pour l\'année 2016:')
+                if fbd.is_number(inflation): 
+                    break
+            liste_info.append(inflation)
+            while True : 
+                inflation2 = input('Entrez l\'inflation du pays en pourcentage pour l\'année 2015:')
+                if fbd.is_number(inflation2): 
+                    break
+            liste_info.append(inflation2)
+            while True : 
+                dette = input('Entrez la dette en dollars - unité incluse (trillion, billion...) - pour l\'année 2016:')
+                if fbd.is_number(dette): 
+                    break
+            liste_info.append(dette)
+            while True :
+                dette2 = input('Entrez la dette en dollars - unité incluse (trillion, billion...) - pour l\'année 2016:')
+                if fbd.is_number(crois): 
+                    break
+            liste_info.append(dette2)
+            while True : 
+                chom = input('Entrez la taux de chomage du pays en pourcentage pour l\'année 2015:')
+                if fbd.is_number(chom): 
+                    break
+            liste_info.append(chom)
+            while True : 
+                chom2 = input('Entrez la taux de chomage du pays en pourcentage pour l\'année 2016:')
+                if fbd.is_number(chom2): 
+                    break
+            liste_info.append(chom2)
+            while True : 
+                sante = input('Entrez le taux de depense en sante du pays en pourcentage pour l\'année 2014:')
+                if fbd.is_number(sante): 
+                    break
+            liste_info.append(sante)
+            while True : 
+                edu = input('Entrez le taux de depense en education du pays en pourcentage pour l\'année 2013:')
+                if fbd.is_number(edu): 
+                    break
+            liste_info.append(edu)
+            while True : 
+                army = input('Entrez le taux de depense militaire du pays en pourcentage pour 2014:')
+                if fbd.is_number(army): 
+                    break
+            liste_info.append(army)
+            while True : 
+                army2 = input('Entrez le taux de depense militaire du pays en pourcentage pour 2013:')
+                if fbd.is_number(army2): 
+                    break
+            liste_info.append(army2)
+            while True : 
+                army3 = input('Entrez le taux de depense militaire du pays en pourcentage pour 2012:')
+                if fbd.is_number(army3): 
+                    break
+            liste_info.append(army3)
 
-                # Entree des 5 classes d\'age
-                age1 = input('Entrez le pourcentage de la classe [0-14] ans total, tapez None pour passer la question :')
-                liste_info.append(age1)
-                age1_1 = input('Entrez le pourcentage de la classe [0-14] ans masculin, tapez None pour passer la question :')
-                liste_info.append(age1_1)
-                age1_2 = input('Entrez le pourcentage de la classe [0-14] ans feminin, tapez None pour passer la question :')
-                liste_info.append(age1_2)
+            # Entree des 5 classes d\'age
+            while True : 
+                age1 = input('Entrez le pourcentage de la classe [0-14] ans total:')
+                if fbd.is_number(age1): 
+                    break
+            liste_info.append(age1)
+            while True :
+                age1_1 = input('Entrez le pourcentage de la classe [0-14] ans masculin:')
+                if fbd.is_number(age1_1): 
+                    break
+            liste_info.append(age1_1)
+            while True : 
+                age1_2 = input('Entrez le pourcentage de la classe [0-14] ans feminin:')
+                if fbd.is_number(age1_2): 
+                    break
+            liste_info.append(age1_2)
 
-                age2 = input('Entrez le pourcentage de la classe [0-14] ans total, tapez None pour passer la question :')
-                liste_info.append(age2)
-                age2_1 = input('Entrez le pourcentage de la classe [0-14] ans masculin, tapez None pour passer la question :')
-                liste_info.append(age2_1)
-                age2_2 = input('Entrez le pourcentage de la classe [0-14] ans feminin, tapez None pour passer la question :')
-                liste_info.append(age2_2)
+            while True : 
+                age2 = input('Entrez le pourcentage de la classe [15-24] ans total:')
+                if fbd.is_number(age2): 
+                    break
+            liste_info.append(age2)
+            while True :
+                age2_1 = input('Entrez le pourcentage de la classe [15-24] ans masculin:')
+                if fbd.is_number(age2_1): 
+                    break
+            liste_info.append(age2_1)
+            while True : 
+                age2_2 = input('Entrez le pourcentage de la classe [15-24] ans feminin:')
+                if fbd.is_number(age2_2): 
+                    break
+            liste_info.append(age2_2)
 
-                age3 = input('Entrez le pourcentage de la classe [25-54] ans total, tapez None pour passer la question :')
-                liste_info.append(age3)
-                age3_1 = input('Entrez le pourcentage de la classe [25-54] ans masculin, tapez None pour passer la question :')
-                liste_info.append(age3_1)
-                age3_2 = input('Entrez le pourcentage de la classe [25-54] ans feminin, tapez None pour passer la question :')
-                liste_info.append(age3_2)
+            while True : 
+                age3 = input('Entrez le pourcentage de la classe [25-54] ans total:')
+                if fbd.is_number(age3): 
+                    break
+            liste_info.append(age3)
+            while True :
+                age3_1 = input('Entrez le pourcentage de la classe [25-54] ans masculin:')
+                if fbd.is_number(age3_1): 
+                    break
+            liste_info.append(age3_1)
+            while True : 
+                age3_2 = input('Entrez le pourcentage de la classe [25-54] ans feminin:')
+                if fbd.is_number(age3_2): 
+                    break
+            liste_info.append(age3_2)
 
-                age4 = input('Entrez le pourcentage de la classe [55-64] ans total, tapez None pour passer la question :')
-                liste_info.append(age4)
-                age4_1 = input('Entrez le pourcentage de la classe [55-64] ans masculin, tapez None pour passer la question :')
-                liste_info.append(age4_1)
-                age4_2 = input('Entrez le pourcentage de la classe [55-64] ans feminin, tapez None pour passer la question :')
-                liste_info.append(age4_2)
+            while True : 
+                age4 = input('Entrez le pourcentage de la classe [55-64] ans total:')
+                if fbd.is_number(age4): 
+                    break
+            liste_info.append(age4)
+            while True :
+                age4_1 = input('Entrez le pourcentage de la classe [55-64] ans masculin:')
+                if fbd.is_number(age4_1): 
+                    break
+            liste_info.append(age4_1)
+            while True : 
+                age4_2 = input('Entrez le pourcentage de la classe [55-64] ans feminin:')
+                if fbd.is_number(age4_2): 
+                    break
+            liste_info.append(age4_2)
 
-                age5 = input('Entrez le pourcentage de la classe [65 ans et plus] total, tapez None pour passer la question :')
-                liste_info.append(age5)
-                age5_1 = input('Entrez le pourcentage de la classe [65 ans et plus] masculin, tapez None pour passer la question :')
-                liste_info.append(age5_1)
-                age5_2 = input('Entrez le pourcentage de la classe [65 ans et plus] feminin, tapez None pour passer la question :')
-                liste_info.append(age5_2)
+            while True : 
+                age5 = input('Entrez le pourcentage de la classe [+65] ans total:')
+                if fbd.is_number(age5): 
+                    break
+            liste_info.append(age5)
+            while True :
+                age5_1 = input('Entrez le pourcentage de la classe [+65] ans masculin:')
+                if fbd.is_number(age1_1): 
+                    break
+            liste_info.append(age5_1)
+            while True : 
+                age5_2 = input('Entrez le pourcentage de la classe [+65] ans feminin:')
+                if fbd.is_number(age5_2): 
+                    break
+            liste_info.append(age5_2)
 
             # Creation de l'entree
             entree = fbd.pays_vide()
             entree['Government']['Country name']['conventional short form']['text'] = Nom
-            print("Votre pays a bien été initialisé ")
             if len(liste_info) >0 : 
+                # Les tests provient d'une version antérieure de la fonction (à retirer si j'ai le temps)
                 if liste_info[0] not in ['None','none']: 
                     entree['Geography']['Area']['total']['text'] = str(liste_info[0])+" sq km; "+str(liste_info[1])+" sq km (metropolitan "+ Nom +")"
                 if liste_info[1] not in ['None','none']: 
