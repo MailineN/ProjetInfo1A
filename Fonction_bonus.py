@@ -167,7 +167,7 @@ def clustering(methode):
         ss = StandardScaler()
         ss.fit_transform(df)
         
-        kmeans = cluster.KMeans(n_clusters=3).fit(df)
+        kmeans = cluster.KMeans(n_clusters=4).fit(df)
 
         acp = PCA(n_components=2).fit_transform(df)
 

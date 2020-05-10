@@ -191,6 +191,9 @@ class Consultant(Individu):
         age5_2 = input('Entrez le pourcentage de la classe [65 ans et plus] feminin, tapez None pour passer la question :')
         liste_info.append(age5_2)
 
+        if len(liste_info)== 0 : 
+            input("La suggestion entrée est vide, aucune modification apportée \nAppuyez sur Entrer pour retourner au menu précédent ")
+            return(Ouvert(previous_menu))
         # Ajout de la suggestion dans la base de données
         with open("Suggestions.json") as json_file: 
             sugges =json.load(json_file)
@@ -234,24 +237,9 @@ class Geographe(Individu):
 
         return self.connecte
     
-    def deconnexion(self): 
-        """ Fonction permettant de se deconnecter
-        """       
-        if not self.connecte: 
-            print("Vous n'êtes pas connecté : ")
-            return("On doit revenir au menu précédent")
-        else : 
-            confirmation = input("Voulez vous vraiment vous déconnecter ? (Y/N) ")
-            if confirmation in ["Y","y"] : 
-                self.connecte = False 
-                print("Déconnexion réussie")
-            else : 
-                print ("Déconnextion échouée")
-        
-        return("On doit revenir au menu précédent")
 
     def ajout_pays(self,previous): 
-        """ Fonction permettant d'ajouter un pays à la base de données'
+        """ Fonction permettant d'ajouter un pays à la base de données ou alors de modifier un pays existant
 
         Arguments:
             previous_menu {list} -- menu précédent l'appel de la fonction
@@ -272,9 +260,9 @@ class Geographe(Individu):
         nouveau_pays = True
         
         while True : 
-            Nom = input("Entrer le nom du pays a ajouter : ") 
-            #on suppose dans un premier temps que l'user rentre quelque chose 
-            if Nom != 'none':
+            Nom = input("Entrer le nom du pays que vous souhaitez modifier ou ajouter : ") 
+            
+            if Nom != None:
                 break
         
         try : #tente de trouver le code du pays
@@ -359,7 +347,7 @@ class Geographe(Individu):
             # Creation de l'entree
             entree = fbd.pays_vide()
             entree['Government']['Country name']['conventional short form']['text'] = Nom
-            print("Votre pays a bien ete cree")
+            print("Votre pays a bien été initialisé ")
             if len(liste_info) >0 : 
                 if liste_info[0] not in ['None','none']: 
                     entree['Geography']['Area']['total']['text'] = str(liste_info[0])+"sq km; "+str(liste_info[1])+" sq km (metropolitan "+ Nom +")"
@@ -535,22 +523,6 @@ class DataScientist(Consultant):
 
         return self.connecte
     
-    def deconnexion(self): 
-        """ Fonction permettant de se deconnecter
-        """       
-        if not self.connecte: 
-            print("Vous n'êtes pas connecté : ")
-            return("On doit revenir au menu précédent")
-        else : 
-            confirmation = input("Voulez vous vraiment vous déconnecter ? (Y/N) ")
-            if confirmation in ["Y","y"] : 
-                self.connecte = False 
-                print("Déconnexion réussie")
-            else : 
-                print ("Déconnextion échouée")
-        
-        return("On doit revenir au menu précédent")
-
     def resume(self,critere,previous_menu): 
         if not self.connecte : 
             print ("Vous n'êtes pas connecté \n Veuillez vous connecter")
@@ -558,7 +530,8 @@ class DataScientist(Consultant):
             return(Ouvert(previous_menu))
         try :
             resume_information(critere)
-        except : 
+        except Exception as e: 
+            print(e) 
             input("Une erreur dans d'argument s'est produite \n Appuyz sur Entrer pour continuer ")
         return(Ouvert(previous_menu))
         
@@ -569,7 +542,8 @@ class DataScientist(Consultant):
             return(Ouvert(previous_menu))
         try :
             cat.clustering(methode)
-        except : 
+        except Exception as e: 
+            print(e) 
             input("Une erreur dans d'argument s'est produite \n Appuyz sur Entrer pour continuer ")
 
         return(Ouvert(previous_menu))
@@ -847,22 +821,6 @@ class Admin(Geographe, DataScientist):
 
         return self.connecte
     
-    def deconnexion(self): 
-        """ Fonction permettant de se deconnecter
-        """       
-        if not self.connecte: 
-            print("Vous n'êtes pas connecté : ")
-            return("On doit revenir au menu précédent")
-        else : 
-            confirmation = input("Voulez vous vraiment vous déconnecter ? (Y/N) ")
-            if confirmation in ["Y","y"] : 
-                self.connecte = False 
-                print("Déconnexion réussie")
-            else : 
-                print ("Déconnextion échouée")
-        
-        return("On doit revenir au menu précédent")
-        
     def suppression(self,previous_menu):
         """ Fonction permettant de supprimer un pays (et ses informations) de la base de données
 

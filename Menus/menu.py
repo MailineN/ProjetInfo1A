@@ -190,7 +190,8 @@ def menu_clust(previous_menu):
     """    
     menu_act = {}
     menu_act["individu"] = previous_menu["individu"]
-    menu_act["question"] = "Quelle méthode voulez vous utiliser ? \nNote : L'Inde a été retirée de la base de donnée afin de clarifier les résultats "
+    menu_act["question"] = "Le Clustering est une méthode statistique permettant de regrouper les pays selon les \nvaleurs prises par les différents critères, l'application propose ici deux méthodes : \nLe CAH et les K-means\
+        \nQuelle méthode voulez vous utiliser ? \nNote : L'Inde a été retirée de la base de donnée afin de clarifier les résultats "
     menu_act["options"] = ["Clustering par méthode CAH",
         "Clustering par méthode des K-means", 
         "Retour au menu principal", 
