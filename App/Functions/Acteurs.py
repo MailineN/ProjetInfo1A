@@ -8,7 +8,7 @@ from . import FonctionBD as fbd
 from App.Menus.menu_ouvert import Ouvert
 from App.Menus.menu_ferme import Ferme
 import getpass
-from . import Fonction_resume as r
+from App.Functions.Fonction_resume_2 import Affichage_Stat
 from . import Fonction_bonus as b
 from . import Fonction_bonus as bonus
 
@@ -157,12 +157,12 @@ class Consultant(Individu):
                 break
         liste_info.append(inflation2)
         while True : 
-            dette = input('Entrez la dette en dollars - unité incluse (trillion, billion...) - pour l\'année 2016:')
+            dette = input('Entrez la dette en dollars pour l\'année 2016:')
             if fbd.is_number(dette): 
                 break
         liste_info.append(dette)
         while True :
-            dette2 = input('Entrez la dette en dollars - unité incluse (trillion, billion...) - pour l\'année 2016:')
+            dette2 = input('Entrez la dette en dollars pour l\'année 2016:')
             if fbd.is_number(crois): 
                 break
         liste_info.append(dette2)
@@ -397,12 +397,12 @@ class Geographe(Individu):
                     break
             liste_info.append(inflation2)
             while True : 
-                dette = input('Entrez la dette en dollars - unité incluse (trillion, billion...) - pour l\'année 2016:')
+                dette = input('Entrez la dette en dollars pour l\'année 2016:')
                 if fbd.is_number(dette): 
                     break
             liste_info.append(dette)
             while True :
-                dette2 = input('Entrez la dette en dollars - unité incluse (trillion, billion...) - pour l\'année 2016:')
+                dette2 = input('Entrez la dette en dollars pour l\'année 2016:')
                 if fbd.is_number(crois): 
                     break
             liste_info.append(dette2)
@@ -671,7 +671,7 @@ class Geographe(Individu):
 
 # Classe Data Scientist
 
-class DataScientist(Consultant): 
+class DataScientist(Consultant,Affichage_Stat): 
     def __init__(self):
         self.connecte = False
         self.type = "DataScientist"
@@ -702,18 +702,58 @@ class DataScientist(Consultant):
 
         return self.connecte
     
-    def resume(self,critere,previous_menu): 
+    def tricrois(self,critere,previous_menu): 
         if not self.connecte : 
             print ("Vous n'êtes pas connecté \n Veuillez vous connecter")
             input( "Appuyez sur Entrer pour continuer")
             return(Ouvert(previous_menu))
         try :
-            r.resume_information(critere)
+            data_stat = Affichage_Stat()
+            data_stat.tri_croissant(critere)
+        except Exception as e: 
+            print(e) 
+            input("Une erreur dans d'argument s'est produite \n Appuyz sur Entrer pour continuer ")
+        return(Ouvert(previous_menu))
+
+    def affichage_seuil_inf(self,critere,previous_menu): 
+        if not self.connecte : 
+            print ("Vous n'êtes pas connecté \n Veuillez vous connecter")
+            input( "Appuyez sur Entrer pour continuer")
+            return(Ouvert(previous_menu))
+        try :
+            data_stat = Affichage_Stat()
+            data_stat.informations_seuil_inf(critere)
+        except Exception as e: 
+            print(e) 
+            input("Une erreur dans d'argument s'est produite \n Appuyz sur Entrer pour continuer ")
+        return(Ouvert(previous_menu))
+
+    def affichage_seuil_sup(self,critere,previous_menu): 
+        if not self.connecte : 
+            print ("Vous n'êtes pas connecté \n Veuillez vous connecter")
+            input( "Appuyez sur Entrer pour continuer")
+            return(Ouvert(previous_menu))
+        try :
+            data_stat = Affichage_Stat()
+            data_stat.informations_seuil_supp(critere)
         except Exception as e: 
             print(e) 
             input("Une erreur dans d'argument s'est produite \n Appuyz sur Entrer pour continuer ")
         return(Ouvert(previous_menu))
         
+    def affichage_tableau_age(self,previous_menu): 
+        if not self.connecte : 
+            print ("Vous n'êtes pas connecté \n Veuillez vous connecter")
+            input( "Appuyez sur Entrer pour continuer")
+            return(Ouvert(previous_menu))
+        try :
+            data_stat = Affichage_Stat()
+            data_stat.tableau_classe_age()
+        except Exception as e: 
+            print(e) 
+            input("Une erreur dans d'argument s'est produite \n Appuyz sur Entrer pour continuer ")
+        return(Ouvert(previous_menu))
+
     def clust(self,methode,previous_menu): 
         if not self.connecte : 
             print ("Vous n'êtes pas connecté \n Veuillez vous connecter")
@@ -1070,7 +1110,7 @@ class Admin(Geographe, DataScientist):
                 break
         new['type'] = type_user
         new['ID'] = {}
-        id_user = input("Entrez l'ID utilisateur que vous souhaitez creer : ")
+        id_user = input("Entrez l'ID utilisateur que vous souhaitez creer : \n Attention : Si l'utilisateur existe déjà, aucun compte ne sera crée, seul l'utilisateur concerné sera impacté ")
         new['ID']['username'] = id_user
         mdp_user = input("Entrez le mot de passe utilisateur que vous souhaitez creer : ")
         mdp_confirmation = input("Confirmez votre mot de passe : ")
@@ -1079,11 +1119,11 @@ class Admin(Geographe, DataScientist):
         new['ID']['mdp'] = mdp_user
         
     
-        print("L'utilisateur",id_user,"vient d'etre cree et va etre ajouter a la base")
+        print("L'utilisateur",id_user,"a été ajouté à la base de donnée")
         users.append(new)
         with open(r"App\Functions\DataTreatment\user.json", "w") as write_file:
             json.dump(users, write_file)
-
+        input("Opération terminée, appuyez sur Entrer pour continuer ")
         return(Ouvert(previous_menu))
         
 
@@ -1108,5 +1148,5 @@ class Admin(Geographe, DataScientist):
             print("Aucun changement effectué")
         with open(r"App\Functions\DataTreatment\user.json", "w") as write_file:
             json.dump(users, write_file)
-
+        input("Opération terminée, appuyez sur Entrer pour continuer ")
         return(Ouvert(previous_menu))

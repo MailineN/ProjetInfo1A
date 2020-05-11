@@ -25,7 +25,7 @@ class Main_menu:
     def Banner(self): 
         """[Non utilisée]
         """        
-        print(" ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ \n")
+        print(" ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ \n")
         print("\n")
 
     def Au_revoir(self): 
@@ -33,7 +33,7 @@ class Main_menu:
         """       
         clear() 
         print("\n")
-        print(" ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ \n")
+        print(" ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ \n")
         bye = Figlet(font='big')
         print(bye.renderText('Au  revoir'))
 
