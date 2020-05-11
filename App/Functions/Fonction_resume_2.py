@@ -13,13 +13,13 @@ class Affichage_Stat:
         # On modifie pour la pop d'Israeal car la phrase fait que le code ne marche pas
         self.data[47]['People and Society']['Population']['text'] = '8,174,527 (July 2016 est.)'
 
-
     # Fonction resume
 
     def tri_croissant(self,critere):
         while True : 
             nb_pays_max = input("Entrez le nombre de pays que vous voulez observer : ")
             if fbd.is_number(nb_pays_max): 
+                nb_pays_max= int(nb_pays_max)
                 break
         # Fonction qui trouve quel est le chemin pour acceder au critere demandé
 
@@ -771,10 +771,9 @@ class Affichage_Stat:
     # Fonction resume d'informations, dépassement d'un seuil
 
     def informations_seuil_inf(self,critere):
-        while True : 
-            seuil = input("Entrez le seuil en pourcentage :")
-            if fbd.is_number(seuil): 
-                break
+
+        seuil = input("Entrez le seuil à dépasser : ")
+
         # Fonction qui trouve quel est le chemin pour acceder au critere demandé
 
         def chemin(critere) :
@@ -1270,10 +1269,8 @@ class Affichage_Stat:
 
     def informations_seuil_supp(self,critere):
 
-        while True : 
-            seuil = input("Entrez le seuil en pourcentage :")
-            if fbd.is_number(seuil): 
-                break
+        seuil = input("Entrez le seuil à ne pas dépasser : ")
+
         # Fonction qui trouve quel est le chemin pour acceder au critere demandé
 
         def chemin(critere) :
@@ -1784,8 +1781,9 @@ class Affichage_Stat:
         while True : 
             nb_pays_max = input('Combien de pays voulez vous dans le tableau ? ')
             if fbd.is_number(nb_pays_max): 
+                nb_pays_max = int(nb_pays_max)
                 break
-        print('Vous allez rentrer le code ou le nom de' + ' nb_pays_max ')
+        print('Vous allez rentrer le code ou le nom de ' + str(nb_pays_max)+' pays : ' )
 
         nom_pays = []
         classe_0_14 = []
@@ -1813,7 +1811,7 @@ class Affichage_Stat:
             inf5 = self.data[code_pays]['People and Society']['Age structure']['55-64 years']['text']
             inf6 = self.data[code_pays]['People and Society']['Age structure']['65 years and over']['text']
 
-            nom_pays += [inf1[:inf1.find(' ')]]
+            nom_pays += [inf1]
             classe_0_14 += [inf2[:inf2.find(' ')]]
             classe_15_24 += [inf3[:inf3.find(' ')]]
             classe_25_54 += [inf4[:inf4.find(' ')]]
@@ -1833,8 +1831,9 @@ class Affichage_Stat:
                                             'Classe des 25-54 ans',
                                             'Classe des 55-64 ans',
                                             'Classe des 65 ans et plus'))
-
+        print("\n")
         print(tableau)
+        input("\nAffichage terminé, appuyez sur Entrer pour continuer ")
 
 
 
