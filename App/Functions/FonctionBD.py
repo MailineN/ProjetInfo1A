@@ -287,3 +287,4 @@ def to_df():
         df=df.drop(pays.index('India'))
         pays.remove('India')
         return (df,pays)
+
