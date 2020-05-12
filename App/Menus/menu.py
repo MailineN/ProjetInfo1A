@@ -58,20 +58,34 @@ def menu_graph(previous_menu):
         "Taux de dépenses en santé", #8
         "Taux de dépenses en éducation", #9
         "Taux de dépenses militaires", #10
-        "Retour au menu principal", 
+        "Retour au menu précédent", 
         "Quitter l'application"]
-    menu_act["actions"] = [
-            (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,1)),
-            (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,2)),
-            (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,3)), # 
-            (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,4)),
-            (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,5)),
-            (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,6)),
-            (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,7)),
-            (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,8)),
-            (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,9)),
-            (lambda previous_menu : Ouvert(menu[0])),
-            Individu().quitter]
+    if previous_menu["individu"].type == "Administrateur": 
+        menu_act["actions"] = [
+                (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,1)),
+                (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,2)),
+                (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,3)), 
+                (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,4)),
+                (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,5)),
+                (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,6)),
+                (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,7)),
+                (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,8)),
+                (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,9)),
+                (lambda previous_menu :indices_actions(Admin(),[0,1,2,3,5,6,7,8,9,10])),
+                Individu().quitter]
+    else : 
+        menu_act["actions"] = [
+                (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,1)),
+                (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,2)),
+                (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,3)), 
+                (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,4)),
+                (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,5)),
+                (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,6)),
+                (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,7)),
+                (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,8)),
+                (lambda previous_menu :previous_menu["individu"].representationgraphique(previous_menu,9)),
+                (lambda previous_menu :indices_actions(DataScientist(),[0,1,2,3,4,8,9,10])),
+                Individu().quitter]
     menu_act["path"] = []
     
     return(Ouvert(menu_act))
@@ -84,20 +98,29 @@ def menu_resume(previous_menu):
     """ 
     menu_act = {}
     menu_act["individu"] = menu_act["individu"] = previous_menu["individu"]
-    menu_act["question"] = "L'affichage statistique permet de visualiser plusieurs informations"
+    menu_act["question"] = "L'affichage statistique permet de visualiser plusieurs informations \nQue voulez vous faire ?"
     menu_act["options"] = ["Afficher les pays dont le critère est le plus important", #2
         "Afficher les pays dont le critère dépasse un certain seuil", #3
         "Afficher les pays dont le critère ne dépasse pas un certain seuil", #4
         "Affichage de la répartition des classes d'âges", #5
-        "Retour au menu principal", 
+        "Retour au menu précédent", 
         "Quitter l'application"]
-    menu_act["actions"] = [
-            menu_tricrois,
-            menu_seuil_inf,
-            menu_seuil_sup, # 
-            (lambda previous_menu :previous_menu["individu"].affichage_tableau_age(previous_menu)),
-            (lambda previous_menu : Ouvert(menu[0])),
-            Individu().quitter]
+    if previous_menu["individu"].type == "Administrateur": 
+        menu_act["actions"] = [
+                menu_tricrois,
+                menu_seuil_inf,
+                menu_seuil_sup, # 
+                (lambda previous_menu :previous_menu["individu"].affichage_tableau_age(previous_menu)),
+                (lambda previous_menu :indices_actions(Admin(),[0,1,2,3,5,6,7,8,9,10])),
+                Individu().quitter]
+    else : 
+        menu_act["actions"] = [
+                menu_tricrois,
+                menu_seuil_inf,
+                menu_seuil_sup, # 
+                (lambda previous_menu :previous_menu["individu"].affichage_tableau_age(previous_menu)),
+                (lambda previous_menu :indices_actions(DataScientist(),[0,1,2,3,4,8,9,10])),
+                Individu().quitter]
     menu_act["path"] = []
     
     return(Ouvert(menu_act))
@@ -251,7 +274,7 @@ def menu_seuil_sup(previous_menu):
         "Taux de dépenses en éducation", #9
         "Taux de dépenses militaires", 
         "Classes d'âges", 
-        "Retour au menu principal", 
+        "Retour au menu précédent", 
         "Quitter l'application"]
     menu_act["actions"] = [
             (lambda previous_menu :previous_menu["individu"].affichage_seuil_sup('total',previous_menu)),
@@ -284,7 +307,7 @@ def menu_age_seuil_sup(previous_menu):
         "25-54 ans", #4
         "55-64 ans", #5
         "65 ans et plus", #6
-        "Retour au menu principal",
+        "Retour au menu précédent",
         "Quitter l'application"]
     menu_act["actions"] = [
             (lambda previous_menu :previous_menu["individu"].affichage_seuil_sup('0-14 years',previous_menu)),
@@ -310,11 +333,18 @@ def gestion_pays(previous_menu):
         "Supprimer un pays (Administrateur seulement) ", 
         "Retour au menu précédent", 
         "Quitter l'application"]
-    menu_act["actions"] = [
-            (lambda previous_menu :previous_menu["individu"].ajout_pays(previous_menu)),
-            (lambda previous_menu :previous_menu["individu"].suppression(previous_menu)),
-            (lambda previous_menu : Ouvert(menu[0])),
-            Individu().quitter]
+    if previous_menu["individu"].type == "Administrateur": 
+        menu_act["actions"] = [
+                (lambda previous_menu :previous_menu["individu"].ajout_pays(previous_menu)),
+                (lambda previous_menu :previous_menu["individu"].suppression(previous_menu)),
+                (lambda previous_menu :indices_actions(Admin(),[0,1,2,3,5,6,7,8,9,10])),
+                Individu().quitter]
+    else : 
+        menu_act["actions"] = [
+                (lambda previous_menu :previous_menu["individu"].ajout_pays(previous_menu)),
+                (lambda previous_menu :previous_menu["individu"].suppression(previous_menu)),
+                (lambda previous_menu :indices_actions(DataScientist(),[0,1,2,3,4,8,9,10])),
+                Individu().quitter]
     menu_act["path"] = []
     return(Ouvert(menu_act))
 
@@ -350,13 +380,20 @@ def menu_clust(previous_menu):
         \nQuelle méthode voulez vous utiliser ? \nNote : L'Inde a été retirée de la base de donnée afin de clarifier les résultats "
     menu_act["options"] = ["Clustering par méthode CAH",
         "Clustering par méthode des K-means", 
-        "Retour au menu principal", 
+        "Retour au menu précédent", 
         "Quitter l'application"]
-    menu_act["actions"] = [
-            (lambda previous_menu :previous_menu["individu"].clust('CAH',previous_menu)),
-            (lambda previous_menu :previous_menu["individu"].clust('K-means',previous_menu)),
-            (lambda previous_menu : Ouvert(menu[0])),
-            Individu().quitter]
+    if previous_menu["individu"].type == "Administrateur": 
+        menu_act["actions"] = [
+                (lambda previous_menu :previous_menu["individu"].clust('CAH',previous_menu)),
+                (lambda previous_menu :previous_menu["individu"].clust('K-means',previous_menu)),
+                (lambda previous_menu :indices_actions(Admin(),[0,1,2,3,5,6,7,8,9,10])),
+                Individu().quitter]
+    else : 
+        menu_act["actions"] = [
+                (lambda previous_menu :previous_menu["individu"].clust('CAH',previous_menu)),
+                (lambda previous_menu :previous_menu["individu"].clust('K-means',previous_menu)),
+                (lambda previous_menu :indices_actions(DataScientist(),[0,1,2,3,4,8,9,10])),
+                Individu().quitter]
     menu_act["path"] = []
     return(Ouvert(menu_act))
 
@@ -380,7 +417,7 @@ menu = [
         "options" : ["Connexion", #0
         "Affichage de données pays", #1
         "Représentation graphique", #2 Data
-        "Résumés statistiques", #3 Data
+        "Affichages statistiques", #3 Data
         "Proposition suggestion", #4
         "Gestion des pays", #5
         "Gestion des suggestions", #6

@@ -547,15 +547,15 @@ class Geographe(Individu):
                 if liste_info[8] not in ['None','none']: 
                     entree['Military and Security']['Military expenditures']['text'] = str(liste_info[12])+"% of GDP (2014) ++ "+str(liste_info[12])+"% of GDP (2013) ++ "+str(liste_info[13])+"% of GDP (2012)"
                 if liste_info[9] not in ['None','none']: 
-                    entree['People and Society']['Age structure']['0-14 years']['text'] = str(liste_info[14])+"% (male "+str(liste_info[15])+"% / female "+str(liste_info[16])+")"
+                    entree['People and Society']['Age structure']['0-14 years']['text'] = str(liste_info[14])+"% (male "+str(liste_info[15])+"% / female "+str(liste_info[16])+"%)"
                 if liste_info[10] not in ['None','none']: 
-                    entree['People and Society']['Age structure']['15-24 years']['text'] = str(liste_info[17])+"% (male "+str(liste_info[18])+"% / female "+str(liste_info[19])+")"
+                    entree['People and Society']['Age structure']['15-24 years']['text'] = str(liste_info[17])+"% (male "+str(liste_info[18])+"% / female "+str(liste_info[19])+"%)"
                 if liste_info[11] not in ['None','none']: 
-                    entree['People and Society']['Age structure']['25-54 years']['text'] = str(liste_info[10])+"% (male "+str(liste_info[21])+"% / female "+str(liste_info[22])+")"
+                    entree['People and Society']['Age structure']['25-54 years']['text'] = str(liste_info[10])+"% (male "+str(liste_info[21])+"% / female "+str(liste_info[22])+"%)"
                 if liste_info[12] not in ['None','none']: 
-                    entree['People and Society']['Age structure']['55-64 years']['text'] = str(liste_info[23])+"% (male "+str(liste_info[24])+"% / female "+str(liste_info[25])+")"
+                    entree['People and Society']['Age structure']['55-64 years']['text'] = str(liste_info[23])+"% (male "+str(liste_info[24])+"% / female "+str(liste_info[25])+"%)"
                 if liste_info[13] not in ['None','none']: 
-                    entree['People and Society']['Age structure']['65 years and over']['text'] = str(liste_info[26])+"% (male "+str(liste_info[27])+"% / female "+str(liste_info[28])+")"
+                    entree['People and Society']['Age structure']['65 years and over']['text'] = str(liste_info[26])+"% (male "+str(liste_info[27])+"% / female "+str(liste_info[28])+"%)"
                 print('Vos informations complementaires ont bien ete enregistrees')
             with open(r"App\Functions\DataTreatment\country.json") as json_file: 
                 data =json.load(json_file)
@@ -596,7 +596,7 @@ class Geographe(Individu):
         while n > 0 :
             liste_info= sugges[0]
             nom_pays = liste_info.pop(0) # Recupere le nom du pays pour le placer correctement
-            print("#####################################################")
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
             print("Voici la suggestion : ") 
             print("Nom du pays : ", nom_pays)
             print("Superficie du pays : ", str(liste_info[0])+" sq km; "+str(liste_info[1])+" sq km (metropolitan "+ nom_pays +")")
@@ -608,12 +608,12 @@ class Geographe(Individu):
             print("Depense santé du pays : ", str(liste_info[10])+ "% of GDP (2014)")
             print("Depense education du pays : ", str(liste_info[11])+ "% of GDP (2013)")
             print("Depense militaire du pays : ",str(liste_info[12])+"% of GDP (2014) ++ "+str(liste_info[12])+"% of GDP (2013) ++ "+str(liste_info[13])+"% of GDP (2012)")
-            print("Taux [0 - 14] ans  : ", str(liste_info[14])+"% (male "+str(liste_info[15])+"% / female "+str(liste_info[16])+")")
-            print("Taux [15 - 24] ans : ", str(liste_info[17])+"% (male "+str(liste_info[18])+"% / female "+str(liste_info[19])+")")
-            print("Taux [25 - 54] ans : ", str(liste_info[10])+"% (male "+str(liste_info[21])+"% / female "+str(liste_info[22])+")")
-            print("Taux [55 - 64] ans : ", str(liste_info[23])+"% (male "+str(liste_info[24])+"% / female "+str(liste_info[25])+")")
-            print("Taux [65 ans et plus] ", sugges[0][14])
-            print("#####################################################")
+            print("Taux [0 - 14] ans  : ", str(liste_info[14])+"% (male "+str(liste_info[15])+"% / female "+str(liste_info[16])+"%)")
+            print("Taux [15 - 24] ans : ", str(liste_info[17])+"% (male "+str(liste_info[18])+"% / female "+str(liste_info[19])+"%)")
+            print("Taux [25 - 54] ans : ", str(liste_info[10])+"% (male "+str(liste_info[21])+"% / female "+str(liste_info[22])+"%)")
+            print("Taux [55 - 64] ans : ", str(liste_info[23])+"% (male "+str(liste_info[24])+"% / female "+str(liste_info[25])+"%)")
+            print("Taux [65 ans et plus] ", str(liste_info[26])+"% (male "+str(liste_info[27])+"% / female "+str(liste_info[28])+"%)")
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
             while True : 
                 res = input("Vous pouvez accepter (A) ou rejeter (R) cette suggestion : ")
                 if res in ["A","a","R","r"]: 
@@ -645,15 +645,15 @@ class Geographe(Individu):
                     if liste_info[8] not in ['None','none']: 
                         data[nom_pays]['Military and Security']['Military expenditures']['text'] = str(liste_info[12])+"% of GDP (2014) ++ "+str(liste_info[12])+"% of GDP (2013) ++ "+str(liste_info[13])+"% of GDP (2012)"
                     if liste_info[9] not in ['None','none']: 
-                        data[nom_pays]['People and Society']['Age structure']['0-14 years']['text'] = str(liste_info[14])+"% (male "+str(liste_info[15])+"% / female "+str(liste_info[16])+")"
+                        data[nom_pays]['People and Society']['Age structure']['0-14 years']['text'] = str(liste_info[14])+"% (male "+str(liste_info[15])+"% / female "+str(liste_info[16])+"%)"
                     if liste_info[10] not in ['None','none']: 
-                        data[nom_pays]['People and Society']['Age structure']['15-24 years']['text'] = str(liste_info[17])+"% (male "+str(liste_info[18])+"% / female "+str(liste_info[19])+")"
+                        data[nom_pays]['People and Society']['Age structure']['15-24 years']['text'] = str(liste_info[17])+"% (male "+str(liste_info[18])+"% / female "+str(liste_info[19])+"%)"
                     if liste_info[11] not in ['None','none']: 
-                        data[nom_pays]['People and Society']['Age structure']['25-54 years']['text'] = str(liste_info[10])+"% (male "+str(liste_info[21])+"% / female "+str(liste_info[22])+")"
+                        data[nom_pays]['People and Society']['Age structure']['25-54 years']['text'] = str(liste_info[10])+"% (male "+str(liste_info[21])+"% / female "+str(liste_info[22])+"%)"
                     if liste_info[12] not in ['None','none']: 
-                        data[nom_pays]['People and Society']['Age structure']['55-64 years']['text'] = str(liste_info[23])+"% (male "+str(liste_info[24])+"% / female "+str(liste_info[25])+")"
+                        data[nom_pays]['People and Society']['Age structure']['55-64 years']['text'] = str(liste_info[23])+"% (male "+str(liste_info[24])+"% / female "+str(liste_info[25])+"%)"
                     if liste_info[13] not in ['None','none']: 
-                        data[nom_pays]['People and Society']['Age structure']['65 years and over']['text'] = str(liste_info[26])+"% (male "+str(liste_info[27])+"% / female "+str(liste_info[28])+")"
+                        data[nom_pays]['People and Society']['Age structure']['65 years and over']['text'] = str(liste_info[26])+"% (male "+str(liste_info[27])+"% / female "+str(liste_info[28])+"%)"
                     print('Vos informations complementaires ont bien ete enregistrees : ')
 
             
