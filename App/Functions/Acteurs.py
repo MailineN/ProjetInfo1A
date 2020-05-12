@@ -712,7 +712,33 @@ class DataScientist(Consultant,Affichage_Stat):
             data_stat.tri_croissant(critere)
         except Exception as e: 
             print(e) 
-            input("Une erreur dans d'argument s'est produite \n Appuyz sur Entrer pour continuer ")
+            input("Une erreur d'argument s'est produite \n Appuyz sur Entrer pour continuer ")
+        return(Ouvert(previous_menu))
+
+    def tridecrois(self,critere,previous_menu): 
+        if not self.connecte : 
+            print ("Vous n'êtes pas connecté \n Veuillez vous connecter")
+            input( "Appuyez sur Entrer pour continuer")
+            return(Ouvert(previous_menu))
+        try :
+            data_stat = Affichage_Stat()
+            data_stat.tri_decroissant(critere)
+        except Exception as e: 
+            print(e) 
+            input("Une erreur d'argument s'est produite \n Appuyz sur Entrer pour continuer ")
+        return(Ouvert(previous_menu))
+
+    def description(self,critere,previous_menu): 
+        if not self.connecte : 
+            print ("Vous n'êtes pas connecté \n Veuillez vous connecter")
+            input( "Appuyez sur Entrer pour continuer")
+            return(Ouvert(previous_menu))
+        try:
+            data_stat = Affichage_Stat()
+            data_stat.summary(critere)
+        except Exception as e: 
+            print(e) 
+            input("Une erreur d'argument s'est produite \n Appuyz sur Entrer pour continuer ")
         return(Ouvert(previous_menu))
 
     def affichage_seuil_inf(self,critere,previous_menu): 
@@ -725,7 +751,7 @@ class DataScientist(Consultant,Affichage_Stat):
             data_stat.informations_seuil_inf(critere)
         except Exception as e: 
             print(e) 
-            input("Une erreur dans d'argument s'est produite \n Appuyz sur Entrer pour continuer ")
+            input("Une erreur d'argument s'est produite \n Appuyz sur Entrer pour continuer ")
         return(Ouvert(previous_menu))
 
     def affichage_seuil_sup(self,critere,previous_menu): 
@@ -738,7 +764,7 @@ class DataScientist(Consultant,Affichage_Stat):
             data_stat.informations_seuil_supp(critere)
         except Exception as e: 
             print(e) 
-            input("Une erreur dans d'argument s'est produite \n Appuyz sur Entrer pour continuer ")
+            input("Une erreur d'argument s'est produite \n Appuyz sur Entrer pour continuer ")
         return(Ouvert(previous_menu))
         
     def affichage_tableau_age(self,previous_menu): 
@@ -751,7 +777,7 @@ class DataScientist(Consultant,Affichage_Stat):
             data_stat.tableau_classe_age()
         except Exception as e: 
             print(e) 
-            input("Une erreur dans d'argument s'est produite \n Appuyz sur Entrer pour continuer ")
+            input("Une erreur d'argument s'est produite \n Appuyz sur Entrer pour continuer ")
         return(Ouvert(previous_menu))
 
     def clust(self,methode,previous_menu): 
@@ -773,11 +799,12 @@ class DataScientist(Consultant,Affichage_Stat):
 
     def representationgraphique(self,previous_menu,critere):
         """ Fonction permettant de générer une représentation graphique du critère demandé et des boxplots des classes d'âges
+
         Arguments:
             previous_menu {list} -- menu précédent l'appel de la fonction
             critere              -- critere entré par le DataScientist    
         Returns:
-            Ouvert(previous_menu) -- Renvoie le menu précédent
+            [Ouvert(previous_menu)] -- [Renvoie le menu précédent]
             
         """       
         if not self.connecte : 
@@ -795,7 +822,31 @@ class DataScientist(Consultant,Affichage_Stat):
         tranche5=[]
         crit=[]
         pays=[]    
-
+        print("Vous pouvez personnaliser votre barplot")
+        print("Choisissez une couleur parmi : blue (bleu), yellow (jaune), purple (violet)")
+        couleur=input()
+        try:
+            couleur=str(couleur)
+            if couleur =='':
+                couleur='b'
+            if couleur != 'blue' and  couleur != 'yellow' and couleur != 'purple':
+                print('Couleur non reconnue, le bleu est donc choisi par défaut')
+                couleur='b'
+        except:
+            print('Couleur non reconnue, le bleu est choisi par défaut')
+            couleur = 'b'
+        print("Choisissez l'épaisseur des barres")
+        print("Choisissez un nombre (pour plus de lisibilité limitez vous à 1)")
+        ep=input()
+        print(type(ep))
+        try:
+            ep=float(ep)
+        except:
+            print("Cette épaisseur est impossible, 0.8 est donc pris par défaut")
+            ep=0.8
+        if ep==0:
+          print("Cette épaisseur est impossible, 0.8 est donc pris par défaut")
+          ep=0.8
 
         #Séparation des tranches d'âges
         for j in range (len(data)):
@@ -830,196 +881,202 @@ class DataScientist(Consultant,Affichage_Stat):
             
             
         #Pour réaliser le diagramme en barres d’un certain critère  
+       
+        if critere==1:
+           
+         
+            for i in range (len(data)):
+                 superficie = data[i]['Geography']['Area']['total']['text']
+                 superficie = superficie[:superficie.find(' s')]
+                 superficie = superficie.replace( ',' , '' )
+                 crit.append(float(superficie))
+                 pays.append(data[i]['Government']['Country name']['conventional short form']['text'])
+           
+             #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,crit, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title("Diagramme en barre de la superficie") 
+            plt.ylabel('en km^2')
+            plt.show()
+            
+            #Boxplot des tranches d'âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title("Boxplot par tranche d'âge en pourcent") 
+             
+            plt.show()
+        elif critere==2:
+          
+            for i in range (len(data)):
+                pop = data[i]['People and Society']['Population']['text']
+                pop = pop[:pop.find(' (')]
+                pop = pop[:pop.find(' m')]
+                pop = pop.replace( ',' , '' )
+                crit.append(float(pop))
+                pays.append(data[i]['Government']['Country name']['conventional short form']['text'])        
+            
+            #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,crit, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title("Diagramme en barre de la population") 
+            plt.ylabel('nombre d\'habitants')
+            plt.show()
         
-            if critere==1:
-               
-                for i in range (len(data)):
-                    superficie = data[i]['Geography']['Area']['total']['text']
-                    superficie = superficie[:superficie.find(' s')]
-                    superficie = superficie.replace( ',' , '' )
-                    crit.append(float(superficie))
+            #Boxplot des tranches d'âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title("Boxplot par tranche d'âge") 
+            plt.show()
+        elif critere==3:
+           
+            for i in range (len(data)):
+               pourcent = data[i]['People and Society']['Population growth rate']['text']              
+               pourcent = pourcent[:pourcent.find('%')]                   
+               crit.append(float(pourcent))
+               pays.append(data[i]['Government']['Country name']['conventional short form']['text'])
+            
+            #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,crit, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title("Diagramme en barre de la croissance démographique") 
+            plt.ylabel('en pourcent')
+            plt.show()
+            
+            #Boxplot des tranches d'âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title("Boxplot par tranche d'âge") 
+            plt.show()
+        elif critere==4:
+            inf1=[]               
+            for i in range (len(data)):
+                pourcent = data[i]['Economy']['Inflation rate (consumer prices)']['text']                    
+                inf2016 = pourcent[:pourcent.find('%')]                  
+                inf1.append(float(inf2016))                   
+                pays.append(data[i]['Government']['Country name']['conventional short form']['text'])
+            
+            #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,inf1, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title("Diagramme en barre de l'inflation") 
+            plt.show()
+           
+            #Boxplot des tranches d'âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title("Boxplot par tranche d'âge") 
+            plt.show()
+            
+        elif critere==5:
+           
+            for i in range (1,len(data)):
+                dette=data[i]['Economy']['Debt - external']['text']                
+                if '2016' in dette:
+                    
+                    dette=dette[:dette.find(' (')]
+                    dette=dette.replace('$','')
+                    dette=dette.replace(' million','')
+                    dette=dette.replace(' billion','e3')
+                    dette=dette.replace(' trillion','e6')
+                    crit.append(float(dette))
                     pays.append(data[i]['Government']['Country name']['conventional short form']['text'])
                 
-                #Diagramme en barre du critère
-                plt.bar(pays,crit)
-                plt.xticks(rotation=90)
-                plt.title("Diagramme en barre de la superficie") 
-                plt.ylabel('en km^2')
-                plt.show()
-                
-                #Boxplot des tranches d'âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title("Boxplot par tranche d'âge en pourcent")
-                plt.show()
-            elif critere==2:
-              
-                for i in range (len(data)):
-                    pop = data[i]['People and Society']['Population']['text']
-                    pop = pop[:pop.find(' (')]
-                    pop = pop[:pop.find(' m')]
-                    pop = pop.replace( ',' , '' )
-                    crit.append(float(pop))
-                    pays.append(data[i]['Government']['Country name']['conventional short form']['text'])        
-                
-                #Diagramme en barre du critère
-                plt.bar(pays,crit)
-                plt.xticks(rotation=90)
-                plt.title("Diagramme en barre de la population") 
-                plt.ylabel('nombre d\'habitants')
-                plt.show()
+            #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,crit, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title("Diagramme en barre de la dette en million") 
+            plt.show()
+           
+            #Boxplot des tranches d'âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title("Boxplot par tranche d'âge") 
+            plt.show()
+        elif critere==6:
+            for i in range (len(data)):
+                taux=data[i]['Economy']['Unemployment rate']['text']
+                taux=taux[:taux.find(' ++')]
+                if '2016'in taux:
+                    taux = taux[:taux.find('%')]
+                    crit.append(float(taux))
+                    pays.append(data[i]['Government']['Country name']['conventional short form']['text'])
             
-                #Boxplot des tranches d'âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title("Boxplot par tranche d'âge en pourcent") 
-                plt.show()
-            elif critere==3:
-               
-                for i in range (len(data)):
-                   pourcent = data[i]['People and Society']['Population growth rate']['text']              
-                   pourcent = pourcent[:pourcent.find('%')]                   
-                   crit.append(float(pourcent))
+            #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,crit, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title("Diagramme en barre du taux de chômage") 
+            plt.show()
+           
+            #Boxplot des tranches d'âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title("Boxplot par tranche d'âge") 
+            plt.show()
+        elif critere==7:               
+            for i in range (len(data)):
+                pourcent = data[i]['People and Society']['Health expenditures']['text']                  
+                pourcent = pourcent[:pourcent.find('%')]
+                crit.append(float(pourcent))
+                pays.append(data[i]['Government']['Country name']['conventional short form']['text'])
+                
+            #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,crit, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title("Diagramme en barre du taux de dépenses en santé") 
+            plt.show()
+           
+            #Boxplot des tranches d'âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title("Boxplot par tranche d'âge") 
+            plt.show()
+        elif critere==8:
+            
+            for i in range (len(data)):
+                dep=data[i]['People and Society']['Education expenditures']['text']                
+                if '2015' in dep:
+                    dep=dep[:dep.find('%')]
+                    crit.append(float(dep))
+                    pays.append(data[i]['Government']['Country name']['conventional short form']['text'])
+          
+            #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,crit, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title("Diagramme en barre du taux de dépenses en éducation") 
+            plt.show()
+            
+            #Il n'y a qu'un seul pays pour l'année la plus récente (2016) nous prenons alors l'année 2015
+            
+            #Boxplot des tranches d'âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title("Boxplot par tranche d'âge") 
+            plt.show()
+        elif critere==9:
+            for i in range (len(data)):
+               dep=data[i]['Military and Security']['Military expenditures']['text']
+               dep=dep[:dep.find(' ++')]
+               if '2016' in dep:
+                   dep=dep[:dep.find('%')]
+                   crit.append(float(dep)) 
                    pays.append(data[i]['Government']['Country name']['conventional short form']['text'])
-                
-                #Diagramme en barre du critère
-                plt.bar(pays,crit)
-                plt.xticks(rotation=90)
-                plt.title("Diagramme en barre de la croissance démographique")
-                plt.ylabel('en pourcent')
-                plt.show()
-                
-                #Boxplot des tranches d'âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title("Boxplot par tranche d'âge en pourcent")
-                plt.show()
-            elif critere==4:
-                inf1=[]               
-                for i in range (len(data)):
-                    pourcent = data[i]['Economy']['Inflation rate (consumer prices)']['text']                    
-                    inf2016 = pourcent[:pourcent.find('%')]                  
-                    inf1.append(float(inf2016))                   
-                    pays.append(data[i]['Government']['Country name']['conventional short form']['text'])
-                
-                #Diagramme en barre du critère
-                plt.bar(pays,inf1)
-                plt.xticks(rotation=90)
-                plt.title("Diagramme en barre de l'inflation") 
-                plt.ylabel('en pourcent')
-                plt.show()
-               
-                #Boxplot des tranches d'âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title("Boxplot par tranche d'âge en pourcent") 
-                plt.show()
-                
-            elif critere==5:
-               
-                for i in range (1,len(data)):
-                    dette=data[i]['Economy']['Debt - external']['text']                
-                    if '2016' in dette:
-                        
-                        dette=dette[:dette.find(' (')]
-                        dette=dette.replace('$','')
-                        dette=dette.replace(' million','')
-                        dette=dette.replace(' billion','e3')
-                        dette=dette.replace(' trillion','e6')
-                        crit.append(float(dette))
-                        pays.append(data[i]['Government']['Country name']['conventional short form']['text'])
-                    
-                #Diagramme en barre du critère
-                plt.bar(pays,crit)
-                plt.xticks(rotation=90)
-                plt.title("Diagramme en barre de la dette en million") 
-                plt.ylabel('en dollar')
-                plt.show()
-               
-                #Boxplot des tranches d'âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title("Boxplot par tranche d'âge en pourcent") 
-                plt.show()
-            elif critere==6:
-                for i in range (len(data)):
-                    taux=data[i]['Economy']['Unemployment rate']['text']
-                    taux=taux[:taux.find(' ++')]
-                    if '2016'in taux:
-                        taux = taux[:taux.find('%')]
-                        crit.append(float(taux))
-                        pays.append(data[i]['Government']['Country name']['conventional short form']['text'])
-                
-                #Diagramme en barre du critère
-                plt.bar(pays,crit)
-                plt.xticks(rotation=90)
-                plt.title("Diagramme en barre du taux de chômage") 
-                plt.ylabel('en pourcent')
-                plt.show()
-               
-                #Boxplot des tranches d'âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title("Boxplot par tranche d'âge en pourcent") 
-                plt.show()
-            elif critere==7:               
-                for i in range (len(data)):
-                    pourcent = data[i]['People and Society']['Health expenditures']['text']                  
-                    pourcent = pourcent[:pourcent.find('%')]
-                    crit.append(float(pourcent))
-                    pays.append(data[i]['Government']['Country name']['conventional short form']['text'])
-                    
-                #Diagramme en barre du critère
-                plt.bar(pays,crit)
-                plt.xticks(rotation=90)
-                plt.title("Diagramme en barre du taux de dépenses en santé") 
-                plt.ylabel('en pourcent')
-                plt.show()
-               
-                #Boxplot des tranches d'âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title("Boxplot par tranche d'âge en pourcent") 
-                plt.show()
-            elif critere==8:
-                
-                for i in range (len(data)):
-                    dep=data[i]['People and Society']['Education expenditures']['text']                
-                    if '2015' in dep:
-                        dep=dep[:dep.find('%')]
-                        crit.append(float(dep))
-                        pays.append(data[i]['Government']['Country name']['conventional short form']['text'])
-              
-                #Diagramme en barre du critère
-                plt.bar(pays,crit)
-                plt.xticks(rotation=90)
-                plt.title("Diagramme en barre du taux de dépenses en éducation") 
-                plt.ylabel('en pourcent')
-                plt.show()
-                
-                #Il n'y a qu'un seul pays pour l'année la plus récente (2016) nous prenons alors l'année 2015
-                
-                #Boxplot des tranches d'âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title("Boxplot par tranche d'âge en pourcent") 
-                plt.show()
-            elif critere==9:
-                for i in range (len(data)):
-                   dep=data[i]['Military and Security']['Military expenditures']['text']
-                   dep=dep[:dep.find(' ++')]
-                   if '2016' in dep:
-                       dep=dep[:dep.find('%')]
-                       crit.append(float(dep)) 
-                       pays.append(data[i]['Government']['Country name']['conventional short form']['text'])
+        
+            #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,crit, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title("Diagramme en barre du taux de dépenses militaires") 
+            plt.show()
             
-                #Diagramme en barre du critère
-                plt.bar(pays,crit)
-                plt.xticks(rotation=90)
-                plt.title("Diagramme en barre du taux de dépenses militaires") 
-                plt.ylabel('en pourcent')
-                plt.show()
-                
-                #Boxplot des tranches d'âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title("Boxplot par tranche d'âge en pourcent") 
-                plt.show()
-            
-            
-            input("Appuyez sur Entrer pour continuer")
-            return(Ouvert(previous_menu))
+            #Boxplot des tranches d'âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title("Boxplot par tranche d'âge") 
+            plt.show()
+        
+       
+        input("Appuyez sur Entrer pour continuer")
+        return(Ouvert(previous_menu))
+    
 # Classe administrateur
 class Admin(Geographe, DataScientist):
     

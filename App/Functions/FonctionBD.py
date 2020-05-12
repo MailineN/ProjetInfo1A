@@ -173,6 +173,7 @@ def to_df():
         tranche3=[]
         tranche4=[]
         tranche5=[]
+        infl = []
         area = []
         hab = []
         growth = []
@@ -208,6 +209,10 @@ def to_df():
             dette=dette.replace(' billion','e3')
             dette=dette.replace(' trillion','e6')
             debt.append(float(dette))
+
+            pourcent = data[j]['Economy']['Inflation rate (consumer prices)']['text']                    
+            inf2016 = pourcent[:pourcent.find('%')]                  
+            infl.append(float(inf2016))  
 
             taux=data[j]['Economy']['Unemployment rate']['text']
             taux=taux[:taux.find(' ++')]
@@ -257,6 +262,7 @@ def to_df():
             'Superficie' : area,
             'Population' : hab,
             'Croissance démographique' : growth,
+            'Inflation' : infl,
             'Dette' : debt,
             'Taux de chômage' : unemploy,
             'Taux de dépense en santé' : healthcare,
@@ -273,6 +279,7 @@ def to_df():
             'Superficie',
             'Population',
             'Croissance démographique',
+            'Inflation',
             'Dette',
             'Taux de chômage',
             'Taux de dépense en santé',
