@@ -121,7 +121,7 @@ def menu_tricrois(previous_menu):
         "Taux de dépenses en éducation", #9
         "Taux de dépenses militaires", 
         "Classes d'âges", 
-        "Retour au menu principal", 
+        "Retour au menu précédent", 
         "Quitter l'application"]
     menu_act["actions"] = [
             (lambda previous_menu :previous_menu["individu"].tricrois('total',previous_menu)),
@@ -134,7 +134,7 @@ def menu_tricrois(previous_menu):
             (lambda previous_menu :previous_menu["individu"].tricrois('Education expenditures',previous_menu)),
             (lambda previous_menu :previous_menu["individu"].tricrois('Military expenditures',previous_menu)),
             menu_age_tricrois,
-            (lambda previous_menu : Ouvert(menu[0])),
+            menu_resume,
             Individu().quitter]
     menu_act["path"] = []
     
@@ -154,7 +154,7 @@ def menu_age_tricrois(previous_menu):
         "25-54 ans", #4
         "55-64 ans", #5
         "65 ans et plus", #6
-        "Retour au menu principal",
+        "Retour au menu précédent",
         "Quitter l'application"]
     menu_act["actions"] = [
             (lambda previous_menu :previous_menu["individu"].tricrois('0-14 years',previous_menu)),
@@ -162,7 +162,7 @@ def menu_age_tricrois(previous_menu):
             (lambda previous_menu :previous_menu["individu"].tricrois('25-54 years',previous_menu)), # 
             (lambda previous_menu :previous_menu["individu"].tricrois('55-64 years',previous_menu)),
             (lambda previous_menu :previous_menu["individu"].tricrois('65 years and over',previous_menu)),
-            (lambda previous_menu : Ouvert(menu[0])),
+            menu_tricrois,
             Individu().quitter]
     menu_act["path"] = []
     return(Ouvert(menu_act))
@@ -186,7 +186,7 @@ def menu_seuil_inf(previous_menu):
         "Taux de dépenses en éducation", #9
         "Taux de dépenses militaires", 
         "Classes d'âges", 
-        "Retour au menu principal", 
+        "Retour au menu précédent", 
         "Quitter l'application"]
     menu_act["actions"] = [
             (lambda previous_menu :previous_menu["individu"].affichage_seuil_inf('total',previous_menu)),
@@ -199,7 +199,7 @@ def menu_seuil_inf(previous_menu):
             (lambda previous_menu :previous_menu["individu"].affichage_seuil_inf('Education expenditures',previous_menu)),
             (lambda previous_menu :previous_menu["individu"].affichage_seuil_inf('Military expenditures',previous_menu)),
             menu_age_seuil_inf,
-            (lambda previous_menu : Ouvert(menu[0])),
+            menu_resume,
             Individu().quitter]
     menu_act["path"] = []
     
@@ -219,7 +219,7 @@ def menu_age_seuil_inf(previous_menu):
         "25-54 ans", #4
         "55-64 ans", #5
         "65 ans et plus", #6
-        "Retour au menu principal",
+        "Retour au menu précédent",
         "Quitter l'application"]
     menu_act["actions"] = [
             (lambda previous_menu :previous_menu["individu"].affichage_seuil_inf('0-14 years',previous_menu)),
@@ -227,7 +227,7 @@ def menu_age_seuil_inf(previous_menu):
             (lambda previous_menu :previous_menu["individu"].affichage_seuil_inf('25-54 years',previous_menu)), # 
             (lambda previous_menu :previous_menu["individu"].affichage_seuil_inf('55-64 years',previous_menu)),
             (lambda previous_menu :previous_menu["individu"].affichage_seuil_inf('65 years and over',previous_menu)),
-            (lambda previous_menu : Ouvert(menu[0])),
+            menu_seuil_inf,
             Individu().quitter]
     menu_act["path"] = []
     return(Ouvert(menu_act))
@@ -264,7 +264,7 @@ def menu_seuil_sup(previous_menu):
             (lambda previous_menu :previous_menu["individu"].affichage_seuil_sup('Education expenditures',previous_menu)),
             (lambda previous_menu :previous_menu["individu"].affichage_seuil_sup('Military expenditures',previous_menu)),
             menu_age_tricrois,
-            (lambda previous_menu : Ouvert(menu[0])),
+            menu_resume,
             Individu().quitter]
     menu_act["path"] = []
     
@@ -292,7 +292,7 @@ def menu_age_seuil_sup(previous_menu):
             (lambda previous_menu :previous_menu["individu"].affichage_seuil_sup('25-54 years',previous_menu)), # 
             (lambda previous_menu :previous_menu["individu"].affichage_seuil_sup('55-64 years',previous_menu)),
             (lambda previous_menu :previous_menu["individu"].affichage_seuil_sup('65 years and over',previous_menu)),
-            (lambda previous_menu : Ouvert(menu[0])),
+            menu_seuil_sup,
             Individu().quitter]
     menu_act["path"] = []
     return(Ouvert(menu_act))
@@ -329,12 +329,12 @@ def gestion_comptes(previous_menu):
     menu_act["question"] = "Que voulez vous faire ? "
     menu_act["options"] = ["Créer un compte Géographe/DataScientist",
         "Supprimer un compte ", 
-        "Retour au menu principal", 
+        "Retour au menu précédent", 
         "Quitter l'application"]
     menu_act["actions"] = [
             (lambda previous_menu :previous_menu["individu"].ajout_compte(previous_menu)),
             (lambda previous_menu :previous_menu["individu"].suppression_compte(previous_menu)),
-            (lambda previous_menu : Ouvert(menu[0])),
+            (lambda previous_menu :indices_actions(Admin(),[0,1,2,3,5,6,7,8,9,10])),
             Individu().quitter]
     menu_act["path"] = []
     return(Ouvert(menu_act))

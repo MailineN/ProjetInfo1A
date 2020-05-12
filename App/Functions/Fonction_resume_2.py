@@ -17,8 +17,8 @@ class Affichage_Stat:
 
     def tri_croissant(self,critere):
         while True : 
-            nb_pays_max = input("Entrez le nombre de pays que vous voulez observer : ")
-            if fbd.is_number(nb_pays_max): 
+            nb_pays_max = input("Entrez le nombre de pays que vous voulez observer (10 maximum) : ")
+            if fbd.is_number(nb_pays_max) and int(nb_pays_max)<11: 
                 nb_pays_max= int(nb_pays_max)
                 break
         # Fonction qui trouve quel est le chemin pour acceder au critere demandé
@@ -76,10 +76,6 @@ class Affichage_Stat:
         if chemin == [] :
             raise NameError('Critère non reconnu')
             # Critere qui n'est pas dans la base de données
-
-        if nb_pays_max > 10:
-            raise NameError('Nombre de pays demandés trop élevé')
-            # Erreur car nombre de pays demandés trop élevé
 
 
         # Fonction qui donne l'information associée à un critere et à un pays
