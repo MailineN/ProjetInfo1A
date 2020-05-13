@@ -41,6 +41,8 @@ import Fonction_bonus as bonus
 
 class Individu:     
     def __init__(self):
+        &#34;&#34;&#34;Initialisation d&#39;un individu avec les fonctionnalités communes 
+        &#34;&#34;&#34;        
         self.type=&#34;individu&#34;
         self.previous_menu_ini = {}
     # Permet à tout individu de quitter 
@@ -138,6 +140,9 @@ class Individu:
 # Classe consultant 
 class Consultant(Individu):
     def __init__(self):
+        &#34;&#34;&#34;Fonctionnalités d&#39;un Individu de type Consultant
+
+        &#34;&#34;&#34;        
         self.type=&#34;Consultant&#34;
         
     def ajout_suggestion(self,previous_menu): 
@@ -326,7 +331,11 @@ class Consultant(Individu):
         return(Ouvert(previous_menu))
 # Classe géographe
 class Geographe(Individu): 
+  
     def __init__(self):
+        &#34;&#34;&#34;Fonctionnalités d&#39;un Individu de type Géographe
+
+        &#34;&#34;&#34;  
         self.connecte = False
         self.type = &#34;Geographe&#34;
     
@@ -699,7 +708,11 @@ class Geographe(Individu):
 # Classe Data Scientist
 
 class DataScientist(Consultant,Affichage_Stat): 
+
     def __init__(self):
+        &#34;&#34;&#34;Fonctionnalités d&#39;un Individu de type DataScientist
+
+        &#34;&#34;&#34;            
         self.connecte = False
         self.type = &#34;DataScientist&#34;
     
@@ -1148,8 +1161,11 @@ class DataScientist(Consultant,Affichage_Stat):
     
 # Classe administrateur
 class Admin(Geographe, DataScientist):
-    
+  
     def __init__(self):
+        &#34;&#34;&#34;Fonctionnalités d&#39;un Individu de type Administrateur
+
+        &#34;&#34;&#34;   
         self.connecte = False
         self.type = &#34;Administrateur&#34;
     
@@ -1291,14 +1307,17 @@ class Admin(Geographe, DataScientist):
 <span>class <span class="ident">Admin</span></span>
 </code></dt>
 <dd>
-<div class="desc"><p>Traitement initial des données pour l'affichage stat</p></div>
+<div class="desc"><p>Fonctionnalités d'un Individu de type Administrateur</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class Admin(Geographe, DataScientist):
-    
+  
     def __init__(self):
+        &#34;&#34;&#34;Fonctionnalités d&#39;un Individu de type Administrateur
+
+        &#34;&#34;&#34;   
         self.connecte = False
         self.type = &#34;Administrateur&#34;
     
@@ -1634,13 +1653,16 @@ class Admin(Geographe, DataScientist):
 <span>class <span class="ident">Consultant</span></span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Fonctionnalités d'un Individu de type Consultant</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class Consultant(Individu):
     def __init__(self):
+        &#34;&#34;&#34;Fonctionnalités d&#39;un Individu de type Consultant
+
+        &#34;&#34;&#34;        
         self.type=&#34;Consultant&#34;
         
     def ajout_suggestion(self,previous_menu): 
@@ -2056,13 +2078,17 @@ class Admin(Geographe, DataScientist):
 <span>class <span class="ident">DataScientist</span></span>
 </code></dt>
 <dd>
-<div class="desc"><p>Traitement initial des données pour l'affichage stat</p></div>
+<div class="desc"><p>Fonctionnalités d'un Individu de type DataScientist</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class DataScientist(Consultant,Affichage_Stat): 
+
     def __init__(self):
+        &#34;&#34;&#34;Fonctionnalités d&#39;un Individu de type DataScientist
+
+        &#34;&#34;&#34;            
         self.connecte = False
         self.type = &#34;DataScientist&#34;
     
@@ -3099,13 +3125,17 @@ previous_menu {list of dict} &ndash; Menu précédent</p></div>
 <span>class <span class="ident">Geographe</span></span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Fonctionnalités d'un Individu de type Géographe</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class Geographe(Individu): 
+  
     def __init__(self):
+        &#34;&#34;&#34;Fonctionnalités d&#39;un Individu de type Géographe
+
+        &#34;&#34;&#34;  
         self.connecte = False
         self.type = &#34;Geographe&#34;
     
@@ -3910,13 +3940,15 @@ previous_menu {list of dict} &ndash; Menu précédent</p></div>
 <span>class <span class="ident">Individu</span></span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Initialisation d'un individu avec les fonctionnalités communes</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class Individu:     
     def __init__(self):
+        &#34;&#34;&#34;Initialisation d&#39;un individu avec les fonctionnalités communes 
+        &#34;&#34;&#34;        
         self.type=&#34;individu&#34;
         self.previous_menu_ini = {}
     # Permet à tout individu de quitter 
