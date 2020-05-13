@@ -5,7 +5,7 @@ Le Projet "Traitement de données" s’adresse aux étudiants en 1ère année à
 
 Cette application nécessite les modules json, numpy, matplotlib, getpass, pandas ainsi que pyfiglet
 
-L'installation de ces modules se fait sous Windows via la commande python -m pip install NomduModule
+L'installation de ces modules se fait sous Windows via la commande:  python -m pip install NomduModule
 
 Pour lancer l'application, lancez le fichier main.py
 
