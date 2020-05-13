@@ -185,7 +185,7 @@ def type_liste(users):
     return(liste)
 
 def to_df():
-        &#34;&#34;&#34;Transforme la base de donnée json en dataframe plus adaptée pour le clustering 
+        &#34;&#34;&#34;Transforme la base de donnée json en dataframe plus adaptée pour le clustering et pour le résumé Statistique
         Retire le pays &#39;Inde&#39; qui pose problème 
 
         Returns:
@@ -202,6 +202,7 @@ def to_df():
         tranche3=[]
         tranche4=[]
         tranche5=[]
+        infl = []
         area = []
         hab = []
         growth = []
@@ -237,6 +238,10 @@ def to_df():
             dette=dette.replace(&#39; billion&#39;,&#39;e3&#39;)
             dette=dette.replace(&#39; trillion&#39;,&#39;e6&#39;)
             debt.append(float(dette))
+
+            pourcent = data[j][&#39;Economy&#39;][&#39;Inflation rate (consumer prices)&#39;][&#39;text&#39;]                    
+            inf2016 = pourcent[:pourcent.find(&#39;%&#39;)]                  
+            infl.append(float(inf2016))  
 
             taux=data[j][&#39;Economy&#39;][&#39;Unemployment rate&#39;][&#39;text&#39;]
             taux=taux[:taux.find(&#39; ++&#39;)]
@@ -286,6 +291,7 @@ def to_df():
             &#39;Superficie&#39; : area,
             &#39;Population&#39; : hab,
             &#39;Croissance démographique&#39; : growth,
+            &#39;Inflation&#39; : infl,
             &#39;Dette&#39; : debt,
             &#39;Taux de chômage&#39; : unemploy,
             &#39;Taux de dépense en santé&#39; : healthcare,
@@ -302,6 +308,7 @@ def to_df():
             &#39;Superficie&#39;,
             &#39;Population&#39;,
             &#39;Croissance démographique&#39;,
+            &#39;Inflation&#39;,
             &#39;Dette&#39;,
             &#39;Taux de chômage&#39;,
             &#39;Taux de dépense en santé&#39;,
@@ -533,7 +540,7 @@ def to_df():
 <span>def <span class="ident">to_df</span></span>(<span>)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Transforme la base de donnée json en dataframe plus adaptée pour le clustering
+<div class="desc"><p>Transforme la base de donnée json en dataframe plus adaptée pour le clustering et pour le résumé Statistique
 Retire le pays 'Inde' qui pose problème </p>
 <h2 id="returns">Returns</h2>
 <dl>
@@ -547,7 +554,7 @@ Retire le pays 'Inde' qui pose problème </p>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def to_df():
-        &#34;&#34;&#34;Transforme la base de donnée json en dataframe plus adaptée pour le clustering 
+        &#34;&#34;&#34;Transforme la base de donnée json en dataframe plus adaptée pour le clustering et pour le résumé Statistique
         Retire le pays &#39;Inde&#39; qui pose problème 
 
         Returns:
@@ -564,6 +571,7 @@ Retire le pays 'Inde' qui pose problème </p>
         tranche3=[]
         tranche4=[]
         tranche5=[]
+        infl = []
         area = []
         hab = []
         growth = []
@@ -599,6 +607,10 @@ Retire le pays 'Inde' qui pose problème </p>
             dette=dette.replace(&#39; billion&#39;,&#39;e3&#39;)
             dette=dette.replace(&#39; trillion&#39;,&#39;e6&#39;)
             debt.append(float(dette))
+
+            pourcent = data[j][&#39;Economy&#39;][&#39;Inflation rate (consumer prices)&#39;][&#39;text&#39;]                    
+            inf2016 = pourcent[:pourcent.find(&#39;%&#39;)]                  
+            infl.append(float(inf2016))  
 
             taux=data[j][&#39;Economy&#39;][&#39;Unemployment rate&#39;][&#39;text&#39;]
             taux=taux[:taux.find(&#39; ++&#39;)]
@@ -648,6 +660,7 @@ Retire le pays 'Inde' qui pose problème </p>
             &#39;Superficie&#39; : area,
             &#39;Population&#39; : hab,
             &#39;Croissance démographique&#39; : growth,
+            &#39;Inflation&#39; : infl,
             &#39;Dette&#39; : debt,
             &#39;Taux de chômage&#39; : unemploy,
             &#39;Taux de dépense en santé&#39; : healthcare,
@@ -664,6 +677,7 @@ Retire le pays 'Inde' qui pose problème </p>
             &#39;Superficie&#39;,
             &#39;Population&#39;,
             &#39;Croissance démographique&#39;,
+            &#39;Inflation&#39;,
             &#39;Dette&#39;,
             &#39;Taux de chômage&#39;,
             &#39;Taux de dépense en santé&#39;,

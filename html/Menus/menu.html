@@ -85,26 +85,81 @@ def menu_graph(previous_menu):
         &#34;Taux de dépenses en santé&#34;, #8
         &#34;Taux de dépenses en éducation&#34;, #9
         &#34;Taux de dépenses militaires&#34;, #10
-        &#34;Retour au menu principal&#34;, 
+        &#34;Retour au menu précédent&#34;, 
         &#34;Quitter l&#39;application&#34;]
-    menu_act[&#34;actions&#34;] = [
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,1)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,2)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,3)), # 
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,4)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,5)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,6)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,7)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,8)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,9)),
-            (lambda previous_menu : Ouvert(menu[0])),
-            Individu().quitter]
+    if previous_menu[&#34;individu&#34;].type == &#34;Administrateur&#34;: 
+        menu_act[&#34;actions&#34;] = [
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,1)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,2)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,3)), 
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,4)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,5)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,6)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,7)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,8)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,9)),
+                (lambda previous_menu :indices_actions(Admin(),[0,1,2,3,5,6,7,8,9,10])),
+                Individu().quitter]
+    else : 
+        menu_act[&#34;actions&#34;] = [
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,1)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,2)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,3)), 
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,4)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,5)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,6)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,7)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,8)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,9)),
+                (lambda previous_menu :indices_actions(DataScientist(),[0,1,2,3,4,8,9,10])),
+                Individu().quitter]
     menu_act[&#34;path&#34;] = []
     
     return(Ouvert(menu_act))
 
 def menu_resume(previous_menu): 
-    &#34;&#34;&#34;Création du menu intermédaire pour la fonction résumé d&#39;information
+    &#34;&#34;&#34;Création du menu intermédaire pour l&#39;affichage statistique
+
+    Arguments:
+        previous_menu {List} -- Menu précédent correspondant à l&#39;utilisateur 
+    &#34;&#34;&#34; 
+    menu_act = {}
+    menu_act[&#34;individu&#34;] = menu_act[&#34;individu&#34;] = previous_menu[&#34;individu&#34;]
+    menu_act[&#34;question&#34;] = &#34;L&#39;affichage statistique permet de visualiser plusieurs informations \nQue voulez vous faire ?&#34;
+    menu_act[&#34;options&#34;] = [&#34;Afficher les pays dont le critère est le plus important&#34;,
+        &#34;Afficher les pays dont le critère est le moins important&#34;,  #2
+        &#34;Afficher les pays dont le critère dépasse un certain seuil&#34;, #3
+        &#34;Afficher les pays dont le critère ne dépasse pas un certain seuil&#34;, #4
+        &#34;Affichage de la répartition des classes d&#39;âges&#34;,
+        &#34;Résumé statistique des critères&#34;, #5
+        &#34;Retour au menu précédent&#34;, 
+        &#34;Quitter l&#39;application&#34;]
+    if previous_menu[&#34;individu&#34;].type == &#34;Administrateur&#34;: 
+        menu_act[&#34;actions&#34;] = [
+                menu_tricrois,
+                menu_tridecrois,
+                menu_seuil_inf,
+                menu_seuil_sup, # 
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_tableau_age(previous_menu)),
+                menu_des,
+                (lambda previous_menu :indices_actions(Admin(),[0,1,2,3,5,6,7,8,9,10])),
+                Individu().quitter]
+    else : 
+        menu_act[&#34;actions&#34;] = [
+                menu_tricrois,
+                menu_tridecrois,
+                menu_seuil_inf,
+                menu_seuil_sup, # 
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_tableau_age(previous_menu)),
+                menu_des,
+                (lambda previous_menu :indices_actions(DataScientist(),[0,1,2,3,4,8,9,10])),
+                Individu().quitter]
+    menu_act[&#34;path&#34;] = []
+    
+    return(Ouvert(menu_act))
+
+def menu_tricrois(previous_menu): 
+    &#34;&#34;&#34;Création du menu intermédaire pour la fonction du tri croissant
 
     Arguments:
         previous_menu {List} -- Menu précédent correspondant à l&#39;utilisateur 
@@ -122,26 +177,26 @@ def menu_resume(previous_menu):
         &#34;Taux de dépenses en éducation&#34;, #9
         &#34;Taux de dépenses militaires&#34;, 
         &#34;Classes d&#39;âges&#34;, 
-        &#34;Retour au menu principal&#34;, 
+        &#34;Retour au menu précédent&#34;, 
         &#34;Quitter l&#39;application&#34;]
     menu_act[&#34;actions&#34;] = [
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;total&#39;,previous_menu)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;Population&#39;,previous_menu)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;Population growth rate&#39;,previous_menu)), # 
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;Inflation rate (consumer prices)&#39;,previous_menu)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;Debt - external&#39;,previous_menu)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;Unemployment rate&#39;,previous_menu)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;Health expenditures&#39;,previous_menu)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;Education expenditures&#39;,previous_menu)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;Military expenditures&#39;,previous_menu)),
-            menu_age,
-            (lambda previous_menu : Ouvert(menu[0])),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;total&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;Population&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;Population growth rate&#39;,previous_menu)), # 
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;Inflation rate (consumer prices)&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;Debt - external&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;Unemployment rate&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;Health expenditures&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;Education expenditures&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;Military expenditures&#39;,previous_menu)),
+            menu_age_tricrois,
+            menu_resume,
             Individu().quitter]
     menu_act[&#34;path&#34;] = []
     
     return(Ouvert(menu_act))
 
-def menu_age(previous_menu): 
+def menu_age_tricrois(previous_menu): 
     &#34;&#34;&#34;Création du menu intermédaire pour les tranches d&#39;age pour la fonction résumé d&#39;information
 
     Arguments:
@@ -155,15 +210,209 @@ def menu_age(previous_menu):
         &#34;25-54 ans&#34;, #4
         &#34;55-64 ans&#34;, #5
         &#34;65 ans et plus&#34;, #6
-        &#34;Retour au menu principal&#34;,
+        &#34;Retour au menu précédent&#34;,
         &#34;Quitter l&#39;application&#34;]
     menu_act[&#34;actions&#34;] = [
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;0-14 years&#39;,previous_menu)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;15-24 years&#39;,previous_menu)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;25-54 years&#39;,previous_menu)), # 
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;55-64 years&#39;,previous_menu)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;65 years and over&#39;,previous_menu)),
-            (lambda previous_menu : Ouvert(menu[0])),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;0-14 years&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;15-24 years&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;25-54 years&#39;,previous_menu)), # 
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;55-64 years&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;65 years and over&#39;,previous_menu)),
+            menu_tricrois,
+            Individu().quitter]
+    menu_act[&#34;path&#34;] = []
+    return(Ouvert(menu_act))
+
+def menu_tridecrois(previous_menu): 
+    &#34;&#34;&#34;Création du menu intermédaire pour la fonction du tri croissant
+
+    Arguments:
+        previous_menu {List} -- Menu précédent correspondant à l&#39;utilisateur 
+    &#34;&#34;&#34; 
+    menu_act = {}
+    menu_act[&#34;individu&#34;] = menu_act[&#34;individu&#34;] = previous_menu[&#34;individu&#34;]
+    menu_act[&#34;question&#34;] = &#34;Selectionnez le critère&#34;
+    menu_act[&#34;options&#34;] = [&#34;Superficie&#34;, #2
+        &#34;Population&#34;, #3
+        &#34;Croissance démographique&#34;, #4
+        &#34;Inflation&#34;, #5
+        &#34;Dette&#34;, #6
+        &#34;Taux de chômage&#34;, #7
+        &#34;Taux de dépenses en santé&#34;, #8
+        &#34;Taux de dépenses en éducation&#34;, #9
+        &#34;Taux de dépenses militaires&#34;, 
+        &#34;Classes d&#39;âges&#34;, 
+        &#34;Retour au menu précédent&#34;, 
+        &#34;Quitter l&#39;application&#34;]
+    menu_act[&#34;actions&#34;] = [
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;total&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;Population&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;Population growth rate&#39;,previous_menu)), # 
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;Inflation rate (consumer prices)&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;Debt - external&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;Unemployment rate&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;Health expenditures&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;Education expenditures&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;Military expenditures&#39;,previous_menu)),
+            menu_age_decrois,
+            menu_resume,
+            Individu().quitter]
+    menu_act[&#34;path&#34;] = []
+    
+    return(Ouvert(menu_act))
+
+def menu_age_decrois(previous_menu): 
+    &#34;&#34;&#34;Création du menu intermédaire pour les tranches d&#39;age pour la fonction résumé d&#39;information
+
+    Arguments:
+        previous_menu {List} -- Menu précédent correspondant à l&#39;utilisateur 
+    &#34;&#34;&#34; 
+    menu_act = {}
+    menu_act[&#34;individu&#34;] = menu_act[&#34;individu&#34;] = previous_menu[&#34;individu&#34;]
+    menu_act[&#34;question&#34;] = &#34;Selectionnez la tranche d&#39;âge&#34;
+    menu_act[&#34;options&#34;] = [&#34;0-14 ans&#34;, #2
+        &#34;15-24 ans&#34;, #3
+        &#34;25-54 ans&#34;, #4
+        &#34;55-64 ans&#34;, #5
+        &#34;65 ans et plus&#34;, #6
+        &#34;Retour au menu précédent&#34;,
+        &#34;Quitter l&#39;application&#34;]
+    menu_act[&#34;actions&#34;] = [
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;0-14 years&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;15-24 years&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;25-54 years&#39;,previous_menu)), # 
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;55-64 years&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;65 years and over&#39;,previous_menu)),
+            menu_tridecrois,
+            Individu().quitter]
+    menu_act[&#34;path&#34;] = []
+    return(Ouvert(menu_act))
+def menu_seuil_inf(previous_menu): 
+    &#34;&#34;&#34;Création du menu intermédaire pour la fonction le triage par seuil
+
+    Arguments:
+        previous_menu {List} -- Menu précédent correspondant à l&#39;utilisateur 
+    &#34;&#34;&#34; 
+    menu_act = {}
+    menu_act[&#34;individu&#34;] = menu_act[&#34;individu&#34;] = previous_menu[&#34;individu&#34;]
+    menu_act[&#34;question&#34;] = &#34;Affichage des pays dont le critère dépasse un certaint seuil \nSelectionnez le critère&#34;
+    menu_act[&#34;options&#34;] = [&#34;Superficie&#34;, #2
+        &#34;Population&#34;, #3
+        &#34;Croissance démographique&#34;, #4
+        &#34;Inflation&#34;, #5
+        &#34;Dette&#34;, #6
+        &#34;Taux de chômage&#34;, #7
+        &#34;Taux de dépenses en santé&#34;, #8
+        &#34;Taux de dépenses en éducation&#34;, #9
+        &#34;Taux de dépenses militaires&#34;, 
+        &#34;Classes d&#39;âges&#34;, 
+        &#34;Retour au menu précédent&#34;, 
+        &#34;Quitter l&#39;application&#34;]
+    menu_act[&#34;actions&#34;] = [
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;total&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;Population&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;Population growth rate&#39;,previous_menu)), # 
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;Inflation rate (consumer prices)&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;Debt - external&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;Unemployment rate&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;Health expenditures&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;Education expenditures&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;Military expenditures&#39;,previous_menu)),
+            menu_age_seuil_inf,
+            menu_resume,
+            Individu().quitter]
+    menu_act[&#34;path&#34;] = []
+    
+    return(Ouvert(menu_act))
+
+def menu_age_seuil_inf(previous_menu): 
+    &#34;&#34;&#34;Création du menu intermédaire pour les tranches d&#39;age pour la fonction résumé d&#39;information
+
+    Arguments:
+        previous_menu {List} -- Menu précédent correspondant à l&#39;utilisateur 
+    &#34;&#34;&#34; 
+    menu_act = {}
+    menu_act[&#34;individu&#34;] = menu_act[&#34;individu&#34;] = previous_menu[&#34;individu&#34;]
+    menu_act[&#34;question&#34;] = &#34;Selectionnez la tranche d&#39;âge&#34;
+    menu_act[&#34;options&#34;] = [&#34;0-14 ans&#34;, #2
+        &#34;15-24 ans&#34;, #3
+        &#34;25-54 ans&#34;, #4
+        &#34;55-64 ans&#34;, #5
+        &#34;65 ans et plus&#34;, #6
+        &#34;Retour au menu précédent&#34;,
+        &#34;Quitter l&#39;application&#34;]
+    menu_act[&#34;actions&#34;] = [
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;0-14 years&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;15-24 years&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;25-54 years&#39;,previous_menu)), # 
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;55-64 years&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;65 years and over&#39;,previous_menu)),
+            menu_seuil_inf,
+            Individu().quitter]
+    menu_act[&#34;path&#34;] = []
+    return(Ouvert(menu_act))
+
+def menu_seuil_sup(previous_menu): 
+    &#34;&#34;&#34;Création du menu intermédaire pour la fonction du tri croissant
+
+    Arguments:
+        previous_menu {List} -- Menu précédent correspondant à l&#39;utilisateur 
+    &#34;&#34;&#34; 
+    menu_act = {}
+    menu_act[&#34;individu&#34;] = menu_act[&#34;individu&#34;] = previous_menu[&#34;individu&#34;]
+    menu_act[&#34;question&#34;] = &#34;Affichage des pays dont le critère ne depasse pas un certaint seuil \nSelectionnez le critère&#34;
+    menu_act[&#34;options&#34;] = [&#34;Superficie&#34;, #2
+        &#34;Population&#34;, #3
+        &#34;Croissance démographique&#34;, #4
+        &#34;Inflation&#34;, #5
+        &#34;Dette&#34;, #6
+        &#34;Taux de chômage&#34;, #7
+        &#34;Taux de dépenses en santé&#34;, #8
+        &#34;Taux de dépenses en éducation&#34;, #9
+        &#34;Taux de dépenses militaires&#34;, 
+        &#34;Classes d&#39;âges&#34;, 
+        &#34;Retour au menu précédent&#34;, 
+        &#34;Quitter l&#39;application&#34;]
+    menu_act[&#34;actions&#34;] = [
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;total&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;Population&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;Population growth rate&#39;,previous_menu)), # 
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;Inflation rate (consumer prices)&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;Debt - external&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;Unemployment rate&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;Health expenditures&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;Education expenditures&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;Military expenditures&#39;,previous_menu)),
+            menu_age_tricrois,
+            menu_resume,
+            Individu().quitter]
+    menu_act[&#34;path&#34;] = []
+    
+    return(Ouvert(menu_act))
+
+def menu_age_seuil_sup(previous_menu): 
+    &#34;&#34;&#34;Création du menu intermédaire pour les tranches d&#39;age pour la fonction résumé d&#39;information
+
+    Arguments:
+        previous_menu {List} -- Menu précédent correspondant à l&#39;utilisateur 
+    &#34;&#34;&#34; 
+    menu_act = {}
+    menu_act[&#34;individu&#34;] = menu_act[&#34;individu&#34;] = previous_menu[&#34;individu&#34;]
+    menu_act[&#34;question&#34;] = &#34;Selectionnez la tranche d&#39;âge&#34;
+    menu_act[&#34;options&#34;] = [&#34;0-14 ans&#34;, #2
+        &#34;15-24 ans&#34;, #3
+        &#34;25-54 ans&#34;, #4
+        &#34;55-64 ans&#34;, #5
+        &#34;65 ans et plus&#34;, #6
+        &#34;Retour au menu précédent&#34;,
+        &#34;Quitter l&#39;application&#34;]
+    menu_act[&#34;actions&#34;] = [
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;0-14 years&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;15-24 years&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;25-54 years&#39;,previous_menu)), # 
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;55-64 years&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;65 years and over&#39;,previous_menu)),
+            menu_seuil_sup,
             Individu().quitter]
     menu_act[&#34;path&#34;] = []
     return(Ouvert(menu_act))
@@ -181,11 +430,18 @@ def gestion_pays(previous_menu):
         &#34;Supprimer un pays (Administrateur seulement) &#34;, 
         &#34;Retour au menu précédent&#34;, 
         &#34;Quitter l&#39;application&#34;]
-    menu_act[&#34;actions&#34;] = [
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].ajout_pays(previous_menu)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].suppression(previous_menu)),
-            (lambda previous_menu : Ouvert(menu[0])),
-            Individu().quitter]
+    if previous_menu[&#34;individu&#34;].type == &#34;Administrateur&#34;: 
+        menu_act[&#34;actions&#34;] = [
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].ajout_pays(previous_menu)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].suppression(previous_menu)),
+                (lambda previous_menu :indices_actions(Admin(),[0,1,2,3,5,6,7,8,9,10])),
+                Individu().quitter]
+    else : 
+        menu_act[&#34;actions&#34;] = [
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].ajout_pays(previous_menu)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].suppression(previous_menu)),
+                (lambda previous_menu :indices_actions(DataScientist(),[0,1,2,3,4,8,9,10])),
+                Individu().quitter]
     menu_act[&#34;path&#34;] = []
     return(Ouvert(menu_act))
 
@@ -200,12 +456,12 @@ def gestion_comptes(previous_menu):
     menu_act[&#34;question&#34;] = &#34;Que voulez vous faire ? &#34;
     menu_act[&#34;options&#34;] = [&#34;Créer un compte Géographe/DataScientist&#34;,
         &#34;Supprimer un compte &#34;, 
-        &#34;Retour au menu principal&#34;, 
+        &#34;Retour au menu précédent&#34;, 
         &#34;Quitter l&#39;application&#34;]
     menu_act[&#34;actions&#34;] = [
             (lambda previous_menu :previous_menu[&#34;individu&#34;].ajout_compte(previous_menu)),
             (lambda previous_menu :previous_menu[&#34;individu&#34;].suppression_compte(previous_menu)),
-            (lambda previous_menu : Ouvert(menu[0])),
+            (lambda previous_menu :indices_actions(Admin(),[0,1,2,3,5,6,7,8,9,10])),
             Individu().quitter]
     menu_act[&#34;path&#34;] = []
     return(Ouvert(menu_act))
@@ -217,19 +473,91 @@ def menu_clust(previous_menu):
     &#34;&#34;&#34;    
     menu_act = {}
     menu_act[&#34;individu&#34;] = previous_menu[&#34;individu&#34;]
-    menu_act[&#34;question&#34;] = &#34;Quelle méthode voulez vous utiliser ? \nNote : L&#39;Inde a été retirée de la base de donnée afin de clarifier les résultats &#34;
+    menu_act[&#34;question&#34;] = &#34;Le Clustering est une méthode statistique permettant de regrouper les pays selon les \nvaleurs prises par les différents critères, l&#39;application propose ici deux méthodes : \nLe CAH et les K-means\
+        \nQuelle méthode voulez vous utiliser ? \nNote : L&#39;Inde a été retirée de la base de donnée afin de clarifier les résultats &#34;
     menu_act[&#34;options&#34;] = [&#34;Clustering par méthode CAH&#34;,
         &#34;Clustering par méthode des K-means&#34;, 
-        &#34;Retour au menu principal&#34;, 
+        &#34;Retour au menu précédent&#34;, 
         &#34;Quitter l&#39;application&#34;]
-    menu_act[&#34;actions&#34;] = [
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].clust(&#39;CAH&#39;,previous_menu)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].clust(&#39;K-means&#39;,previous_menu)),
-            (lambda previous_menu : Ouvert(menu[0])),
-            Individu().quitter]
+    if previous_menu[&#34;individu&#34;].type == &#34;Administrateur&#34;: 
+        menu_act[&#34;actions&#34;] = [
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].clust(&#39;CAH&#39;,previous_menu)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].clust(&#39;K-means&#39;,previous_menu)),
+                (lambda previous_menu :indices_actions(Admin(),[0,1,2,3,5,6,7,8,9,10])),
+                Individu().quitter]
+    else : 
+        menu_act[&#34;actions&#34;] = [
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].clust(&#39;CAH&#39;,previous_menu)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].clust(&#39;K-means&#39;,previous_menu)),
+                (lambda previous_menu :indices_actions(DataScientist(),[0,1,2,3,4,8,9,10])),
+                Individu().quitter]
     menu_act[&#34;path&#34;] = []
     return(Ouvert(menu_act))
 
+def menu_des(previous_menu): 
+    &#34;&#34;&#34;Création du menu intermédaire pour la fonction de l&#39;affichage du résumé statistique
+
+    Arguments:
+        previous_menu {List} -- Menu précédent correspondant à l&#39;utilisateur 
+    &#34;&#34;&#34; 
+    menu_act = {}
+    menu_act[&#34;individu&#34;] = menu_act[&#34;individu&#34;] = previous_menu[&#34;individu&#34;]
+    menu_act[&#34;question&#34;] = &#34;Vous allez visualiser les informations suivantes pour le critère sélectionné : \nNombre d&#39;observations, moyenne, écart-type, min, max et quartiles.  \nSelectionnez le critère&#34;
+    menu_act[&#34;options&#34;] = [&#34;Superficie&#34;, #2
+        &#34;Population&#34;, #3
+        &#34;Croissance démographique&#34;, #4
+        &#34;Inflation&#34;, #5
+        &#34;Dette&#34;, #6
+        &#34;Taux de chômage&#34;, #7
+        &#34;Taux de dépenses en santé&#34;, #8
+        &#34;Taux de dépenses en éducation&#34;, #9
+        &#34;Taux de dépenses militaires&#34;, 
+        &#34;Classes d&#39;âges&#34;, 
+        &#34;Retour au menu précédent&#34;, 
+        &#34;Quitter l&#39;application&#34;]
+    menu_act[&#34;actions&#34;] = [
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Superficie&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Population&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Croissance démographique&#39;,previous_menu)), 
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Inflation&#39;,previous_menu)), 
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Dette&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Taux de chômage&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Taux de dépense en santé&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Taux de dépense en éducation&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Taux de dépense militaire&#39;,previous_menu)),
+            menu_age_des,
+            menu_resume,
+            Individu().quitter]
+    menu_act[&#34;path&#34;] = []
+    
+    return(Ouvert(menu_act))
+
+def menu_age_des(previous_menu): 
+    &#34;&#34;&#34;Création du menu intermédaire pour les tranches d&#39;age pour la fonction résumé statistique
+
+    Arguments:
+        previous_menu {List} -- Menu précédent correspondant à l&#39;utilisateur 
+    &#34;&#34;&#34; 
+    menu_act = {}
+    menu_act[&#34;individu&#34;] = menu_act[&#34;individu&#34;] = previous_menu[&#34;individu&#34;]
+    menu_act[&#34;question&#34;] = &#34;Selectionnez la tranche d&#39;âge&#34;
+    menu_act[&#34;options&#34;] = [&#34;0-14 ans&#34;, #2
+        &#34;15-24 ans&#34;, #3
+        &#34;25-54 ans&#34;, #4
+        &#34;55-64 ans&#34;, #5
+        &#34;65 ans et plus&#34;, #6
+        &#34;Retour au menu précédent&#34;,
+        &#34;Quitter l&#39;application&#34;]
+    menu_act[&#34;actions&#34;] = [
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Classe des 0-14 ans&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Classe des 15-24 ans&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Classe des 25-54 ans&#39;,previous_menu)), # 
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Classe des 55-64 ans&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Classe des plus de 65 ans&#39;,previous_menu)),
+            menu_des,
+            Individu().quitter]
+    menu_act[&#34;path&#34;] = []
+    return(Ouvert(menu_act))
 menu = [
     { 
         &#34;question&#34; : &#34;Selectionnez votre type utilisateur&#34;,
@@ -250,7 +578,7 @@ menu = [
         &#34;options&#34; : [&#34;Connexion&#34;, #0
         &#34;Affichage de données pays&#34;, #1
         &#34;Représentation graphique&#34;, #2 Data
-        &#34;Résumés statistiques&#34;, #3 Data
+        &#34;Affichages statistiques&#34;, #3 Data
         &#34;Proposition suggestion&#34;, #4
         &#34;Gestion des pays&#34;, #5
         &#34;Gestion des suggestions&#34;, #6
@@ -261,7 +589,7 @@ menu = [
         &#34;actions&#34; : [connexion,
             (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage(previous_menu)),
             menu_graph,
-            menu_resume, # à faire 
+            menu_resume,  
             (lambda previous_menu :previous_menu[&#34;individu&#34;].ajout_suggestion(previous_menu)),
             gestion_pays,
             (lambda previous_menu :previous_menu[&#34;individu&#34;].gestion_suggestion(previous_menu)),
@@ -339,12 +667,12 @@ menu = [
     menu_act[&#34;question&#34;] = &#34;Que voulez vous faire ? &#34;
     menu_act[&#34;options&#34;] = [&#34;Créer un compte Géographe/DataScientist&#34;,
         &#34;Supprimer un compte &#34;, 
-        &#34;Retour au menu principal&#34;, 
+        &#34;Retour au menu précédent&#34;, 
         &#34;Quitter l&#39;application&#34;]
     menu_act[&#34;actions&#34;] = [
             (lambda previous_menu :previous_menu[&#34;individu&#34;].ajout_compte(previous_menu)),
             (lambda previous_menu :previous_menu[&#34;individu&#34;].suppression_compte(previous_menu)),
-            (lambda previous_menu : Ouvert(menu[0])),
+            (lambda previous_menu :indices_actions(Admin(),[0,1,2,3,5,6,7,8,9,10])),
             Individu().quitter]
     menu_act[&#34;path&#34;] = []
     return(Ouvert(menu_act))</code></pre>
@@ -374,11 +702,18 @@ menu = [
         &#34;Supprimer un pays (Administrateur seulement) &#34;, 
         &#34;Retour au menu précédent&#34;, 
         &#34;Quitter l&#39;application&#34;]
-    menu_act[&#34;actions&#34;] = [
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].ajout_pays(previous_menu)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].suppression(previous_menu)),
-            (lambda previous_menu : Ouvert(menu[0])),
-            Individu().quitter]
+    if previous_menu[&#34;individu&#34;].type == &#34;Administrateur&#34;: 
+        menu_act[&#34;actions&#34;] = [
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].ajout_pays(previous_menu)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].suppression(previous_menu)),
+                (lambda previous_menu :indices_actions(Admin(),[0,1,2,3,5,6,7,8,9,10])),
+                Individu().quitter]
+    else : 
+        menu_act[&#34;actions&#34;] = [
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].ajout_pays(previous_menu)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].suppression(previous_menu)),
+                (lambda previous_menu :indices_actions(DataScientist(),[0,1,2,3,4,8,9,10])),
+                Individu().quitter]
     menu_act[&#34;path&#34;] = []
     return(Ouvert(menu_act))</code></pre>
 </details>
@@ -413,8 +748,8 @@ indice_taches {List} &ndash; Liste des toutes les taches possibles</p></div>
     return(Ouvert(menu_act))</code></pre>
 </details>
 </dd>
-<dt id="Menus.menu.menu_age"><code class="name flex">
-<span>def <span class="ident">menu_age</span></span>(<span>previous_menu)</span>
+<dt id="Menus.menu.menu_age_decrois"><code class="name flex">
+<span>def <span class="ident">menu_age_decrois</span></span>(<span>previous_menu)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Création du menu intermédaire pour les tranches d'age pour la fonction résumé d'information</p>
@@ -424,7 +759,7 @@ indice_taches {List} &ndash; Liste des toutes les taches possibles</p></div>
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def menu_age(previous_menu): 
+<pre><code class="python">def menu_age_decrois(previous_menu): 
     &#34;&#34;&#34;Création du menu intermédaire pour les tranches d&#39;age pour la fonction résumé d&#39;information
 
     Arguments:
@@ -438,15 +773,171 @@ indice_taches {List} &ndash; Liste des toutes les taches possibles</p></div>
         &#34;25-54 ans&#34;, #4
         &#34;55-64 ans&#34;, #5
         &#34;65 ans et plus&#34;, #6
-        &#34;Retour au menu principal&#34;,
+        &#34;Retour au menu précédent&#34;,
         &#34;Quitter l&#39;application&#34;]
     menu_act[&#34;actions&#34;] = [
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;0-14 years&#39;,previous_menu)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;15-24 years&#39;,previous_menu)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;25-54 years&#39;,previous_menu)), # 
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;55-64 years&#39;,previous_menu)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;65 years and over&#39;,previous_menu)),
-            (lambda previous_menu : Ouvert(menu[0])),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;0-14 years&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;15-24 years&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;25-54 years&#39;,previous_menu)), # 
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;55-64 years&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;65 years and over&#39;,previous_menu)),
+            menu_tridecrois,
+            Individu().quitter]
+    menu_act[&#34;path&#34;] = []
+    return(Ouvert(menu_act))</code></pre>
+</details>
+</dd>
+<dt id="Menus.menu.menu_age_des"><code class="name flex">
+<span>def <span class="ident">menu_age_des</span></span>(<span>previous_menu)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Création du menu intermédaire pour les tranches d'age pour la fonction résumé statistique</p>
+<h2 id="arguments">Arguments</h2>
+<p>previous_menu {List} &ndash; Menu précédent correspondant à l'utilisateur</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def menu_age_des(previous_menu): 
+    &#34;&#34;&#34;Création du menu intermédaire pour les tranches d&#39;age pour la fonction résumé statistique
+
+    Arguments:
+        previous_menu {List} -- Menu précédent correspondant à l&#39;utilisateur 
+    &#34;&#34;&#34; 
+    menu_act = {}
+    menu_act[&#34;individu&#34;] = menu_act[&#34;individu&#34;] = previous_menu[&#34;individu&#34;]
+    menu_act[&#34;question&#34;] = &#34;Selectionnez la tranche d&#39;âge&#34;
+    menu_act[&#34;options&#34;] = [&#34;0-14 ans&#34;, #2
+        &#34;15-24 ans&#34;, #3
+        &#34;25-54 ans&#34;, #4
+        &#34;55-64 ans&#34;, #5
+        &#34;65 ans et plus&#34;, #6
+        &#34;Retour au menu précédent&#34;,
+        &#34;Quitter l&#39;application&#34;]
+    menu_act[&#34;actions&#34;] = [
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Classe des 0-14 ans&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Classe des 15-24 ans&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Classe des 25-54 ans&#39;,previous_menu)), # 
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Classe des 55-64 ans&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Classe des plus de 65 ans&#39;,previous_menu)),
+            menu_des,
+            Individu().quitter]
+    menu_act[&#34;path&#34;] = []
+    return(Ouvert(menu_act))</code></pre>
+</details>
+</dd>
+<dt id="Menus.menu.menu_age_seuil_inf"><code class="name flex">
+<span>def <span class="ident">menu_age_seuil_inf</span></span>(<span>previous_menu)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Création du menu intermédaire pour les tranches d'age pour la fonction résumé d'information</p>
+<h2 id="arguments">Arguments</h2>
+<p>previous_menu {List} &ndash; Menu précédent correspondant à l'utilisateur</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def menu_age_seuil_inf(previous_menu): 
+    &#34;&#34;&#34;Création du menu intermédaire pour les tranches d&#39;age pour la fonction résumé d&#39;information
+
+    Arguments:
+        previous_menu {List} -- Menu précédent correspondant à l&#39;utilisateur 
+    &#34;&#34;&#34; 
+    menu_act = {}
+    menu_act[&#34;individu&#34;] = menu_act[&#34;individu&#34;] = previous_menu[&#34;individu&#34;]
+    menu_act[&#34;question&#34;] = &#34;Selectionnez la tranche d&#39;âge&#34;
+    menu_act[&#34;options&#34;] = [&#34;0-14 ans&#34;, #2
+        &#34;15-24 ans&#34;, #3
+        &#34;25-54 ans&#34;, #4
+        &#34;55-64 ans&#34;, #5
+        &#34;65 ans et plus&#34;, #6
+        &#34;Retour au menu précédent&#34;,
+        &#34;Quitter l&#39;application&#34;]
+    menu_act[&#34;actions&#34;] = [
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;0-14 years&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;15-24 years&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;25-54 years&#39;,previous_menu)), # 
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;55-64 years&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;65 years and over&#39;,previous_menu)),
+            menu_seuil_inf,
+            Individu().quitter]
+    menu_act[&#34;path&#34;] = []
+    return(Ouvert(menu_act))</code></pre>
+</details>
+</dd>
+<dt id="Menus.menu.menu_age_seuil_sup"><code class="name flex">
+<span>def <span class="ident">menu_age_seuil_sup</span></span>(<span>previous_menu)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Création du menu intermédaire pour les tranches d'age pour la fonction résumé d'information</p>
+<h2 id="arguments">Arguments</h2>
+<p>previous_menu {List} &ndash; Menu précédent correspondant à l'utilisateur</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def menu_age_seuil_sup(previous_menu): 
+    &#34;&#34;&#34;Création du menu intermédaire pour les tranches d&#39;age pour la fonction résumé d&#39;information
+
+    Arguments:
+        previous_menu {List} -- Menu précédent correspondant à l&#39;utilisateur 
+    &#34;&#34;&#34; 
+    menu_act = {}
+    menu_act[&#34;individu&#34;] = menu_act[&#34;individu&#34;] = previous_menu[&#34;individu&#34;]
+    menu_act[&#34;question&#34;] = &#34;Selectionnez la tranche d&#39;âge&#34;
+    menu_act[&#34;options&#34;] = [&#34;0-14 ans&#34;, #2
+        &#34;15-24 ans&#34;, #3
+        &#34;25-54 ans&#34;, #4
+        &#34;55-64 ans&#34;, #5
+        &#34;65 ans et plus&#34;, #6
+        &#34;Retour au menu précédent&#34;,
+        &#34;Quitter l&#39;application&#34;]
+    menu_act[&#34;actions&#34;] = [
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;0-14 years&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;15-24 years&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;25-54 years&#39;,previous_menu)), # 
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;55-64 years&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;65 years and over&#39;,previous_menu)),
+            menu_seuil_sup,
+            Individu().quitter]
+    menu_act[&#34;path&#34;] = []
+    return(Ouvert(menu_act))</code></pre>
+</details>
+</dd>
+<dt id="Menus.menu.menu_age_tricrois"><code class="name flex">
+<span>def <span class="ident">menu_age_tricrois</span></span>(<span>previous_menu)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Création du menu intermédaire pour les tranches d'age pour la fonction résumé d'information</p>
+<h2 id="arguments">Arguments</h2>
+<p>previous_menu {List} &ndash; Menu précédent correspondant à l'utilisateur</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def menu_age_tricrois(previous_menu): 
+    &#34;&#34;&#34;Création du menu intermédaire pour les tranches d&#39;age pour la fonction résumé d&#39;information
+
+    Arguments:
+        previous_menu {List} -- Menu précédent correspondant à l&#39;utilisateur 
+    &#34;&#34;&#34; 
+    menu_act = {}
+    menu_act[&#34;individu&#34;] = menu_act[&#34;individu&#34;] = previous_menu[&#34;individu&#34;]
+    menu_act[&#34;question&#34;] = &#34;Selectionnez la tranche d&#39;âge&#34;
+    menu_act[&#34;options&#34;] = [&#34;0-14 ans&#34;, #2
+        &#34;15-24 ans&#34;, #3
+        &#34;25-54 ans&#34;, #4
+        &#34;55-64 ans&#34;, #5
+        &#34;65 ans et plus&#34;, #6
+        &#34;Retour au menu précédent&#34;,
+        &#34;Quitter l&#39;application&#34;]
+    menu_act[&#34;actions&#34;] = [
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;0-14 years&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;15-24 years&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;25-54 years&#39;,previous_menu)), # 
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;55-64 years&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;65 years and over&#39;,previous_menu)),
+            menu_tricrois,
             Individu().quitter]
     menu_act[&#34;path&#34;] = []
     return(Ouvert(menu_act))</code></pre>
@@ -470,17 +961,75 @@ indice_taches {List} &ndash; Liste des toutes les taches possibles</p></div>
     &#34;&#34;&#34;    
     menu_act = {}
     menu_act[&#34;individu&#34;] = previous_menu[&#34;individu&#34;]
-    menu_act[&#34;question&#34;] = &#34;Quelle méthode voulez vous utiliser ? \nNote : L&#39;Inde a été retirée de la base de donnée afin de clarifier les résultats &#34;
+    menu_act[&#34;question&#34;] = &#34;Le Clustering est une méthode statistique permettant de regrouper les pays selon les \nvaleurs prises par les différents critères, l&#39;application propose ici deux méthodes : \nLe CAH et les K-means\
+        \nQuelle méthode voulez vous utiliser ? \nNote : L&#39;Inde a été retirée de la base de donnée afin de clarifier les résultats &#34;
     menu_act[&#34;options&#34;] = [&#34;Clustering par méthode CAH&#34;,
         &#34;Clustering par méthode des K-means&#34;, 
-        &#34;Retour au menu principal&#34;, 
+        &#34;Retour au menu précédent&#34;, 
+        &#34;Quitter l&#39;application&#34;]
+    if previous_menu[&#34;individu&#34;].type == &#34;Administrateur&#34;: 
+        menu_act[&#34;actions&#34;] = [
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].clust(&#39;CAH&#39;,previous_menu)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].clust(&#39;K-means&#39;,previous_menu)),
+                (lambda previous_menu :indices_actions(Admin(),[0,1,2,3,5,6,7,8,9,10])),
+                Individu().quitter]
+    else : 
+        menu_act[&#34;actions&#34;] = [
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].clust(&#39;CAH&#39;,previous_menu)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].clust(&#39;K-means&#39;,previous_menu)),
+                (lambda previous_menu :indices_actions(DataScientist(),[0,1,2,3,4,8,9,10])),
+                Individu().quitter]
+    menu_act[&#34;path&#34;] = []
+    return(Ouvert(menu_act))</code></pre>
+</details>
+</dd>
+<dt id="Menus.menu.menu_des"><code class="name flex">
+<span>def <span class="ident">menu_des</span></span>(<span>previous_menu)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Création du menu intermédaire pour la fonction de l'affichage du résumé statistique</p>
+<h2 id="arguments">Arguments</h2>
+<p>previous_menu {List} &ndash; Menu précédent correspondant à l'utilisateur</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def menu_des(previous_menu): 
+    &#34;&#34;&#34;Création du menu intermédaire pour la fonction de l&#39;affichage du résumé statistique
+
+    Arguments:
+        previous_menu {List} -- Menu précédent correspondant à l&#39;utilisateur 
+    &#34;&#34;&#34; 
+    menu_act = {}
+    menu_act[&#34;individu&#34;] = menu_act[&#34;individu&#34;] = previous_menu[&#34;individu&#34;]
+    menu_act[&#34;question&#34;] = &#34;Vous allez visualiser les informations suivantes pour le critère sélectionné : \nNombre d&#39;observations, moyenne, écart-type, min, max et quartiles.  \nSelectionnez le critère&#34;
+    menu_act[&#34;options&#34;] = [&#34;Superficie&#34;, #2
+        &#34;Population&#34;, #3
+        &#34;Croissance démographique&#34;, #4
+        &#34;Inflation&#34;, #5
+        &#34;Dette&#34;, #6
+        &#34;Taux de chômage&#34;, #7
+        &#34;Taux de dépenses en santé&#34;, #8
+        &#34;Taux de dépenses en éducation&#34;, #9
+        &#34;Taux de dépenses militaires&#34;, 
+        &#34;Classes d&#39;âges&#34;, 
+        &#34;Retour au menu précédent&#34;, 
         &#34;Quitter l&#39;application&#34;]
     menu_act[&#34;actions&#34;] = [
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].clust(&#39;CAH&#39;,previous_menu)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].clust(&#39;K-means&#39;,previous_menu)),
-            (lambda previous_menu : Ouvert(menu[0])),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Superficie&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Population&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Croissance démographique&#39;,previous_menu)), 
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Inflation&#39;,previous_menu)), 
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Dette&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Taux de chômage&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Taux de dépense en santé&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Taux de dépense en éducation&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].description(&#39;Taux de dépense militaire&#39;,previous_menu)),
+            menu_age_des,
+            menu_resume,
             Individu().quitter]
     menu_act[&#34;path&#34;] = []
+    
     return(Ouvert(menu_act))</code></pre>
 </details>
 </dd>
@@ -513,20 +1062,34 @@ indice_taches {List} &ndash; Liste des toutes les taches possibles</p></div>
         &#34;Taux de dépenses en santé&#34;, #8
         &#34;Taux de dépenses en éducation&#34;, #9
         &#34;Taux de dépenses militaires&#34;, #10
-        &#34;Retour au menu principal&#34;, 
+        &#34;Retour au menu précédent&#34;, 
         &#34;Quitter l&#39;application&#34;]
-    menu_act[&#34;actions&#34;] = [
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,1)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,2)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,3)), # 
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,4)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,5)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,6)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,7)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,8)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,9)),
-            (lambda previous_menu : Ouvert(menu[0])),
-            Individu().quitter]
+    if previous_menu[&#34;individu&#34;].type == &#34;Administrateur&#34;: 
+        menu_act[&#34;actions&#34;] = [
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,1)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,2)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,3)), 
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,4)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,5)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,6)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,7)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,8)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,9)),
+                (lambda previous_menu :indices_actions(Admin(),[0,1,2,3,5,6,7,8,9,10])),
+                Individu().quitter]
+    else : 
+        menu_act[&#34;actions&#34;] = [
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,1)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,2)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,3)), 
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,4)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,5)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,6)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,7)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,8)),
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].representationgraphique(previous_menu,9)),
+                (lambda previous_menu :indices_actions(DataScientist(),[0,1,2,3,4,8,9,10])),
+                Individu().quitter]
     menu_act[&#34;path&#34;] = []
     
     return(Ouvert(menu_act))</code></pre>
@@ -536,7 +1099,7 @@ indice_taches {List} &ndash; Liste des toutes les taches possibles</p></div>
 <span>def <span class="ident">menu_resume</span></span>(<span>previous_menu)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Création du menu intermédaire pour la fonction résumé d'information</p>
+<div class="desc"><p>Création du menu intermédaire pour l'affichage statistique</p>
 <h2 id="arguments">Arguments</h2>
 <p>previous_menu {List} &ndash; Menu précédent correspondant à l'utilisateur</p></div>
 <details class="source">
@@ -544,7 +1107,160 @@ indice_taches {List} &ndash; Liste des toutes les taches possibles</p></div>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def menu_resume(previous_menu): 
-    &#34;&#34;&#34;Création du menu intermédaire pour la fonction résumé d&#39;information
+    &#34;&#34;&#34;Création du menu intermédaire pour l&#39;affichage statistique
+
+    Arguments:
+        previous_menu {List} -- Menu précédent correspondant à l&#39;utilisateur 
+    &#34;&#34;&#34; 
+    menu_act = {}
+    menu_act[&#34;individu&#34;] = menu_act[&#34;individu&#34;] = previous_menu[&#34;individu&#34;]
+    menu_act[&#34;question&#34;] = &#34;L&#39;affichage statistique permet de visualiser plusieurs informations \nQue voulez vous faire ?&#34;
+    menu_act[&#34;options&#34;] = [&#34;Afficher les pays dont le critère est le plus important&#34;,
+        &#34;Afficher les pays dont le critère est le moins important&#34;,  #2
+        &#34;Afficher les pays dont le critère dépasse un certain seuil&#34;, #3
+        &#34;Afficher les pays dont le critère ne dépasse pas un certain seuil&#34;, #4
+        &#34;Affichage de la répartition des classes d&#39;âges&#34;,
+        &#34;Résumé statistique des critères&#34;, #5
+        &#34;Retour au menu précédent&#34;, 
+        &#34;Quitter l&#39;application&#34;]
+    if previous_menu[&#34;individu&#34;].type == &#34;Administrateur&#34;: 
+        menu_act[&#34;actions&#34;] = [
+                menu_tricrois,
+                menu_tridecrois,
+                menu_seuil_inf,
+                menu_seuil_sup, # 
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_tableau_age(previous_menu)),
+                menu_des,
+                (lambda previous_menu :indices_actions(Admin(),[0,1,2,3,5,6,7,8,9,10])),
+                Individu().quitter]
+    else : 
+        menu_act[&#34;actions&#34;] = [
+                menu_tricrois,
+                menu_tridecrois,
+                menu_seuil_inf,
+                menu_seuil_sup, # 
+                (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_tableau_age(previous_menu)),
+                menu_des,
+                (lambda previous_menu :indices_actions(DataScientist(),[0,1,2,3,4,8,9,10])),
+                Individu().quitter]
+    menu_act[&#34;path&#34;] = []
+    
+    return(Ouvert(menu_act))</code></pre>
+</details>
+</dd>
+<dt id="Menus.menu.menu_seuil_inf"><code class="name flex">
+<span>def <span class="ident">menu_seuil_inf</span></span>(<span>previous_menu)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Création du menu intermédaire pour la fonction le triage par seuil</p>
+<h2 id="arguments">Arguments</h2>
+<p>previous_menu {List} &ndash; Menu précédent correspondant à l'utilisateur</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def menu_seuil_inf(previous_menu): 
+    &#34;&#34;&#34;Création du menu intermédaire pour la fonction le triage par seuil
+
+    Arguments:
+        previous_menu {List} -- Menu précédent correspondant à l&#39;utilisateur 
+    &#34;&#34;&#34; 
+    menu_act = {}
+    menu_act[&#34;individu&#34;] = menu_act[&#34;individu&#34;] = previous_menu[&#34;individu&#34;]
+    menu_act[&#34;question&#34;] = &#34;Affichage des pays dont le critère dépasse un certaint seuil \nSelectionnez le critère&#34;
+    menu_act[&#34;options&#34;] = [&#34;Superficie&#34;, #2
+        &#34;Population&#34;, #3
+        &#34;Croissance démographique&#34;, #4
+        &#34;Inflation&#34;, #5
+        &#34;Dette&#34;, #6
+        &#34;Taux de chômage&#34;, #7
+        &#34;Taux de dépenses en santé&#34;, #8
+        &#34;Taux de dépenses en éducation&#34;, #9
+        &#34;Taux de dépenses militaires&#34;, 
+        &#34;Classes d&#39;âges&#34;, 
+        &#34;Retour au menu précédent&#34;, 
+        &#34;Quitter l&#39;application&#34;]
+    menu_act[&#34;actions&#34;] = [
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;total&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;Population&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;Population growth rate&#39;,previous_menu)), # 
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;Inflation rate (consumer prices)&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;Debt - external&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;Unemployment rate&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;Health expenditures&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;Education expenditures&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_inf(&#39;Military expenditures&#39;,previous_menu)),
+            menu_age_seuil_inf,
+            menu_resume,
+            Individu().quitter]
+    menu_act[&#34;path&#34;] = []
+    
+    return(Ouvert(menu_act))</code></pre>
+</details>
+</dd>
+<dt id="Menus.menu.menu_seuil_sup"><code class="name flex">
+<span>def <span class="ident">menu_seuil_sup</span></span>(<span>previous_menu)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Création du menu intermédaire pour la fonction du tri croissant</p>
+<h2 id="arguments">Arguments</h2>
+<p>previous_menu {List} &ndash; Menu précédent correspondant à l'utilisateur</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def menu_seuil_sup(previous_menu): 
+    &#34;&#34;&#34;Création du menu intermédaire pour la fonction du tri croissant
+
+    Arguments:
+        previous_menu {List} -- Menu précédent correspondant à l&#39;utilisateur 
+    &#34;&#34;&#34; 
+    menu_act = {}
+    menu_act[&#34;individu&#34;] = menu_act[&#34;individu&#34;] = previous_menu[&#34;individu&#34;]
+    menu_act[&#34;question&#34;] = &#34;Affichage des pays dont le critère ne depasse pas un certaint seuil \nSelectionnez le critère&#34;
+    menu_act[&#34;options&#34;] = [&#34;Superficie&#34;, #2
+        &#34;Population&#34;, #3
+        &#34;Croissance démographique&#34;, #4
+        &#34;Inflation&#34;, #5
+        &#34;Dette&#34;, #6
+        &#34;Taux de chômage&#34;, #7
+        &#34;Taux de dépenses en santé&#34;, #8
+        &#34;Taux de dépenses en éducation&#34;, #9
+        &#34;Taux de dépenses militaires&#34;, 
+        &#34;Classes d&#39;âges&#34;, 
+        &#34;Retour au menu précédent&#34;, 
+        &#34;Quitter l&#39;application&#34;]
+    menu_act[&#34;actions&#34;] = [
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;total&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;Population&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;Population growth rate&#39;,previous_menu)), # 
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;Inflation rate (consumer prices)&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;Debt - external&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;Unemployment rate&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;Health expenditures&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;Education expenditures&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].affichage_seuil_sup(&#39;Military expenditures&#39;,previous_menu)),
+            menu_age_tricrois,
+            menu_resume,
+            Individu().quitter]
+    menu_act[&#34;path&#34;] = []
+    
+    return(Ouvert(menu_act))</code></pre>
+</details>
+</dd>
+<dt id="Menus.menu.menu_tricrois"><code class="name flex">
+<span>def <span class="ident">menu_tricrois</span></span>(<span>previous_menu)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Création du menu intermédaire pour la fonction du tri croissant</p>
+<h2 id="arguments">Arguments</h2>
+<p>previous_menu {List} &ndash; Menu précédent correspondant à l'utilisateur</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def menu_tricrois(previous_menu): 
+    &#34;&#34;&#34;Création du menu intermédaire pour la fonction du tri croissant
 
     Arguments:
         previous_menu {List} -- Menu précédent correspondant à l&#39;utilisateur 
@@ -562,20 +1278,70 @@ indice_taches {List} &ndash; Liste des toutes les taches possibles</p></div>
         &#34;Taux de dépenses en éducation&#34;, #9
         &#34;Taux de dépenses militaires&#34;, 
         &#34;Classes d&#39;âges&#34;, 
-        &#34;Retour au menu principal&#34;, 
+        &#34;Retour au menu précédent&#34;, 
         &#34;Quitter l&#39;application&#34;]
     menu_act[&#34;actions&#34;] = [
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;total&#39;,previous_menu)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;Population&#39;,previous_menu)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;Population growth rate&#39;,previous_menu)), # 
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;Inflation rate (consumer prices)&#39;,previous_menu)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;Debt - external&#39;,previous_menu)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;Unemployment rate&#39;,previous_menu)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;Health expenditures&#39;,previous_menu)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;Education expenditures&#39;,previous_menu)),
-            (lambda previous_menu :previous_menu[&#34;individu&#34;].resume(&#39;Military expenditures&#39;,previous_menu)),
-            menu_age,
-            (lambda previous_menu : Ouvert(menu[0])),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;total&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;Population&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;Population growth rate&#39;,previous_menu)), # 
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;Inflation rate (consumer prices)&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;Debt - external&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;Unemployment rate&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;Health expenditures&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;Education expenditures&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tricrois(&#39;Military expenditures&#39;,previous_menu)),
+            menu_age_tricrois,
+            menu_resume,
+            Individu().quitter]
+    menu_act[&#34;path&#34;] = []
+    
+    return(Ouvert(menu_act))</code></pre>
+</details>
+</dd>
+<dt id="Menus.menu.menu_tridecrois"><code class="name flex">
+<span>def <span class="ident">menu_tridecrois</span></span>(<span>previous_menu)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Création du menu intermédaire pour la fonction du tri croissant</p>
+<h2 id="arguments">Arguments</h2>
+<p>previous_menu {List} &ndash; Menu précédent correspondant à l'utilisateur</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def menu_tridecrois(previous_menu): 
+    &#34;&#34;&#34;Création du menu intermédaire pour la fonction du tri croissant
+
+    Arguments:
+        previous_menu {List} -- Menu précédent correspondant à l&#39;utilisateur 
+    &#34;&#34;&#34; 
+    menu_act = {}
+    menu_act[&#34;individu&#34;] = menu_act[&#34;individu&#34;] = previous_menu[&#34;individu&#34;]
+    menu_act[&#34;question&#34;] = &#34;Selectionnez le critère&#34;
+    menu_act[&#34;options&#34;] = [&#34;Superficie&#34;, #2
+        &#34;Population&#34;, #3
+        &#34;Croissance démographique&#34;, #4
+        &#34;Inflation&#34;, #5
+        &#34;Dette&#34;, #6
+        &#34;Taux de chômage&#34;, #7
+        &#34;Taux de dépenses en santé&#34;, #8
+        &#34;Taux de dépenses en éducation&#34;, #9
+        &#34;Taux de dépenses militaires&#34;, 
+        &#34;Classes d&#39;âges&#34;, 
+        &#34;Retour au menu précédent&#34;, 
+        &#34;Quitter l&#39;application&#34;]
+    menu_act[&#34;actions&#34;] = [
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;total&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;Population&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;Population growth rate&#39;,previous_menu)), # 
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;Inflation rate (consumer prices)&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;Debt - external&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;Unemployment rate&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;Health expenditures&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;Education expenditures&#39;,previous_menu)),
+            (lambda previous_menu :previous_menu[&#34;individu&#34;].tridecrois(&#39;Military expenditures&#39;,previous_menu)),
+            menu_age_decrois,
+            menu_resume,
             Individu().quitter]
     menu_act[&#34;path&#34;] = []
     
@@ -604,10 +1370,19 @@ indice_taches {List} &ndash; Liste des toutes les taches possibles</p></div>
 <li><code><a title="Menus.menu.gestion_comptes" href="#Menus.menu.gestion_comptes">gestion_comptes</a></code></li>
 <li><code><a title="Menus.menu.gestion_pays" href="#Menus.menu.gestion_pays">gestion_pays</a></code></li>
 <li><code><a title="Menus.menu.indices_actions" href="#Menus.menu.indices_actions">indices_actions</a></code></li>
-<li><code><a title="Menus.menu.menu_age" href="#Menus.menu.menu_age">menu_age</a></code></li>
+<li><code><a title="Menus.menu.menu_age_decrois" href="#Menus.menu.menu_age_decrois">menu_age_decrois</a></code></li>
+<li><code><a title="Menus.menu.menu_age_des" href="#Menus.menu.menu_age_des">menu_age_des</a></code></li>
+<li><code><a title="Menus.menu.menu_age_seuil_inf" href="#Menus.menu.menu_age_seuil_inf">menu_age_seuil_inf</a></code></li>
+<li><code><a title="Menus.menu.menu_age_seuil_sup" href="#Menus.menu.menu_age_seuil_sup">menu_age_seuil_sup</a></code></li>
+<li><code><a title="Menus.menu.menu_age_tricrois" href="#Menus.menu.menu_age_tricrois">menu_age_tricrois</a></code></li>
 <li><code><a title="Menus.menu.menu_clust" href="#Menus.menu.menu_clust">menu_clust</a></code></li>
+<li><code><a title="Menus.menu.menu_des" href="#Menus.menu.menu_des">menu_des</a></code></li>
 <li><code><a title="Menus.menu.menu_graph" href="#Menus.menu.menu_graph">menu_graph</a></code></li>
 <li><code><a title="Menus.menu.menu_resume" href="#Menus.menu.menu_resume">menu_resume</a></code></li>
+<li><code><a title="Menus.menu.menu_seuil_inf" href="#Menus.menu.menu_seuil_inf">menu_seuil_inf</a></code></li>
+<li><code><a title="Menus.menu.menu_seuil_sup" href="#Menus.menu.menu_seuil_sup">menu_seuil_sup</a></code></li>
+<li><code><a title="Menus.menu.menu_tricrois" href="#Menus.menu.menu_tricrois">menu_tricrois</a></code></li>
+<li><code><a title="Menus.menu.menu_tridecrois" href="#Menus.menu.menu_tridecrois">menu_tridecrois</a></code></li>
 </ul>
 </li>
 </ul>

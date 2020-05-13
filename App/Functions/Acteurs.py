@@ -703,6 +703,12 @@ class DataScientist(Consultant,Affichage_Stat):
         return self.connecte
     
     def tricrois(self,critere,previous_menu): 
+        """Fonction du Tri Croissant adaptée au menus
+
+        Arguments:
+            critere {str} -- Critère à observer
+            previous_menu {list of dict} -- Menu précédent
+        """        
         if not self.connecte : 
             print ("Vous n'êtes pas connecté \n Veuillez vous connecter")
             input( "Appuyez sur Entrer pour continuer")
@@ -716,6 +722,12 @@ class DataScientist(Consultant,Affichage_Stat):
         return(Ouvert(previous_menu))
 
     def tridecrois(self,critere,previous_menu): 
+        """Fonction du Tri Décroissant adaptée au menus
+
+        Arguments:
+            critere {str} -- Critère à observer
+            previous_menu {list of dict} -- Menu précédent
+        """        
         if not self.connecte : 
             print ("Vous n'êtes pas connecté \n Veuillez vous connecter")
             input( "Appuyez sur Entrer pour continuer")
@@ -729,6 +741,12 @@ class DataScientist(Consultant,Affichage_Stat):
         return(Ouvert(previous_menu))
 
     def description(self,critere,previous_menu): 
+        """Fonction du Résumé statistique adaptée au menu
+
+        Arguments:
+            critere {str} -- Critère à observer
+            previous_menu {list of dict} -- Menu précédent
+        """        
         if not self.connecte : 
             print ("Vous n'êtes pas connecté \n Veuillez vous connecter")
             input( "Appuyez sur Entrer pour continuer")
@@ -742,6 +760,12 @@ class DataScientist(Consultant,Affichage_Stat):
         return(Ouvert(previous_menu))
 
     def affichage_seuil_inf(self,critere,previous_menu): 
+        """Fonction du affichant les pays dépassant un seuil adaptée au menus
+
+        Arguments:
+            critere {str} -- Critère à observer
+            previous_menu {list of dict} -- Menu précédent
+        """        
         if not self.connecte : 
             print ("Vous n'êtes pas connecté \n Veuillez vous connecter")
             input( "Appuyez sur Entrer pour continuer")
@@ -755,6 +779,12 @@ class DataScientist(Consultant,Affichage_Stat):
         return(Ouvert(previous_menu))
 
     def affichage_seuil_sup(self,critere,previous_menu): 
+        """Fonction du affichant les pays ne dépassant pas un seuil adaptée au menus
+
+        Arguments:
+            critere {str} -- Critère à observer
+            previous_menu {list of dict} -- Menu précédent
+        """  
         if not self.connecte : 
             print ("Vous n'êtes pas connecté \n Veuillez vous connecter")
             input( "Appuyez sur Entrer pour continuer")
@@ -768,6 +798,12 @@ class DataScientist(Consultant,Affichage_Stat):
         return(Ouvert(previous_menu))
         
     def affichage_tableau_age(self,previous_menu): 
+        """Fonction du affichant la répartition des classes d'age adaptée au menu
+
+        Arguments:
+            critere {str} -- Critère à observer
+            previous_menu {list of dict} -- Menu précédent
+        """          
         if not self.connecte : 
             print ("Vous n'êtes pas connecté \n Veuillez vous connecter")
             input( "Appuyez sur Entrer pour continuer")
@@ -781,6 +817,12 @@ class DataScientist(Consultant,Affichage_Stat):
         return(Ouvert(previous_menu))
 
     def clust(self,methode,previous_menu): 
+        """Fonction permettant à l'utilisateur d'effectuer un clustering par la méthode de son choix adaptée au menu
+
+        Arguments:
+            critere {str} -- Critère à observer
+            previous_menu {list of dict} -- Menu précédent
+        """  
         if not self.connecte : 
             print ("Vous n'êtes pas connecté \n Veuillez vous connecter")
             input( "Appuyez sur Entrer pour continuer")

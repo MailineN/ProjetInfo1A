@@ -4,7 +4,8 @@ from . import FonctionBD as fbd
 
 class Affichage_Stat:
     def __init__(self):
-
+        """Traitement initial des données pour l'affichage stat
+        """        
         with open(r"App\Functions\DataTreatment\country.json") as json_file:
             self.data = json.load(json_file)
 
@@ -15,7 +16,7 @@ class Affichage_Stat:
 
     def tri_croissant(self,critere):
 
-        """ Affiche le nombre de pays que veut l'utilisateur trié par ordre croissant selon un citère ne gardant que les n premiers
+        """ Affiche le nombre de pays que veut l'utilisateur trié par ordre croissant selon un critère ne gardant que les n premiers
             Arguments:
                 critère {str} -- Critère à récupérer
         """
@@ -771,7 +772,7 @@ class Affichage_Stat:
 
     def tri_decroissant(self,critere):
 
-        """ Affiche le nombre de pays que veut l'utilisateur trié par ordre décroissant selon un citère ne gardant que les n derniers
+        """ Affiche le nombre de pays que veut l'utilisateur trié par ordre décroissant selon un critère ne gardant que les n derniers
             Arguments:
                 critère {str} -- Critère à récupérer
         """
@@ -2606,6 +2607,11 @@ class Affichage_Stat:
         input("\nAffichage terminé, appuyez sur Entrer pour continuer ")
 
     def summary(self,critere): 
+        """Affiche un tableau donnant les informations statistiques du critère choisi
+        Les informations données sont : Le nombre d'observation, la moyenne, l'écart type, le min/max ainsi que les quartiles
+        Arguments:
+            critere {str} -- Critère à observer
+        """        
         df,pays = fbd.to_df()
         df_crit = df[critere]
         print("\n")

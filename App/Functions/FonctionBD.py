@@ -156,7 +156,7 @@ def type_liste(users):
     return(liste)
 
 def to_df():
-        """Transforme la base de donnée json en dataframe plus adaptée pour le clustering 
+        """Transforme la base de donnée json en dataframe plus adaptée pour le clustering et pour le résumé Statistique
         Retire le pays 'Inde' qui pose problème 
 
         Returns:

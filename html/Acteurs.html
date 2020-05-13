@@ -35,7 +35,7 @@ import FonctionBD as fbd
 from Menus.menu_ouvert import Ouvert
 from Menus.menu_ferme import Ferme
 import getpass
-import Fonction_resume as r
+from Fonction_resume_2 import Affichage_Stat
 import Fonction_bonus as b
 import Fonction_bonus as bonus
 
@@ -153,71 +153,161 @@ class Consultant(Individu):
         liste_info = []
         Nom = input(&#34;Entrer le nom du pays de la suggestion : &#34;) 
         liste_info.append(Nom)
-        superficie = input(&#39;Entrez la superficie du pays en km2 totale, tapez None pour passer la question :&#39;)
+        while True :
+            superficie = input(&#39;Entrez la superficie du pays en km2 totale:&#39;)
+            if fbd.is_number(superficie): 
+                break
         liste_info.append(superficie)
-        superficie2 = input(&#39;Entrez la superficie du pays en km2 métropolitaine, tapez None pour passer la question :&#39;)
+        while True :
+            superficie2 = input(&#39;Entrez la superficie du pays en km2 métropolitaine:&#39;)
+            if fbd.is_number(superficie2): 
+                break
         liste_info.append(superficie2)
-        pop = input(&#39;Entrez la population du pays, tapez None pour passer la question :&#39;)
+        while True :
+            pop = input(&#39;Entrez la population du pays:&#39;)
+            if fbd.is_number(pop): 
+                break
         liste_info.append(pop)
-        crois = input(&#39;Entrez la croissance demographique du pays en pourcentage , tapez None pour passer la question :&#39;)
+        while True :
+            crois = input(&#39;Entrez la croissance demographique du pays en pourcentage :&#39;)
+            if fbd.is_number(crois): 
+                break
         liste_info.append(crois)
-        inflation = input(&#39;Entrez l\&#39;inflation du pays en pourcentage pour l\&#39;année 2016, tapez None pour passer la question :&#39;)
+        while True :
+            inflation = input(&#39;Entrez l\&#39;inflation du pays en pourcentage pour l\&#39;année 2016:&#39;)
+            if fbd.is_number(inflation): 
+                break
         liste_info.append(inflation)
-        inflation2 = input(&#39;Entrez l\&#39;inflation du pays en pourcentage pour l\&#39;année 2015, tapez None pour passer la question :&#39;)
+        while True : 
+            inflation2 = input(&#39;Entrez l\&#39;inflation du pays en pourcentage pour l\&#39;année 2015:&#39;)
+            if fbd.is_number(inflation2): 
+                break
         liste_info.append(inflation2)
-        dette = input(&#39;Entrez la dette en dollars - unité incluse (trillion, billion...) - pour l\&#39;année 2016, tapez None pour passer la question :&#39;)
+        while True : 
+            dette = input(&#39;Entrez la dette en dollars pour l\&#39;année 2016:&#39;)
+            if fbd.is_number(dette): 
+                break
         liste_info.append(dette)
-        dette2 = input(&#39;Entrez la dette en dollars - unité incluse (trillion, billion...) - pour l\&#39;année 2016, tapez None pour passer la question :&#39;)
+        while True :
+            dette2 = input(&#39;Entrez la dette en dollars pour l\&#39;année 2016:&#39;)
+            if fbd.is_number(crois): 
+                break
         liste_info.append(dette2)
-        chom = input(&#39;Entrez la taux de chomage du pays en pourcentage pour l\&#39;année 2015, tapez None pour passer la question :&#39;)
+        while True : 
+            chom = input(&#39;Entrez la taux de chomage du pays en pourcentage pour l\&#39;année 2015:&#39;)
+            if fbd.is_number(chom): 
+                break
         liste_info.append(chom)
-        chom2 = input(&#39;Entrez la taux de chomage du pays en pourcentage pour l\&#39;année 2016, tapez None pour passer la question :&#39;)
+        while True : 
+            chom2 = input(&#39;Entrez la taux de chomage du pays en pourcentage pour l\&#39;année 2016:&#39;)
+            if fbd.is_number(chom2): 
+                break
         liste_info.append(chom2)
-        sante = input(&#39;Entrez le taux de depense en sante du pays en pourcentage pour l\&#39;année 2014, tapez None pour passer la question :&#39;)
+        while True : 
+            sante = input(&#39;Entrez le taux de depense en sante du pays en pourcentage pour l\&#39;année 2014:&#39;)
+            if fbd.is_number(sante): 
+                break
         liste_info.append(sante)
-        edu = input(&#39;Entrez le taux de depense en education du pays en pourcentage pour l\&#39;année 2013, tapez None pour passer la question :&#39;)
+        while True : 
+            edu = input(&#39;Entrez le taux de depense en education du pays en pourcentage pour l\&#39;année 2013:&#39;)
+            if fbd.is_number(edu): 
+                break
         liste_info.append(edu)
-        army = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2014, tapez None pour passer la question :&#39;)
+        while True : 
+            army = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2014:&#39;)
+            if fbd.is_number(army): 
+                break
         liste_info.append(army)
-        army2 = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2013, tapez None pour passer la question :&#39;)
+        while True : 
+            army2 = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2013:&#39;)
+            if fbd.is_number(army2): 
+                break
         liste_info.append(army2)
-        army3 = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2012, tapez None pour passer la question :&#39;)
+        while True : 
+            army3 = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2012:&#39;)
+            if fbd.is_number(army3): 
+                break
         liste_info.append(army3)
 
         # Entree des 5 classes d\&#39;age
-        age1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans total, tapez None pour passer la question :&#39;)
+        while True : 
+            age1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans total:&#39;)
+            if fbd.is_number(age1): 
+                break
         liste_info.append(age1)
-        age1_1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans masculin, tapez None pour passer la question :&#39;)
+        while True :
+            age1_1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans masculin:&#39;)
+            if fbd.is_number(age1_1): 
+                break
         liste_info.append(age1_1)
-        age1_2 = input(&#39;Entrez le pourcentage de la classe [0-14] ans feminin, tapez None pour passer la question :&#39;)
+        while True : 
+            age1_2 = input(&#39;Entrez le pourcentage de la classe [0-14] ans feminin:&#39;)
+            if fbd.is_number(age1_2): 
+                break
         liste_info.append(age1_2)
 
-        age2 = input(&#39;Entrez le pourcentage de la classe [0-14] ans total, tapez None pour passer la question :&#39;)
+        while True : 
+            age2 = input(&#39;Entrez le pourcentage de la classe [15-24] ans total:&#39;)
+            if fbd.is_number(age2): 
+                break
         liste_info.append(age2)
-        age2_1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans masculin, tapez None pour passer la question :&#39;)
+        while True :
+            age2_1 = input(&#39;Entrez le pourcentage de la classe [15-24] ans masculin:&#39;)
+            if fbd.is_number(age2_1): 
+                break
         liste_info.append(age2_1)
-        age2_2 = input(&#39;Entrez le pourcentage de la classe [0-14] ans feminin, tapez None pour passer la question :&#39;)
+        while True : 
+            age2_2 = input(&#39;Entrez le pourcentage de la classe [15-24] ans feminin:&#39;)
+            if fbd.is_number(age2_2): 
+                break
         liste_info.append(age2_2)
 
-        age3 = input(&#39;Entrez le pourcentage de la classe [25-54] ans total, tapez None pour passer la question :&#39;)
+        while True : 
+            age3 = input(&#39;Entrez le pourcentage de la classe [25-54] ans total:&#39;)
+            if fbd.is_number(age3): 
+                break
         liste_info.append(age3)
-        age3_1 = input(&#39;Entrez le pourcentage de la classe [25-54] ans masculin, tapez None pour passer la question :&#39;)
+        while True :
+            age3_1 = input(&#39;Entrez le pourcentage de la classe [25-54] ans masculin:&#39;)
+            if fbd.is_number(age3_1): 
+                break
         liste_info.append(age3_1)
-        age3_2 = input(&#39;Entrez le pourcentage de la classe [25-54] ans feminin, tapez None pour passer la question :&#39;)
+        while True : 
+            age3_2 = input(&#39;Entrez le pourcentage de la classe [25-54] ans feminin:&#39;)
+            if fbd.is_number(age3_2): 
+                break
         liste_info.append(age3_2)
 
-        age4 = input(&#39;Entrez le pourcentage de la classe [55-64] ans total, tapez None pour passer la question :&#39;)
+        while True : 
+            age4 = input(&#39;Entrez le pourcentage de la classe [55-64] ans total:&#39;)
+            if fbd.is_number(age4): 
+                break
         liste_info.append(age4)
-        age4_1 = input(&#39;Entrez le pourcentage de la classe [55-64] ans masculin, tapez None pour passer la question :&#39;)
+        while True :
+            age4_1 = input(&#39;Entrez le pourcentage de la classe [55-64] ans masculin:&#39;)
+            if fbd.is_number(age4_1): 
+                break
         liste_info.append(age4_1)
-        age4_2 = input(&#39;Entrez le pourcentage de la classe [55-64] ans feminin, tapez None pour passer la question :&#39;)
+        while True : 
+            age4_2 = input(&#39;Entrez le pourcentage de la classe [55-64] ans feminin:&#39;)
+            if fbd.is_number(age4_2): 
+                break
         liste_info.append(age4_2)
 
-        age5 = input(&#39;Entrez le pourcentage de la classe [65 ans et plus] total, tapez None pour passer la question :&#39;)
+        while True : 
+            age5 = input(&#39;Entrez le pourcentage de la classe [+65] ans total:&#39;)
+            if fbd.is_number(age5): 
+                break
         liste_info.append(age5)
-        age5_1 = input(&#39;Entrez le pourcentage de la classe [65 ans et plus] masculin, tapez None pour passer la question :&#39;)
+        while True :
+            age5_1 = input(&#39;Entrez le pourcentage de la classe [+65] ans masculin:&#39;)
+            if fbd.is_number(age1_1): 
+                break
         liste_info.append(age5_1)
-        age5_2 = input(&#39;Entrez le pourcentage de la classe [65 ans et plus] feminin, tapez None pour passer la question :&#39;)
+        while True : 
+            age5_2 = input(&#39;Entrez le pourcentage de la classe [+65] ans feminin:&#39;)
+            if fbd.is_number(age5_2): 
+                break
         liste_info.append(age5_2)
 
         if len(liste_info)== 0 : 
@@ -301,82 +391,170 @@ class Geographe(Individu):
             print(&#34;Le pays entré n&#39;existe pas, un nouveau pays va être crée&#34;)
         finally :
             # La fonction demande à l&#39;utilisateur s&#39;il souhaite ajouter des informations
-            complementaire = input(&#39;Voulez vous ajouter des informations ? (Y/N)&#39;)
+            input(&#39;Nous allons maintenant ajouter des information complémentaires, cette étape est obligatoire\nAppuyez sur Entrer pour continuer&#39;)
             liste_info = []
-            # Si l&#39;utilisateur accepte 
-            if complementaire in [&#34;Y&#34;,&#34;y&#34;]: 
-                superficie = input(&#39;Entrez la superficie du pays en km2 totale, tapez None pour passer la question :&#39;)
-                liste_info.append(superficie)
-                superficie2 = input(&#39;Entrez la superficie du pays en km2 métropolitaine, tapez None pour passer la question :&#39;)
-                liste_info.append(superficie2)
-                pop = input(&#39;Entrez la population du pays, tapez None pour passer la question :&#39;)
-                liste_info.append(pop)
-                crois = input(&#39;Entrez la croissance demographique du pays en pourcentage , tapez None pour passer la question :&#39;)
-                liste_info.append(crois)
-                inflation = input(&#39;Entrez l\&#39;inflation du pays en pourcentage pour l\&#39;année 2016, tapez None pour passer la question :&#39;)
-                liste_info.append(inflation)
-                inflation2 = input(&#39;Entrez l\&#39;inflation du pays en pourcentage pour l\&#39;année 2015, tapez None pour passer la question :&#39;)
-                liste_info.append(inflation2)
-                dette = input(&#39;Entrez la dette en dollars - unité incluse (trillion, billion...) - pour l\&#39;année 2016, tapez None pour passer la question :&#39;)
-                liste_info.append(dette)
-                dette2 = input(&#39;Entrez la dette en dollars - unité incluse (trillion, billion...) - pour l\&#39;année 2016, tapez None pour passer la question :&#39;)
-                liste_info.append(dette2)
-                chom = input(&#39;Entrez la taux de chomage du pays en pourcentage pour l\&#39;année 2015, tapez None pour passer la question :&#39;)
-                liste_info.append(chom)
-                chom2 = input(&#39;Entrez la taux de chomage du pays en pourcentage pour l\&#39;année 2016, tapez None pour passer la question :&#39;)
-                liste_info.append(chom2)
-                sante = input(&#39;Entrez le taux de depense en sante du pays en pourcentage pour l\&#39;année 2014, tapez None pour passer la question :&#39;)
-                liste_info.append(sante)
-                edu = input(&#39;Entrez le taux de depense en education du pays en pourcentage pour l\&#39;année 2013, tapez None pour passer la question :&#39;)
-                liste_info.append(edu)
-                army = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2014, tapez None pour passer la question :&#39;)
-                liste_info.append(army)
-                army2 = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2013, tapez None pour passer la question :&#39;)
-                liste_info.append(army2)
-                army3 = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2012, tapez None pour passer la question :&#39;)
-                liste_info.append(army3)
+            while True :
+                superficie = input(&#39;Entrez la superficie du pays en km2 totale:&#39;)
+                if fbd.is_number(superficie): 
+                    break
+            liste_info.append(superficie)
+            while True :
+                superficie2 = input(&#39;Entrez la superficie du pays en km2 métropolitaine:&#39;)
+                if fbd.is_number(superficie2): 
+                    break
+            liste_info.append(superficie2)
+            while True :
+                pop = input(&#39;Entrez la population du pays:&#39;)
+                if fbd.is_number(pop): 
+                    break
+            liste_info.append(pop)
+            while True :
+                crois = input(&#39;Entrez la croissance demographique du pays en pourcentage :&#39;)
+                if fbd.is_number(crois): 
+                    break
+            liste_info.append(crois)
+            while True :
+                inflation = input(&#39;Entrez l\&#39;inflation du pays en pourcentage pour l\&#39;année 2016:&#39;)
+                if fbd.is_number(inflation): 
+                    break
+            liste_info.append(inflation)
+            while True : 
+                inflation2 = input(&#39;Entrez l\&#39;inflation du pays en pourcentage pour l\&#39;année 2015:&#39;)
+                if fbd.is_number(inflation2): 
+                    break
+            liste_info.append(inflation2)
+            while True : 
+                dette = input(&#39;Entrez la dette en dollars pour l\&#39;année 2016:&#39;)
+                if fbd.is_number(dette): 
+                    break
+            liste_info.append(dette)
+            while True :
+                dette2 = input(&#39;Entrez la dette en dollars pour l\&#39;année 2016:&#39;)
+                if fbd.is_number(crois): 
+                    break
+            liste_info.append(dette2)
+            while True : 
+                chom = input(&#39;Entrez la taux de chomage du pays en pourcentage pour l\&#39;année 2015:&#39;)
+                if fbd.is_number(chom): 
+                    break
+            liste_info.append(chom)
+            while True : 
+                chom2 = input(&#39;Entrez la taux de chomage du pays en pourcentage pour l\&#39;année 2016:&#39;)
+                if fbd.is_number(chom2): 
+                    break
+            liste_info.append(chom2)
+            while True : 
+                sante = input(&#39;Entrez le taux de depense en sante du pays en pourcentage pour l\&#39;année 2014:&#39;)
+                if fbd.is_number(sante): 
+                    break
+            liste_info.append(sante)
+            while True : 
+                edu = input(&#39;Entrez le taux de depense en education du pays en pourcentage pour l\&#39;année 2013:&#39;)
+                if fbd.is_number(edu): 
+                    break
+            liste_info.append(edu)
+            while True : 
+                army = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2014:&#39;)
+                if fbd.is_number(army): 
+                    break
+            liste_info.append(army)
+            while True : 
+                army2 = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2013:&#39;)
+                if fbd.is_number(army2): 
+                    break
+            liste_info.append(army2)
+            while True : 
+                army3 = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2012:&#39;)
+                if fbd.is_number(army3): 
+                    break
+            liste_info.append(army3)
 
-                # Entree des 5 classes d\&#39;age
-                age1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans total, tapez None pour passer la question :&#39;)
-                liste_info.append(age1)
-                age1_1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans masculin, tapez None pour passer la question :&#39;)
-                liste_info.append(age1_1)
-                age1_2 = input(&#39;Entrez le pourcentage de la classe [0-14] ans feminin, tapez None pour passer la question :&#39;)
-                liste_info.append(age1_2)
+            # Entree des 5 classes d\&#39;age
+            while True : 
+                age1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans total:&#39;)
+                if fbd.is_number(age1): 
+                    break
+            liste_info.append(age1)
+            while True :
+                age1_1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans masculin:&#39;)
+                if fbd.is_number(age1_1): 
+                    break
+            liste_info.append(age1_1)
+            while True : 
+                age1_2 = input(&#39;Entrez le pourcentage de la classe [0-14] ans feminin:&#39;)
+                if fbd.is_number(age1_2): 
+                    break
+            liste_info.append(age1_2)
 
-                age2 = input(&#39;Entrez le pourcentage de la classe [0-14] ans total, tapez None pour passer la question :&#39;)
-                liste_info.append(age2)
-                age2_1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans masculin, tapez None pour passer la question :&#39;)
-                liste_info.append(age2_1)
-                age2_2 = input(&#39;Entrez le pourcentage de la classe [0-14] ans feminin, tapez None pour passer la question :&#39;)
-                liste_info.append(age2_2)
+            while True : 
+                age2 = input(&#39;Entrez le pourcentage de la classe [15-24] ans total:&#39;)
+                if fbd.is_number(age2): 
+                    break
+            liste_info.append(age2)
+            while True :
+                age2_1 = input(&#39;Entrez le pourcentage de la classe [15-24] ans masculin:&#39;)
+                if fbd.is_number(age2_1): 
+                    break
+            liste_info.append(age2_1)
+            while True : 
+                age2_2 = input(&#39;Entrez le pourcentage de la classe [15-24] ans feminin:&#39;)
+                if fbd.is_number(age2_2): 
+                    break
+            liste_info.append(age2_2)
 
-                age3 = input(&#39;Entrez le pourcentage de la classe [25-54] ans total, tapez None pour passer la question :&#39;)
-                liste_info.append(age3)
-                age3_1 = input(&#39;Entrez le pourcentage de la classe [25-54] ans masculin, tapez None pour passer la question :&#39;)
-                liste_info.append(age3_1)
-                age3_2 = input(&#39;Entrez le pourcentage de la classe [25-54] ans feminin, tapez None pour passer la question :&#39;)
-                liste_info.append(age3_2)
+            while True : 
+                age3 = input(&#39;Entrez le pourcentage de la classe [25-54] ans total:&#39;)
+                if fbd.is_number(age3): 
+                    break
+            liste_info.append(age3)
+            while True :
+                age3_1 = input(&#39;Entrez le pourcentage de la classe [25-54] ans masculin:&#39;)
+                if fbd.is_number(age3_1): 
+                    break
+            liste_info.append(age3_1)
+            while True : 
+                age3_2 = input(&#39;Entrez le pourcentage de la classe [25-54] ans feminin:&#39;)
+                if fbd.is_number(age3_2): 
+                    break
+            liste_info.append(age3_2)
 
-                age4 = input(&#39;Entrez le pourcentage de la classe [55-64] ans total, tapez None pour passer la question :&#39;)
-                liste_info.append(age4)
-                age4_1 = input(&#39;Entrez le pourcentage de la classe [55-64] ans masculin, tapez None pour passer la question :&#39;)
-                liste_info.append(age4_1)
-                age4_2 = input(&#39;Entrez le pourcentage de la classe [55-64] ans feminin, tapez None pour passer la question :&#39;)
-                liste_info.append(age4_2)
+            while True : 
+                age4 = input(&#39;Entrez le pourcentage de la classe [55-64] ans total:&#39;)
+                if fbd.is_number(age4): 
+                    break
+            liste_info.append(age4)
+            while True :
+                age4_1 = input(&#39;Entrez le pourcentage de la classe [55-64] ans masculin:&#39;)
+                if fbd.is_number(age4_1): 
+                    break
+            liste_info.append(age4_1)
+            while True : 
+                age4_2 = input(&#39;Entrez le pourcentage de la classe [55-64] ans feminin:&#39;)
+                if fbd.is_number(age4_2): 
+                    break
+            liste_info.append(age4_2)
 
-                age5 = input(&#39;Entrez le pourcentage de la classe [65 ans et plus] total, tapez None pour passer la question :&#39;)
-                liste_info.append(age5)
-                age5_1 = input(&#39;Entrez le pourcentage de la classe [65 ans et plus] masculin, tapez None pour passer la question :&#39;)
-                liste_info.append(age5_1)
-                age5_2 = input(&#39;Entrez le pourcentage de la classe [65 ans et plus] feminin, tapez None pour passer la question :&#39;)
-                liste_info.append(age5_2)
+            while True : 
+                age5 = input(&#39;Entrez le pourcentage de la classe [+65] ans total:&#39;)
+                if fbd.is_number(age5): 
+                    break
+            liste_info.append(age5)
+            while True :
+                age5_1 = input(&#39;Entrez le pourcentage de la classe [+65] ans masculin:&#39;)
+                if fbd.is_number(age1_1): 
+                    break
+            liste_info.append(age5_1)
+            while True : 
+                age5_2 = input(&#39;Entrez le pourcentage de la classe [+65] ans feminin:&#39;)
+                if fbd.is_number(age5_2): 
+                    break
+            liste_info.append(age5_2)
 
             # Creation de l&#39;entree
             entree = fbd.pays_vide()
             entree[&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;] = Nom
-            print(&#34;Votre pays a bien été initialisé &#34;)
             if len(liste_info) &gt;0 : 
+                # Les tests provient d&#39;une version antérieure de la fonction (à retirer si j&#39;ai le temps)
                 if liste_info[0] not in [&#39;None&#39;,&#39;none&#39;]: 
                     entree[&#39;Geography&#39;][&#39;Area&#39;][&#39;total&#39;][&#39;text&#39;] = str(liste_info[0])+&#34; sq km; &#34;+str(liste_info[1])+&#34; sq km (metropolitan &#34;+ Nom +&#34;)&#34;
                 if liste_info[1] not in [&#39;None&#39;,&#39;none&#39;]: 
@@ -396,15 +574,15 @@ class Geographe(Individu):
                 if liste_info[8] not in [&#39;None&#39;,&#39;none&#39;]: 
                     entree[&#39;Military and Security&#39;][&#39;Military expenditures&#39;][&#39;text&#39;] = str(liste_info[12])+&#34;% of GDP (2014) ++ &#34;+str(liste_info[12])+&#34;% of GDP (2013) ++ &#34;+str(liste_info[13])+&#34;% of GDP (2012)&#34;
                 if liste_info[9] not in [&#39;None&#39;,&#39;none&#39;]: 
-                    entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;0-14 years&#39;][&#39;text&#39;] = str(liste_info[14])+&#34;% (male &#34;+str(liste_info[15])+&#34;% / female &#34;+str(liste_info[16])+&#34;)&#34;
+                    entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;0-14 years&#39;][&#39;text&#39;] = str(liste_info[14])+&#34;% (male &#34;+str(liste_info[15])+&#34;% / female &#34;+str(liste_info[16])+&#34;%)&#34;
                 if liste_info[10] not in [&#39;None&#39;,&#39;none&#39;]: 
-                    entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;15-24 years&#39;][&#39;text&#39;] = str(liste_info[17])+&#34;% (male &#34;+str(liste_info[18])+&#34;% / female &#34;+str(liste_info[19])+&#34;)&#34;
+                    entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;15-24 years&#39;][&#39;text&#39;] = str(liste_info[17])+&#34;% (male &#34;+str(liste_info[18])+&#34;% / female &#34;+str(liste_info[19])+&#34;%)&#34;
                 if liste_info[11] not in [&#39;None&#39;,&#39;none&#39;]: 
-                    entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;25-54 years&#39;][&#39;text&#39;] = str(liste_info[10])+&#34;% (male &#34;+str(liste_info[21])+&#34;% / female &#34;+str(liste_info[22])+&#34;)&#34;
+                    entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;25-54 years&#39;][&#39;text&#39;] = str(liste_info[10])+&#34;% (male &#34;+str(liste_info[21])+&#34;% / female &#34;+str(liste_info[22])+&#34;%)&#34;
                 if liste_info[12] not in [&#39;None&#39;,&#39;none&#39;]: 
-                    entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;55-64 years&#39;][&#39;text&#39;] = str(liste_info[23])+&#34;% (male &#34;+str(liste_info[24])+&#34;% / female &#34;+str(liste_info[25])+&#34;)&#34;
+                    entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;55-64 years&#39;][&#39;text&#39;] = str(liste_info[23])+&#34;% (male &#34;+str(liste_info[24])+&#34;% / female &#34;+str(liste_info[25])+&#34;%)&#34;
                 if liste_info[13] not in [&#39;None&#39;,&#39;none&#39;]: 
-                    entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;65 years and over&#39;][&#39;text&#39;] = str(liste_info[26])+&#34;% (male &#34;+str(liste_info[27])+&#34;% / female &#34;+str(liste_info[28])+&#34;)&#34;
+                    entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;65 years and over&#39;][&#39;text&#39;] = str(liste_info[26])+&#34;% (male &#34;+str(liste_info[27])+&#34;% / female &#34;+str(liste_info[28])+&#34;%)&#34;
                 print(&#39;Vos informations complementaires ont bien ete enregistrees&#39;)
             with open(r&#34;App\Functions\DataTreatment\country.json&#34;) as json_file: 
                 data =json.load(json_file)
@@ -445,7 +623,7 @@ class Geographe(Individu):
         while n &gt; 0 :
             liste_info= sugges[0]
             nom_pays = liste_info.pop(0) # Recupere le nom du pays pour le placer correctement
-            print(&#34;#####################################################&#34;)
+            print(&#34;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&#34;)
             print(&#34;Voici la suggestion : &#34;) 
             print(&#34;Nom du pays : &#34;, nom_pays)
             print(&#34;Superficie du pays : &#34;, str(liste_info[0])+&#34; sq km; &#34;+str(liste_info[1])+&#34; sq km (metropolitan &#34;+ nom_pays +&#34;)&#34;)
@@ -457,12 +635,12 @@ class Geographe(Individu):
             print(&#34;Depense santé du pays : &#34;, str(liste_info[10])+ &#34;% of GDP (2014)&#34;)
             print(&#34;Depense education du pays : &#34;, str(liste_info[11])+ &#34;% of GDP (2013)&#34;)
             print(&#34;Depense militaire du pays : &#34;,str(liste_info[12])+&#34;% of GDP (2014) ++ &#34;+str(liste_info[12])+&#34;% of GDP (2013) ++ &#34;+str(liste_info[13])+&#34;% of GDP (2012)&#34;)
-            print(&#34;Taux [0 - 14] ans  : &#34;, str(liste_info[14])+&#34;% (male &#34;+str(liste_info[15])+&#34;% / female &#34;+str(liste_info[16])+&#34;)&#34;)
-            print(&#34;Taux [15 - 24] ans : &#34;, str(liste_info[17])+&#34;% (male &#34;+str(liste_info[18])+&#34;% / female &#34;+str(liste_info[19])+&#34;)&#34;)
-            print(&#34;Taux [25 - 54] ans : &#34;, str(liste_info[10])+&#34;% (male &#34;+str(liste_info[21])+&#34;% / female &#34;+str(liste_info[22])+&#34;)&#34;)
-            print(&#34;Taux [55 - 64] ans : &#34;, str(liste_info[23])+&#34;% (male &#34;+str(liste_info[24])+&#34;% / female &#34;+str(liste_info[25])+&#34;)&#34;)
-            print(&#34;Taux [65 ans et plus] &#34;, sugges[0][14])
-            print(&#34;#####################################################&#34;)
+            print(&#34;Taux [0 - 14] ans  : &#34;, str(liste_info[14])+&#34;% (male &#34;+str(liste_info[15])+&#34;% / female &#34;+str(liste_info[16])+&#34;%)&#34;)
+            print(&#34;Taux [15 - 24] ans : &#34;, str(liste_info[17])+&#34;% (male &#34;+str(liste_info[18])+&#34;% / female &#34;+str(liste_info[19])+&#34;%)&#34;)
+            print(&#34;Taux [25 - 54] ans : &#34;, str(liste_info[10])+&#34;% (male &#34;+str(liste_info[21])+&#34;% / female &#34;+str(liste_info[22])+&#34;%)&#34;)
+            print(&#34;Taux [55 - 64] ans : &#34;, str(liste_info[23])+&#34;% (male &#34;+str(liste_info[24])+&#34;% / female &#34;+str(liste_info[25])+&#34;%)&#34;)
+            print(&#34;Taux [65 ans et plus] &#34;, str(liste_info[26])+&#34;% (male &#34;+str(liste_info[27])+&#34;% / female &#34;+str(liste_info[28])+&#34;%)&#34;)
+            print(&#34;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&#34;)
             while True : 
                 res = input(&#34;Vous pouvez accepter (A) ou rejeter (R) cette suggestion : &#34;)
                 if res in [&#34;A&#34;,&#34;a&#34;,&#34;R&#34;,&#34;r&#34;]: 
@@ -494,15 +672,15 @@ class Geographe(Individu):
                     if liste_info[8] not in [&#39;None&#39;,&#39;none&#39;]: 
                         data[nom_pays][&#39;Military and Security&#39;][&#39;Military expenditures&#39;][&#39;text&#39;] = str(liste_info[12])+&#34;% of GDP (2014) ++ &#34;+str(liste_info[12])+&#34;% of GDP (2013) ++ &#34;+str(liste_info[13])+&#34;% of GDP (2012)&#34;
                     if liste_info[9] not in [&#39;None&#39;,&#39;none&#39;]: 
-                        data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;0-14 years&#39;][&#39;text&#39;] = str(liste_info[14])+&#34;% (male &#34;+str(liste_info[15])+&#34;% / female &#34;+str(liste_info[16])+&#34;)&#34;
+                        data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;0-14 years&#39;][&#39;text&#39;] = str(liste_info[14])+&#34;% (male &#34;+str(liste_info[15])+&#34;% / female &#34;+str(liste_info[16])+&#34;%)&#34;
                     if liste_info[10] not in [&#39;None&#39;,&#39;none&#39;]: 
-                        data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;15-24 years&#39;][&#39;text&#39;] = str(liste_info[17])+&#34;% (male &#34;+str(liste_info[18])+&#34;% / female &#34;+str(liste_info[19])+&#34;)&#34;
+                        data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;15-24 years&#39;][&#39;text&#39;] = str(liste_info[17])+&#34;% (male &#34;+str(liste_info[18])+&#34;% / female &#34;+str(liste_info[19])+&#34;%)&#34;
                     if liste_info[11] not in [&#39;None&#39;,&#39;none&#39;]: 
-                        data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;25-54 years&#39;][&#39;text&#39;] = str(liste_info[10])+&#34;% (male &#34;+str(liste_info[21])+&#34;% / female &#34;+str(liste_info[22])+&#34;)&#34;
+                        data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;25-54 years&#39;][&#39;text&#39;] = str(liste_info[10])+&#34;% (male &#34;+str(liste_info[21])+&#34;% / female &#34;+str(liste_info[22])+&#34;%)&#34;
                     if liste_info[12] not in [&#39;None&#39;,&#39;none&#39;]: 
-                        data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;55-64 years&#39;][&#39;text&#39;] = str(liste_info[23])+&#34;% (male &#34;+str(liste_info[24])+&#34;% / female &#34;+str(liste_info[25])+&#34;)&#34;
+                        data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;55-64 years&#39;][&#39;text&#39;] = str(liste_info[23])+&#34;% (male &#34;+str(liste_info[24])+&#34;% / female &#34;+str(liste_info[25])+&#34;%)&#34;
                     if liste_info[13] not in [&#39;None&#39;,&#39;none&#39;]: 
-                        data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;65 years and over&#39;][&#39;text&#39;] = str(liste_info[26])+&#34;% (male &#34;+str(liste_info[27])+&#34;% / female &#34;+str(liste_info[28])+&#34;)&#34;
+                        data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;65 years and over&#39;][&#39;text&#39;] = str(liste_info[26])+&#34;% (male &#34;+str(liste_info[27])+&#34;% / female &#34;+str(liste_info[28])+&#34;%)&#34;
                     print(&#39;Vos informations complementaires ont bien ete enregistrees : &#39;)
 
             
@@ -520,7 +698,7 @@ class Geographe(Individu):
 
 # Classe Data Scientist
 
-class DataScientist(Consultant): 
+class DataScientist(Consultant,Affichage_Stat): 
     def __init__(self):
         self.connecte = False
         self.type = &#34;DataScientist&#34;
@@ -551,19 +729,127 @@ class DataScientist(Consultant):
 
         return self.connecte
     
-    def resume(self,critere,previous_menu): 
+    def tricrois(self,critere,previous_menu): 
+        &#34;&#34;&#34;Fonction du Tri Croissant adaptée au menus
+
+        Arguments:
+            critere {str} -- Critère à observer
+            previous_menu {list of dict} -- Menu précédent
+        &#34;&#34;&#34;        
         if not self.connecte : 
             print (&#34;Vous n&#39;êtes pas connecté \n Veuillez vous connecter&#34;)
             input( &#34;Appuyez sur Entrer pour continuer&#34;)
             return(Ouvert(previous_menu))
         try :
-            r.resume_information(critere)
+            data_stat = Affichage_Stat()
+            data_stat.tri_croissant(critere)
         except Exception as e: 
             print(e) 
-            input(&#34;Une erreur dans d&#39;argument s&#39;est produite \n Appuyz sur Entrer pour continuer &#34;)
+            input(&#34;Une erreur d&#39;argument s&#39;est produite \n Appuyz sur Entrer pour continuer &#34;)
+        return(Ouvert(previous_menu))
+
+    def tridecrois(self,critere,previous_menu): 
+        &#34;&#34;&#34;Fonction du Tri Décroissant adaptée au menus
+
+        Arguments:
+            critere {str} -- Critère à observer
+            previous_menu {list of dict} -- Menu précédent
+        &#34;&#34;&#34;        
+        if not self.connecte : 
+            print (&#34;Vous n&#39;êtes pas connecté \n Veuillez vous connecter&#34;)
+            input( &#34;Appuyez sur Entrer pour continuer&#34;)
+            return(Ouvert(previous_menu))
+        try :
+            data_stat = Affichage_Stat()
+            data_stat.tri_decroissant(critere)
+        except Exception as e: 
+            print(e) 
+            input(&#34;Une erreur d&#39;argument s&#39;est produite \n Appuyz sur Entrer pour continuer &#34;)
+        return(Ouvert(previous_menu))
+
+    def description(self,critere,previous_menu): 
+        &#34;&#34;&#34;Fonction du Résumé statistique adaptée au menu
+
+        Arguments:
+            critere {str} -- Critère à observer
+            previous_menu {list of dict} -- Menu précédent
+        &#34;&#34;&#34;        
+        if not self.connecte : 
+            print (&#34;Vous n&#39;êtes pas connecté \n Veuillez vous connecter&#34;)
+            input( &#34;Appuyez sur Entrer pour continuer&#34;)
+            return(Ouvert(previous_menu))
+        try:
+            data_stat = Affichage_Stat()
+            data_stat.summary(critere)
+        except Exception as e: 
+            print(e) 
+            input(&#34;Une erreur d&#39;argument s&#39;est produite \n Appuyz sur Entrer pour continuer &#34;)
+        return(Ouvert(previous_menu))
+
+    def affichage_seuil_inf(self,critere,previous_menu): 
+        &#34;&#34;&#34;Fonction du affichant les pays dépassant un seuil adaptée au menus
+
+        Arguments:
+            critere {str} -- Critère à observer
+            previous_menu {list of dict} -- Menu précédent
+        &#34;&#34;&#34;        
+        if not self.connecte : 
+            print (&#34;Vous n&#39;êtes pas connecté \n Veuillez vous connecter&#34;)
+            input( &#34;Appuyez sur Entrer pour continuer&#34;)
+            return(Ouvert(previous_menu))
+        try :
+            data_stat = Affichage_Stat()
+            data_stat.informations_seuil_inf(critere)
+        except Exception as e: 
+            print(e) 
+            input(&#34;Une erreur d&#39;argument s&#39;est produite \n Appuyz sur Entrer pour continuer &#34;)
+        return(Ouvert(previous_menu))
+
+    def affichage_seuil_sup(self,critere,previous_menu): 
+        &#34;&#34;&#34;Fonction du affichant les pays ne dépassant pas un seuil adaptée au menus
+
+        Arguments:
+            critere {str} -- Critère à observer
+            previous_menu {list of dict} -- Menu précédent
+        &#34;&#34;&#34;  
+        if not self.connecte : 
+            print (&#34;Vous n&#39;êtes pas connecté \n Veuillez vous connecter&#34;)
+            input( &#34;Appuyez sur Entrer pour continuer&#34;)
+            return(Ouvert(previous_menu))
+        try :
+            data_stat = Affichage_Stat()
+            data_stat.informations_seuil_supp(critere)
+        except Exception as e: 
+            print(e) 
+            input(&#34;Une erreur d&#39;argument s&#39;est produite \n Appuyz sur Entrer pour continuer &#34;)
         return(Ouvert(previous_menu))
         
+    def affichage_tableau_age(self,previous_menu): 
+        &#34;&#34;&#34;Fonction du affichant la répartition des classes d&#39;age adaptée au menu
+
+        Arguments:
+            critere {str} -- Critère à observer
+            previous_menu {list of dict} -- Menu précédent
+        &#34;&#34;&#34;          
+        if not self.connecte : 
+            print (&#34;Vous n&#39;êtes pas connecté \n Veuillez vous connecter&#34;)
+            input( &#34;Appuyez sur Entrer pour continuer&#34;)
+            return(Ouvert(previous_menu))
+        try :
+            data_stat = Affichage_Stat()
+            data_stat.tableau_classe_age()
+        except Exception as e: 
+            print(e) 
+            input(&#34;Une erreur d&#39;argument s&#39;est produite \n Appuyz sur Entrer pour continuer &#34;)
+        return(Ouvert(previous_menu))
+
     def clust(self,methode,previous_menu): 
+        &#34;&#34;&#34;Fonction permettant à l&#39;utilisateur d&#39;effectuer un clustering par la méthode de son choix adaptée au menu
+
+        Arguments:
+            critere {str} -- Critère à observer
+            previous_menu {list of dict} -- Menu précédent
+        &#34;&#34;&#34;  
         if not self.connecte : 
             print (&#34;Vous n&#39;êtes pas connecté \n Veuillez vous connecter&#34;)
             input( &#34;Appuyez sur Entrer pour continuer&#34;)
@@ -582,11 +868,12 @@ class DataScientist(Consultant):
 
     def representationgraphique(self,previous_menu,critere):
         &#34;&#34;&#34; Fonction permettant de générer une représentation graphique du critère demandé et des boxplots des classes d&#39;âges
+
         Arguments:
             previous_menu {list} -- menu précédent l&#39;appel de la fonction
             critere              -- critere entré par le DataScientist    
         Returns:
-            Ouvert(previous_menu) -- Renvoie le menu précédent
+            [Ouvert(previous_menu)] -- [Renvoie le menu précédent]
             
         &#34;&#34;&#34;       
         if not self.connecte : 
@@ -604,7 +891,31 @@ class DataScientist(Consultant):
         tranche5=[]
         crit=[]
         pays=[]    
-
+        print(&#34;Vous pouvez personnaliser votre barplot&#34;)
+        print(&#34;Choisissez une couleur parmi : blue (bleu), yellow (jaune), purple (violet)&#34;)
+        couleur=input()
+        try:
+            couleur=str(couleur)
+            if couleur ==&#39;&#39;:
+                couleur=&#39;b&#39;
+            if couleur != &#39;blue&#39; and  couleur != &#39;yellow&#39; and couleur != &#39;purple&#39;:
+                print(&#39;Couleur non reconnue, le bleu est donc choisi par défaut&#39;)
+                couleur=&#39;b&#39;
+        except:
+            print(&#39;Couleur non reconnue, le bleu est choisi par défaut&#39;)
+            couleur = &#39;b&#39;
+        print(&#34;Choisissez l&#39;épaisseur des barres&#34;)
+        print(&#34;Choisissez un nombre (pour plus de lisibilité limitez vous à 1)&#34;)
+        ep=input()
+        print(type(ep))
+        try:
+            ep=float(ep)
+        except:
+            print(&#34;Cette épaisseur est impossible, 0.8 est donc pris par défaut&#34;)
+            ep=0.8
+        if ep==0:
+          print(&#34;Cette épaisseur est impossible, 0.8 est donc pris par défaut&#34;)
+          ep=0.8
 
         #Séparation des tranches d&#39;âges
         for j in range (len(data)):
@@ -639,196 +950,202 @@ class DataScientist(Consultant):
             
             
         #Pour réaliser le diagramme en barres d’un certain critère  
+       
+        if critere==1:
+           
+         
+            for i in range (len(data)):
+                 superficie = data[i][&#39;Geography&#39;][&#39;Area&#39;][&#39;total&#39;][&#39;text&#39;]
+                 superficie = superficie[:superficie.find(&#39; s&#39;)]
+                 superficie = superficie.replace( &#39;,&#39; , &#39;&#39; )
+                 crit.append(float(superficie))
+                 pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
+           
+             #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,crit, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title(&#34;Diagramme en barre de la superficie&#34;) 
+            plt.ylabel(&#39;en km^2&#39;)
+            plt.show()
+            
+            #Boxplot des tranches d&#39;âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;) 
+             
+            plt.show()
+        elif critere==2:
+          
+            for i in range (len(data)):
+                pop = data[i][&#39;People and Society&#39;][&#39;Population&#39;][&#39;text&#39;]
+                pop = pop[:pop.find(&#39; (&#39;)]
+                pop = pop[:pop.find(&#39; m&#39;)]
+                pop = pop.replace( &#39;,&#39; , &#39;&#39; )
+                crit.append(float(pop))
+                pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])        
+            
+            #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,crit, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title(&#34;Diagramme en barre de la population&#34;) 
+            plt.ylabel(&#39;nombre d\&#39;habitants&#39;)
+            plt.show()
         
-            if critere==1:
-               
-                for i in range (len(data)):
-                    superficie = data[i][&#39;Geography&#39;][&#39;Area&#39;][&#39;total&#39;][&#39;text&#39;]
-                    superficie = superficie[:superficie.find(&#39; s&#39;)]
-                    superficie = superficie.replace( &#39;,&#39; , &#39;&#39; )
-                    crit.append(float(superficie))
+            #Boxplot des tranches d&#39;âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title(&#34;Boxplot par tranche d&#39;âge&#34;) 
+            plt.show()
+        elif critere==3:
+           
+            for i in range (len(data)):
+               pourcent = data[i][&#39;People and Society&#39;][&#39;Population growth rate&#39;][&#39;text&#39;]              
+               pourcent = pourcent[:pourcent.find(&#39;%&#39;)]                   
+               crit.append(float(pourcent))
+               pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
+            
+            #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,crit, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title(&#34;Diagramme en barre de la croissance démographique&#34;) 
+            plt.ylabel(&#39;en pourcent&#39;)
+            plt.show()
+            
+            #Boxplot des tranches d&#39;âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title(&#34;Boxplot par tranche d&#39;âge&#34;) 
+            plt.show()
+        elif critere==4:
+            inf1=[]               
+            for i in range (len(data)):
+                pourcent = data[i][&#39;Economy&#39;][&#39;Inflation rate (consumer prices)&#39;][&#39;text&#39;]                    
+                inf2016 = pourcent[:pourcent.find(&#39;%&#39;)]                  
+                inf1.append(float(inf2016))                   
+                pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
+            
+            #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,inf1, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title(&#34;Diagramme en barre de l&#39;inflation&#34;) 
+            plt.show()
+           
+            #Boxplot des tranches d&#39;âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title(&#34;Boxplot par tranche d&#39;âge&#34;) 
+            plt.show()
+            
+        elif critere==5:
+           
+            for i in range (1,len(data)):
+                dette=data[i][&#39;Economy&#39;][&#39;Debt - external&#39;][&#39;text&#39;]                
+                if &#39;2016&#39; in dette:
+                    
+                    dette=dette[:dette.find(&#39; (&#39;)]
+                    dette=dette.replace(&#39;$&#39;,&#39;&#39;)
+                    dette=dette.replace(&#39; million&#39;,&#39;&#39;)
+                    dette=dette.replace(&#39; billion&#39;,&#39;e3&#39;)
+                    dette=dette.replace(&#39; trillion&#39;,&#39;e6&#39;)
+                    crit.append(float(dette))
                     pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
                 
-                #Diagramme en barre du critère
-                plt.bar(pays,crit)
-                plt.xticks(rotation=90)
-                plt.title(&#34;Diagramme en barre de la superficie&#34;) 
-                plt.ylabel(&#39;en km^2&#39;)
-                plt.show()
-                
-                #Boxplot des tranches d&#39;âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;)
-                plt.show()
-            elif critere==2:
-              
-                for i in range (len(data)):
-                    pop = data[i][&#39;People and Society&#39;][&#39;Population&#39;][&#39;text&#39;]
-                    pop = pop[:pop.find(&#39; (&#39;)]
-                    pop = pop[:pop.find(&#39; m&#39;)]
-                    pop = pop.replace( &#39;,&#39; , &#39;&#39; )
-                    crit.append(float(pop))
-                    pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])        
-                
-                #Diagramme en barre du critère
-                plt.bar(pays,crit)
-                plt.xticks(rotation=90)
-                plt.title(&#34;Diagramme en barre de la population&#34;) 
-                plt.ylabel(&#39;nombre d\&#39;habitants&#39;)
-                plt.show()
+            #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,crit, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title(&#34;Diagramme en barre de la dette en million&#34;) 
+            plt.show()
+           
+            #Boxplot des tranches d&#39;âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title(&#34;Boxplot par tranche d&#39;âge&#34;) 
+            plt.show()
+        elif critere==6:
+            for i in range (len(data)):
+                taux=data[i][&#39;Economy&#39;][&#39;Unemployment rate&#39;][&#39;text&#39;]
+                taux=taux[:taux.find(&#39; ++&#39;)]
+                if &#39;2016&#39;in taux:
+                    taux = taux[:taux.find(&#39;%&#39;)]
+                    crit.append(float(taux))
+                    pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
             
-                #Boxplot des tranches d&#39;âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;) 
-                plt.show()
-            elif critere==3:
-               
-                for i in range (len(data)):
-                   pourcent = data[i][&#39;People and Society&#39;][&#39;Population growth rate&#39;][&#39;text&#39;]              
-                   pourcent = pourcent[:pourcent.find(&#39;%&#39;)]                   
-                   crit.append(float(pourcent))
+            #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,crit, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title(&#34;Diagramme en barre du taux de chômage&#34;) 
+            plt.show()
+           
+            #Boxplot des tranches d&#39;âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title(&#34;Boxplot par tranche d&#39;âge&#34;) 
+            plt.show()
+        elif critere==7:               
+            for i in range (len(data)):
+                pourcent = data[i][&#39;People and Society&#39;][&#39;Health expenditures&#39;][&#39;text&#39;]                  
+                pourcent = pourcent[:pourcent.find(&#39;%&#39;)]
+                crit.append(float(pourcent))
+                pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
+                
+            #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,crit, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title(&#34;Diagramme en barre du taux de dépenses en santé&#34;) 
+            plt.show()
+           
+            #Boxplot des tranches d&#39;âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title(&#34;Boxplot par tranche d&#39;âge&#34;) 
+            plt.show()
+        elif critere==8:
+            
+            for i in range (len(data)):
+                dep=data[i][&#39;People and Society&#39;][&#39;Education expenditures&#39;][&#39;text&#39;]                
+                if &#39;2015&#39; in dep:
+                    dep=dep[:dep.find(&#39;%&#39;)]
+                    crit.append(float(dep))
+                    pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
+          
+            #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,crit, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title(&#34;Diagramme en barre du taux de dépenses en éducation&#34;) 
+            plt.show()
+            
+            #Il n&#39;y a qu&#39;un seul pays pour l&#39;année la plus récente (2016) nous prenons alors l&#39;année 2015
+            
+            #Boxplot des tranches d&#39;âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title(&#34;Boxplot par tranche d&#39;âge&#34;) 
+            plt.show()
+        elif critere==9:
+            for i in range (len(data)):
+               dep=data[i][&#39;Military and Security&#39;][&#39;Military expenditures&#39;][&#39;text&#39;]
+               dep=dep[:dep.find(&#39; ++&#39;)]
+               if &#39;2016&#39; in dep:
+                   dep=dep[:dep.find(&#39;%&#39;)]
+                   crit.append(float(dep)) 
                    pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
-                
-                #Diagramme en barre du critère
-                plt.bar(pays,crit)
-                plt.xticks(rotation=90)
-                plt.title(&#34;Diagramme en barre de la croissance démographique&#34;)
-                plt.ylabel(&#39;en pourcent&#39;)
-                plt.show()
-                
-                #Boxplot des tranches d&#39;âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;)
-                plt.show()
-            elif critere==4:
-                inf1=[]               
-                for i in range (len(data)):
-                    pourcent = data[i][&#39;Economy&#39;][&#39;Inflation rate (consumer prices)&#39;][&#39;text&#39;]                    
-                    inf2016 = pourcent[:pourcent.find(&#39;%&#39;)]                  
-                    inf1.append(float(inf2016))                   
-                    pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
-                
-                #Diagramme en barre du critère
-                plt.bar(pays,inf1)
-                plt.xticks(rotation=90)
-                plt.title(&#34;Diagramme en barre de l&#39;inflation&#34;) 
-                plt.ylabel(&#39;en pourcent&#39;)
-                plt.show()
-               
-                #Boxplot des tranches d&#39;âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;) 
-                plt.show()
-                
-            elif critere==5:
-               
-                for i in range (1,len(data)):
-                    dette=data[i][&#39;Economy&#39;][&#39;Debt - external&#39;][&#39;text&#39;]                
-                    if &#39;2016&#39; in dette:
-                        
-                        dette=dette[:dette.find(&#39; (&#39;)]
-                        dette=dette.replace(&#39;$&#39;,&#39;&#39;)
-                        dette=dette.replace(&#39; million&#39;,&#39;&#39;)
-                        dette=dette.replace(&#39; billion&#39;,&#39;e3&#39;)
-                        dette=dette.replace(&#39; trillion&#39;,&#39;e6&#39;)
-                        crit.append(float(dette))
-                        pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
-                    
-                #Diagramme en barre du critère
-                plt.bar(pays,crit)
-                plt.xticks(rotation=90)
-                plt.title(&#34;Diagramme en barre de la dette en million&#34;) 
-                plt.ylabel(&#39;en dollar&#39;)
-                plt.show()
-               
-                #Boxplot des tranches d&#39;âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;) 
-                plt.show()
-            elif critere==6:
-                for i in range (len(data)):
-                    taux=data[i][&#39;Economy&#39;][&#39;Unemployment rate&#39;][&#39;text&#39;]
-                    taux=taux[:taux.find(&#39; ++&#39;)]
-                    if &#39;2016&#39;in taux:
-                        taux = taux[:taux.find(&#39;%&#39;)]
-                        crit.append(float(taux))
-                        pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
-                
-                #Diagramme en barre du critère
-                plt.bar(pays,crit)
-                plt.xticks(rotation=90)
-                plt.title(&#34;Diagramme en barre du taux de chômage&#34;) 
-                plt.ylabel(&#39;en pourcent&#39;)
-                plt.show()
-               
-                #Boxplot des tranches d&#39;âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;) 
-                plt.show()
-            elif critere==7:               
-                for i in range (len(data)):
-                    pourcent = data[i][&#39;People and Society&#39;][&#39;Health expenditures&#39;][&#39;text&#39;]                  
-                    pourcent = pourcent[:pourcent.find(&#39;%&#39;)]
-                    crit.append(float(pourcent))
-                    pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
-                    
-                #Diagramme en barre du critère
-                plt.bar(pays,crit)
-                plt.xticks(rotation=90)
-                plt.title(&#34;Diagramme en barre du taux de dépenses en santé&#34;) 
-                plt.ylabel(&#39;en pourcent&#39;)
-                plt.show()
-               
-                #Boxplot des tranches d&#39;âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;) 
-                plt.show()
-            elif critere==8:
-                
-                for i in range (len(data)):
-                    dep=data[i][&#39;People and Society&#39;][&#39;Education expenditures&#39;][&#39;text&#39;]                
-                    if &#39;2015&#39; in dep:
-                        dep=dep[:dep.find(&#39;%&#39;)]
-                        crit.append(float(dep))
-                        pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
-              
-                #Diagramme en barre du critère
-                plt.bar(pays,crit)
-                plt.xticks(rotation=90)
-                plt.title(&#34;Diagramme en barre du taux de dépenses en éducation&#34;) 
-                plt.ylabel(&#39;en pourcent&#39;)
-                plt.show()
-                
-                #Il n&#39;y a qu&#39;un seul pays pour l&#39;année la plus récente (2016) nous prenons alors l&#39;année 2015
-                
-                #Boxplot des tranches d&#39;âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;) 
-                plt.show()
-            elif critere==9:
-                for i in range (len(data)):
-                   dep=data[i][&#39;Military and Security&#39;][&#39;Military expenditures&#39;][&#39;text&#39;]
-                   dep=dep[:dep.find(&#39; ++&#39;)]
-                   if &#39;2016&#39; in dep:
-                       dep=dep[:dep.find(&#39;%&#39;)]
-                       crit.append(float(dep)) 
-                       pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
+        
+            #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,crit, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title(&#34;Diagramme en barre du taux de dépenses militaires&#34;) 
+            plt.show()
             
-                #Diagramme en barre du critère
-                plt.bar(pays,crit)
-                plt.xticks(rotation=90)
-                plt.title(&#34;Diagramme en barre du taux de dépenses militaires&#34;) 
-                plt.ylabel(&#39;en pourcent&#39;)
-                plt.show()
-                
-                #Boxplot des tranches d&#39;âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;) 
-                plt.show()
-            
-            
-            input(&#34;Appuyez sur Entrer pour continuer&#34;)
-            return(Ouvert(previous_menu))
+            #Boxplot des tranches d&#39;âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title(&#34;Boxplot par tranche d&#39;âge&#34;) 
+            plt.show()
+        
+       
+        input(&#34;Appuyez sur Entrer pour continuer&#34;)
+        return(Ouvert(previous_menu))
+    
 # Classe administrateur
 class Admin(Geographe, DataScientist):
     
@@ -919,7 +1236,7 @@ class Admin(Geographe, DataScientist):
                 break
         new[&#39;type&#39;] = type_user
         new[&#39;ID&#39;] = {}
-        id_user = input(&#34;Entrez l&#39;ID utilisateur que vous souhaitez creer : &#34;)
+        id_user = input(&#34;Entrez l&#39;ID utilisateur que vous souhaitez creer : \n Attention : Si l&#39;utilisateur existe déjà, aucun compte ne sera crée, seul l&#39;utilisateur concerné sera impacté &#34;)
         new[&#39;ID&#39;][&#39;username&#39;] = id_user
         mdp_user = input(&#34;Entrez le mot de passe utilisateur que vous souhaitez creer : &#34;)
         mdp_confirmation = input(&#34;Confirmez votre mot de passe : &#34;)
@@ -928,11 +1245,11 @@ class Admin(Geographe, DataScientist):
         new[&#39;ID&#39;][&#39;mdp&#39;] = mdp_user
         
     
-        print(&#34;L&#39;utilisateur&#34;,id_user,&#34;vient d&#39;etre cree et va etre ajouter a la base&#34;)
+        print(&#34;L&#39;utilisateur&#34;,id_user,&#34;a été ajouté à la base de donnée&#34;)
         users.append(new)
         with open(r&#34;App\Functions\DataTreatment\user.json&#34;, &#34;w&#34;) as write_file:
             json.dump(users, write_file)
-
+        input(&#34;Opération terminée, appuyez sur Entrer pour continuer &#34;)
         return(Ouvert(previous_menu))
         
 
@@ -957,7 +1274,7 @@ class Admin(Geographe, DataScientist):
             print(&#34;Aucun changement effectué&#34;)
         with open(r&#34;App\Functions\DataTreatment\user.json&#34;, &#34;w&#34;) as write_file:
             json.dump(users, write_file)
-
+        input(&#34;Opération terminée, appuyez sur Entrer pour continuer &#34;)
         return(Ouvert(previous_menu))</code></pre>
 </details>
 </section>
@@ -974,7 +1291,7 @@ class Admin(Geographe, DataScientist):
 <span>class <span class="ident">Admin</span></span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Traitement initial des données pour l'affichage stat</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1068,7 +1385,7 @@ class Admin(Geographe, DataScientist):
                 break
         new[&#39;type&#39;] = type_user
         new[&#39;ID&#39;] = {}
-        id_user = input(&#34;Entrez l&#39;ID utilisateur que vous souhaitez creer : &#34;)
+        id_user = input(&#34;Entrez l&#39;ID utilisateur que vous souhaitez creer : \n Attention : Si l&#39;utilisateur existe déjà, aucun compte ne sera crée, seul l&#39;utilisateur concerné sera impacté &#34;)
         new[&#39;ID&#39;][&#39;username&#39;] = id_user
         mdp_user = input(&#34;Entrez le mot de passe utilisateur que vous souhaitez creer : &#34;)
         mdp_confirmation = input(&#34;Confirmez votre mot de passe : &#34;)
@@ -1077,11 +1394,11 @@ class Admin(Geographe, DataScientist):
         new[&#39;ID&#39;][&#39;mdp&#39;] = mdp_user
         
     
-        print(&#34;L&#39;utilisateur&#34;,id_user,&#34;vient d&#39;etre cree et va etre ajouter a la base&#34;)
+        print(&#34;L&#39;utilisateur&#34;,id_user,&#34;a été ajouté à la base de donnée&#34;)
         users.append(new)
         with open(r&#34;App\Functions\DataTreatment\user.json&#34;, &#34;w&#34;) as write_file:
             json.dump(users, write_file)
-
+        input(&#34;Opération terminée, appuyez sur Entrer pour continuer &#34;)
         return(Ouvert(previous_menu))
         
 
@@ -1106,7 +1423,7 @@ class Admin(Geographe, DataScientist):
             print(&#34;Aucun changement effectué&#34;)
         with open(r&#34;App\Functions\DataTreatment\user.json&#34;, &#34;w&#34;) as write_file:
             json.dump(users, write_file)
-
+        input(&#34;Opération terminée, appuyez sur Entrer pour continuer &#34;)
         return(Ouvert(previous_menu))</code></pre>
 </details>
 <h3>Ancestors</h3>
@@ -1115,6 +1432,7 @@ class Admin(Geographe, DataScientist):
 <li><a title="Acteurs.DataScientist" href="#Acteurs.DataScientist">DataScientist</a></li>
 <li><a title="Acteurs.Consultant" href="#Acteurs.Consultant">Consultant</a></li>
 <li><a title="Acteurs.Individu" href="#Acteurs.Individu">Individu</a></li>
+<li>Fonction_resume_2.Affichage_Stat</li>
 </ul>
 <h3>Methods</h3>
 <dl>
@@ -1146,7 +1464,7 @@ class Admin(Geographe, DataScientist):
             break
     new[&#39;type&#39;] = type_user
     new[&#39;ID&#39;] = {}
-    id_user = input(&#34;Entrez l&#39;ID utilisateur que vous souhaitez creer : &#34;)
+    id_user = input(&#34;Entrez l&#39;ID utilisateur que vous souhaitez creer : \n Attention : Si l&#39;utilisateur existe déjà, aucun compte ne sera crée, seul l&#39;utilisateur concerné sera impacté &#34;)
     new[&#39;ID&#39;][&#39;username&#39;] = id_user
     mdp_user = input(&#34;Entrez le mot de passe utilisateur que vous souhaitez creer : &#34;)
     mdp_confirmation = input(&#34;Confirmez votre mot de passe : &#34;)
@@ -1155,11 +1473,11 @@ class Admin(Geographe, DataScientist):
     new[&#39;ID&#39;][&#39;mdp&#39;] = mdp_user
     
 
-    print(&#34;L&#39;utilisateur&#34;,id_user,&#34;vient d&#39;etre cree et va etre ajouter a la base&#34;)
+    print(&#34;L&#39;utilisateur&#34;,id_user,&#34;a été ajouté à la base de donnée&#34;)
     users.append(new)
     with open(r&#34;App\Functions\DataTreatment\user.json&#34;, &#34;w&#34;) as write_file:
         json.dump(users, write_file)
-
+    input(&#34;Opération terminée, appuyez sur Entrer pour continuer &#34;)
     return(Ouvert(previous_menu))</code></pre>
 </details>
 </dd>
@@ -1282,7 +1600,7 @@ class Admin(Geographe, DataScientist):
         print(&#34;Aucun changement effectué&#34;)
     with open(r&#34;App\Functions\DataTreatment\user.json&#34;, &#34;w&#34;) as write_file:
         json.dump(users, write_file)
-
+    input(&#34;Opération terminée, appuyez sur Entrer pour continuer &#34;)
     return(Ouvert(previous_menu))</code></pre>
 </details>
 </dd>
@@ -1299,8 +1617,15 @@ class Admin(Geographe, DataScientist):
 </li>
 <li><code><b><a title="Acteurs.DataScientist" href="#Acteurs.DataScientist">DataScientist</a></b></code>:
 <ul class="hlist">
+<li><code><a title="Acteurs.DataScientist.affichage_seuil_inf" href="#Acteurs.DataScientist.affichage_seuil_inf">affichage_seuil_inf</a></code></li>
+<li><code><a title="Acteurs.DataScientist.affichage_seuil_sup" href="#Acteurs.DataScientist.affichage_seuil_sup">affichage_seuil_sup</a></code></li>
+<li><code><a title="Acteurs.DataScientist.affichage_tableau_age" href="#Acteurs.DataScientist.affichage_tableau_age">affichage_tableau_age</a></code></li>
 <li><code><a title="Acteurs.DataScientist.ajout_suggestion" href="#Acteurs.Consultant.ajout_suggestion">ajout_suggestion</a></code></li>
+<li><code><a title="Acteurs.DataScientist.clust" href="#Acteurs.DataScientist.clust">clust</a></code></li>
+<li><code><a title="Acteurs.DataScientist.description" href="#Acteurs.DataScientist.description">description</a></code></li>
 <li><code><a title="Acteurs.DataScientist.representationgraphique" href="#Acteurs.DataScientist.representationgraphique">representationgraphique</a></code></li>
+<li><code><a title="Acteurs.DataScientist.tricrois" href="#Acteurs.DataScientist.tricrois">tricrois</a></code></li>
+<li><code><a title="Acteurs.DataScientist.tridecrois" href="#Acteurs.DataScientist.tridecrois">tridecrois</a></code></li>
 </ul>
 </li>
 </ul>
@@ -1331,71 +1656,161 @@ class Admin(Geographe, DataScientist):
         liste_info = []
         Nom = input(&#34;Entrer le nom du pays de la suggestion : &#34;) 
         liste_info.append(Nom)
-        superficie = input(&#39;Entrez la superficie du pays en km2 totale, tapez None pour passer la question :&#39;)
+        while True :
+            superficie = input(&#39;Entrez la superficie du pays en km2 totale:&#39;)
+            if fbd.is_number(superficie): 
+                break
         liste_info.append(superficie)
-        superficie2 = input(&#39;Entrez la superficie du pays en km2 métropolitaine, tapez None pour passer la question :&#39;)
+        while True :
+            superficie2 = input(&#39;Entrez la superficie du pays en km2 métropolitaine:&#39;)
+            if fbd.is_number(superficie2): 
+                break
         liste_info.append(superficie2)
-        pop = input(&#39;Entrez la population du pays, tapez None pour passer la question :&#39;)
+        while True :
+            pop = input(&#39;Entrez la population du pays:&#39;)
+            if fbd.is_number(pop): 
+                break
         liste_info.append(pop)
-        crois = input(&#39;Entrez la croissance demographique du pays en pourcentage , tapez None pour passer la question :&#39;)
+        while True :
+            crois = input(&#39;Entrez la croissance demographique du pays en pourcentage :&#39;)
+            if fbd.is_number(crois): 
+                break
         liste_info.append(crois)
-        inflation = input(&#39;Entrez l\&#39;inflation du pays en pourcentage pour l\&#39;année 2016, tapez None pour passer la question :&#39;)
+        while True :
+            inflation = input(&#39;Entrez l\&#39;inflation du pays en pourcentage pour l\&#39;année 2016:&#39;)
+            if fbd.is_number(inflation): 
+                break
         liste_info.append(inflation)
-        inflation2 = input(&#39;Entrez l\&#39;inflation du pays en pourcentage pour l\&#39;année 2015, tapez None pour passer la question :&#39;)
+        while True : 
+            inflation2 = input(&#39;Entrez l\&#39;inflation du pays en pourcentage pour l\&#39;année 2015:&#39;)
+            if fbd.is_number(inflation2): 
+                break
         liste_info.append(inflation2)
-        dette = input(&#39;Entrez la dette en dollars - unité incluse (trillion, billion...) - pour l\&#39;année 2016, tapez None pour passer la question :&#39;)
+        while True : 
+            dette = input(&#39;Entrez la dette en dollars pour l\&#39;année 2016:&#39;)
+            if fbd.is_number(dette): 
+                break
         liste_info.append(dette)
-        dette2 = input(&#39;Entrez la dette en dollars - unité incluse (trillion, billion...) - pour l\&#39;année 2016, tapez None pour passer la question :&#39;)
+        while True :
+            dette2 = input(&#39;Entrez la dette en dollars pour l\&#39;année 2016:&#39;)
+            if fbd.is_number(crois): 
+                break
         liste_info.append(dette2)
-        chom = input(&#39;Entrez la taux de chomage du pays en pourcentage pour l\&#39;année 2015, tapez None pour passer la question :&#39;)
+        while True : 
+            chom = input(&#39;Entrez la taux de chomage du pays en pourcentage pour l\&#39;année 2015:&#39;)
+            if fbd.is_number(chom): 
+                break
         liste_info.append(chom)
-        chom2 = input(&#39;Entrez la taux de chomage du pays en pourcentage pour l\&#39;année 2016, tapez None pour passer la question :&#39;)
+        while True : 
+            chom2 = input(&#39;Entrez la taux de chomage du pays en pourcentage pour l\&#39;année 2016:&#39;)
+            if fbd.is_number(chom2): 
+                break
         liste_info.append(chom2)
-        sante = input(&#39;Entrez le taux de depense en sante du pays en pourcentage pour l\&#39;année 2014, tapez None pour passer la question :&#39;)
+        while True : 
+            sante = input(&#39;Entrez le taux de depense en sante du pays en pourcentage pour l\&#39;année 2014:&#39;)
+            if fbd.is_number(sante): 
+                break
         liste_info.append(sante)
-        edu = input(&#39;Entrez le taux de depense en education du pays en pourcentage pour l\&#39;année 2013, tapez None pour passer la question :&#39;)
+        while True : 
+            edu = input(&#39;Entrez le taux de depense en education du pays en pourcentage pour l\&#39;année 2013:&#39;)
+            if fbd.is_number(edu): 
+                break
         liste_info.append(edu)
-        army = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2014, tapez None pour passer la question :&#39;)
+        while True : 
+            army = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2014:&#39;)
+            if fbd.is_number(army): 
+                break
         liste_info.append(army)
-        army2 = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2013, tapez None pour passer la question :&#39;)
+        while True : 
+            army2 = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2013:&#39;)
+            if fbd.is_number(army2): 
+                break
         liste_info.append(army2)
-        army3 = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2012, tapez None pour passer la question :&#39;)
+        while True : 
+            army3 = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2012:&#39;)
+            if fbd.is_number(army3): 
+                break
         liste_info.append(army3)
 
         # Entree des 5 classes d\&#39;age
-        age1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans total, tapez None pour passer la question :&#39;)
+        while True : 
+            age1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans total:&#39;)
+            if fbd.is_number(age1): 
+                break
         liste_info.append(age1)
-        age1_1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans masculin, tapez None pour passer la question :&#39;)
+        while True :
+            age1_1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans masculin:&#39;)
+            if fbd.is_number(age1_1): 
+                break
         liste_info.append(age1_1)
-        age1_2 = input(&#39;Entrez le pourcentage de la classe [0-14] ans feminin, tapez None pour passer la question :&#39;)
+        while True : 
+            age1_2 = input(&#39;Entrez le pourcentage de la classe [0-14] ans feminin:&#39;)
+            if fbd.is_number(age1_2): 
+                break
         liste_info.append(age1_2)
 
-        age2 = input(&#39;Entrez le pourcentage de la classe [0-14] ans total, tapez None pour passer la question :&#39;)
+        while True : 
+            age2 = input(&#39;Entrez le pourcentage de la classe [15-24] ans total:&#39;)
+            if fbd.is_number(age2): 
+                break
         liste_info.append(age2)
-        age2_1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans masculin, tapez None pour passer la question :&#39;)
+        while True :
+            age2_1 = input(&#39;Entrez le pourcentage de la classe [15-24] ans masculin:&#39;)
+            if fbd.is_number(age2_1): 
+                break
         liste_info.append(age2_1)
-        age2_2 = input(&#39;Entrez le pourcentage de la classe [0-14] ans feminin, tapez None pour passer la question :&#39;)
+        while True : 
+            age2_2 = input(&#39;Entrez le pourcentage de la classe [15-24] ans feminin:&#39;)
+            if fbd.is_number(age2_2): 
+                break
         liste_info.append(age2_2)
 
-        age3 = input(&#39;Entrez le pourcentage de la classe [25-54] ans total, tapez None pour passer la question :&#39;)
+        while True : 
+            age3 = input(&#39;Entrez le pourcentage de la classe [25-54] ans total:&#39;)
+            if fbd.is_number(age3): 
+                break
         liste_info.append(age3)
-        age3_1 = input(&#39;Entrez le pourcentage de la classe [25-54] ans masculin, tapez None pour passer la question :&#39;)
+        while True :
+            age3_1 = input(&#39;Entrez le pourcentage de la classe [25-54] ans masculin:&#39;)
+            if fbd.is_number(age3_1): 
+                break
         liste_info.append(age3_1)
-        age3_2 = input(&#39;Entrez le pourcentage de la classe [25-54] ans feminin, tapez None pour passer la question :&#39;)
+        while True : 
+            age3_2 = input(&#39;Entrez le pourcentage de la classe [25-54] ans feminin:&#39;)
+            if fbd.is_number(age3_2): 
+                break
         liste_info.append(age3_2)
 
-        age4 = input(&#39;Entrez le pourcentage de la classe [55-64] ans total, tapez None pour passer la question :&#39;)
+        while True : 
+            age4 = input(&#39;Entrez le pourcentage de la classe [55-64] ans total:&#39;)
+            if fbd.is_number(age4): 
+                break
         liste_info.append(age4)
-        age4_1 = input(&#39;Entrez le pourcentage de la classe [55-64] ans masculin, tapez None pour passer la question :&#39;)
+        while True :
+            age4_1 = input(&#39;Entrez le pourcentage de la classe [55-64] ans masculin:&#39;)
+            if fbd.is_number(age4_1): 
+                break
         liste_info.append(age4_1)
-        age4_2 = input(&#39;Entrez le pourcentage de la classe [55-64] ans feminin, tapez None pour passer la question :&#39;)
+        while True : 
+            age4_2 = input(&#39;Entrez le pourcentage de la classe [55-64] ans feminin:&#39;)
+            if fbd.is_number(age4_2): 
+                break
         liste_info.append(age4_2)
 
-        age5 = input(&#39;Entrez le pourcentage de la classe [65 ans et plus] total, tapez None pour passer la question :&#39;)
+        while True : 
+            age5 = input(&#39;Entrez le pourcentage de la classe [+65] ans total:&#39;)
+            if fbd.is_number(age5): 
+                break
         liste_info.append(age5)
-        age5_1 = input(&#39;Entrez le pourcentage de la classe [65 ans et plus] masculin, tapez None pour passer la question :&#39;)
+        while True :
+            age5_1 = input(&#39;Entrez le pourcentage de la classe [+65] ans masculin:&#39;)
+            if fbd.is_number(age1_1): 
+                break
         liste_info.append(age5_1)
-        age5_2 = input(&#39;Entrez le pourcentage de la classe [65 ans et plus] feminin, tapez None pour passer la question :&#39;)
+        while True : 
+            age5_2 = input(&#39;Entrez le pourcentage de la classe [+65] ans feminin:&#39;)
+            if fbd.is_number(age5_2): 
+                break
         liste_info.append(age5_2)
 
         if len(liste_info)== 0 : 
@@ -1452,71 +1867,161 @@ class Admin(Geographe, DataScientist):
     liste_info = []
     Nom = input(&#34;Entrer le nom du pays de la suggestion : &#34;) 
     liste_info.append(Nom)
-    superficie = input(&#39;Entrez la superficie du pays en km2 totale, tapez None pour passer la question :&#39;)
+    while True :
+        superficie = input(&#39;Entrez la superficie du pays en km2 totale:&#39;)
+        if fbd.is_number(superficie): 
+            break
     liste_info.append(superficie)
-    superficie2 = input(&#39;Entrez la superficie du pays en km2 métropolitaine, tapez None pour passer la question :&#39;)
+    while True :
+        superficie2 = input(&#39;Entrez la superficie du pays en km2 métropolitaine:&#39;)
+        if fbd.is_number(superficie2): 
+            break
     liste_info.append(superficie2)
-    pop = input(&#39;Entrez la population du pays, tapez None pour passer la question :&#39;)
+    while True :
+        pop = input(&#39;Entrez la population du pays:&#39;)
+        if fbd.is_number(pop): 
+            break
     liste_info.append(pop)
-    crois = input(&#39;Entrez la croissance demographique du pays en pourcentage , tapez None pour passer la question :&#39;)
+    while True :
+        crois = input(&#39;Entrez la croissance demographique du pays en pourcentage :&#39;)
+        if fbd.is_number(crois): 
+            break
     liste_info.append(crois)
-    inflation = input(&#39;Entrez l\&#39;inflation du pays en pourcentage pour l\&#39;année 2016, tapez None pour passer la question :&#39;)
+    while True :
+        inflation = input(&#39;Entrez l\&#39;inflation du pays en pourcentage pour l\&#39;année 2016:&#39;)
+        if fbd.is_number(inflation): 
+            break
     liste_info.append(inflation)
-    inflation2 = input(&#39;Entrez l\&#39;inflation du pays en pourcentage pour l\&#39;année 2015, tapez None pour passer la question :&#39;)
+    while True : 
+        inflation2 = input(&#39;Entrez l\&#39;inflation du pays en pourcentage pour l\&#39;année 2015:&#39;)
+        if fbd.is_number(inflation2): 
+            break
     liste_info.append(inflation2)
-    dette = input(&#39;Entrez la dette en dollars - unité incluse (trillion, billion...) - pour l\&#39;année 2016, tapez None pour passer la question :&#39;)
+    while True : 
+        dette = input(&#39;Entrez la dette en dollars pour l\&#39;année 2016:&#39;)
+        if fbd.is_number(dette): 
+            break
     liste_info.append(dette)
-    dette2 = input(&#39;Entrez la dette en dollars - unité incluse (trillion, billion...) - pour l\&#39;année 2016, tapez None pour passer la question :&#39;)
+    while True :
+        dette2 = input(&#39;Entrez la dette en dollars pour l\&#39;année 2016:&#39;)
+        if fbd.is_number(crois): 
+            break
     liste_info.append(dette2)
-    chom = input(&#39;Entrez la taux de chomage du pays en pourcentage pour l\&#39;année 2015, tapez None pour passer la question :&#39;)
+    while True : 
+        chom = input(&#39;Entrez la taux de chomage du pays en pourcentage pour l\&#39;année 2015:&#39;)
+        if fbd.is_number(chom): 
+            break
     liste_info.append(chom)
-    chom2 = input(&#39;Entrez la taux de chomage du pays en pourcentage pour l\&#39;année 2016, tapez None pour passer la question :&#39;)
+    while True : 
+        chom2 = input(&#39;Entrez la taux de chomage du pays en pourcentage pour l\&#39;année 2016:&#39;)
+        if fbd.is_number(chom2): 
+            break
     liste_info.append(chom2)
-    sante = input(&#39;Entrez le taux de depense en sante du pays en pourcentage pour l\&#39;année 2014, tapez None pour passer la question :&#39;)
+    while True : 
+        sante = input(&#39;Entrez le taux de depense en sante du pays en pourcentage pour l\&#39;année 2014:&#39;)
+        if fbd.is_number(sante): 
+            break
     liste_info.append(sante)
-    edu = input(&#39;Entrez le taux de depense en education du pays en pourcentage pour l\&#39;année 2013, tapez None pour passer la question :&#39;)
+    while True : 
+        edu = input(&#39;Entrez le taux de depense en education du pays en pourcentage pour l\&#39;année 2013:&#39;)
+        if fbd.is_number(edu): 
+            break
     liste_info.append(edu)
-    army = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2014, tapez None pour passer la question :&#39;)
+    while True : 
+        army = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2014:&#39;)
+        if fbd.is_number(army): 
+            break
     liste_info.append(army)
-    army2 = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2013, tapez None pour passer la question :&#39;)
+    while True : 
+        army2 = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2013:&#39;)
+        if fbd.is_number(army2): 
+            break
     liste_info.append(army2)
-    army3 = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2012, tapez None pour passer la question :&#39;)
+    while True : 
+        army3 = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2012:&#39;)
+        if fbd.is_number(army3): 
+            break
     liste_info.append(army3)
 
     # Entree des 5 classes d\&#39;age
-    age1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans total, tapez None pour passer la question :&#39;)
+    while True : 
+        age1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans total:&#39;)
+        if fbd.is_number(age1): 
+            break
     liste_info.append(age1)
-    age1_1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans masculin, tapez None pour passer la question :&#39;)
+    while True :
+        age1_1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans masculin:&#39;)
+        if fbd.is_number(age1_1): 
+            break
     liste_info.append(age1_1)
-    age1_2 = input(&#39;Entrez le pourcentage de la classe [0-14] ans feminin, tapez None pour passer la question :&#39;)
+    while True : 
+        age1_2 = input(&#39;Entrez le pourcentage de la classe [0-14] ans feminin:&#39;)
+        if fbd.is_number(age1_2): 
+            break
     liste_info.append(age1_2)
 
-    age2 = input(&#39;Entrez le pourcentage de la classe [0-14] ans total, tapez None pour passer la question :&#39;)
+    while True : 
+        age2 = input(&#39;Entrez le pourcentage de la classe [15-24] ans total:&#39;)
+        if fbd.is_number(age2): 
+            break
     liste_info.append(age2)
-    age2_1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans masculin, tapez None pour passer la question :&#39;)
+    while True :
+        age2_1 = input(&#39;Entrez le pourcentage de la classe [15-24] ans masculin:&#39;)
+        if fbd.is_number(age2_1): 
+            break
     liste_info.append(age2_1)
-    age2_2 = input(&#39;Entrez le pourcentage de la classe [0-14] ans feminin, tapez None pour passer la question :&#39;)
+    while True : 
+        age2_2 = input(&#39;Entrez le pourcentage de la classe [15-24] ans feminin:&#39;)
+        if fbd.is_number(age2_2): 
+            break
     liste_info.append(age2_2)
 
-    age3 = input(&#39;Entrez le pourcentage de la classe [25-54] ans total, tapez None pour passer la question :&#39;)
+    while True : 
+        age3 = input(&#39;Entrez le pourcentage de la classe [25-54] ans total:&#39;)
+        if fbd.is_number(age3): 
+            break
     liste_info.append(age3)
-    age3_1 = input(&#39;Entrez le pourcentage de la classe [25-54] ans masculin, tapez None pour passer la question :&#39;)
+    while True :
+        age3_1 = input(&#39;Entrez le pourcentage de la classe [25-54] ans masculin:&#39;)
+        if fbd.is_number(age3_1): 
+            break
     liste_info.append(age3_1)
-    age3_2 = input(&#39;Entrez le pourcentage de la classe [25-54] ans feminin, tapez None pour passer la question :&#39;)
+    while True : 
+        age3_2 = input(&#39;Entrez le pourcentage de la classe [25-54] ans feminin:&#39;)
+        if fbd.is_number(age3_2): 
+            break
     liste_info.append(age3_2)
 
-    age4 = input(&#39;Entrez le pourcentage de la classe [55-64] ans total, tapez None pour passer la question :&#39;)
+    while True : 
+        age4 = input(&#39;Entrez le pourcentage de la classe [55-64] ans total:&#39;)
+        if fbd.is_number(age4): 
+            break
     liste_info.append(age4)
-    age4_1 = input(&#39;Entrez le pourcentage de la classe [55-64] ans masculin, tapez None pour passer la question :&#39;)
+    while True :
+        age4_1 = input(&#39;Entrez le pourcentage de la classe [55-64] ans masculin:&#39;)
+        if fbd.is_number(age4_1): 
+            break
     liste_info.append(age4_1)
-    age4_2 = input(&#39;Entrez le pourcentage de la classe [55-64] ans feminin, tapez None pour passer la question :&#39;)
+    while True : 
+        age4_2 = input(&#39;Entrez le pourcentage de la classe [55-64] ans feminin:&#39;)
+        if fbd.is_number(age4_2): 
+            break
     liste_info.append(age4_2)
 
-    age5 = input(&#39;Entrez le pourcentage de la classe [65 ans et plus] total, tapez None pour passer la question :&#39;)
+    while True : 
+        age5 = input(&#39;Entrez le pourcentage de la classe [+65] ans total:&#39;)
+        if fbd.is_number(age5): 
+            break
     liste_info.append(age5)
-    age5_1 = input(&#39;Entrez le pourcentage de la classe [65 ans et plus] masculin, tapez None pour passer la question :&#39;)
+    while True :
+        age5_1 = input(&#39;Entrez le pourcentage de la classe [+65] ans masculin:&#39;)
+        if fbd.is_number(age1_1): 
+            break
     liste_info.append(age5_1)
-    age5_2 = input(&#39;Entrez le pourcentage de la classe [65 ans et plus] feminin, tapez None pour passer la question :&#39;)
+    while True : 
+        age5_2 = input(&#39;Entrez le pourcentage de la classe [+65] ans feminin:&#39;)
+        if fbd.is_number(age5_2): 
+            break
     liste_info.append(age5_2)
 
     if len(liste_info)== 0 : 
@@ -1551,12 +2056,12 @@ class Admin(Geographe, DataScientist):
 <span>class <span class="ident">DataScientist</span></span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Traitement initial des données pour l'affichage stat</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">class DataScientist(Consultant): 
+<pre><code class="python">class DataScientist(Consultant,Affichage_Stat): 
     def __init__(self):
         self.connecte = False
         self.type = &#34;DataScientist&#34;
@@ -1587,19 +2092,127 @@ class Admin(Geographe, DataScientist):
 
         return self.connecte
     
-    def resume(self,critere,previous_menu): 
+    def tricrois(self,critere,previous_menu): 
+        &#34;&#34;&#34;Fonction du Tri Croissant adaptée au menus
+
+        Arguments:
+            critere {str} -- Critère à observer
+            previous_menu {list of dict} -- Menu précédent
+        &#34;&#34;&#34;        
         if not self.connecte : 
             print (&#34;Vous n&#39;êtes pas connecté \n Veuillez vous connecter&#34;)
             input( &#34;Appuyez sur Entrer pour continuer&#34;)
             return(Ouvert(previous_menu))
         try :
-            r.resume_information(critere)
+            data_stat = Affichage_Stat()
+            data_stat.tri_croissant(critere)
         except Exception as e: 
             print(e) 
-            input(&#34;Une erreur dans d&#39;argument s&#39;est produite \n Appuyz sur Entrer pour continuer &#34;)
+            input(&#34;Une erreur d&#39;argument s&#39;est produite \n Appuyz sur Entrer pour continuer &#34;)
+        return(Ouvert(previous_menu))
+
+    def tridecrois(self,critere,previous_menu): 
+        &#34;&#34;&#34;Fonction du Tri Décroissant adaptée au menus
+
+        Arguments:
+            critere {str} -- Critère à observer
+            previous_menu {list of dict} -- Menu précédent
+        &#34;&#34;&#34;        
+        if not self.connecte : 
+            print (&#34;Vous n&#39;êtes pas connecté \n Veuillez vous connecter&#34;)
+            input( &#34;Appuyez sur Entrer pour continuer&#34;)
+            return(Ouvert(previous_menu))
+        try :
+            data_stat = Affichage_Stat()
+            data_stat.tri_decroissant(critere)
+        except Exception as e: 
+            print(e) 
+            input(&#34;Une erreur d&#39;argument s&#39;est produite \n Appuyz sur Entrer pour continuer &#34;)
+        return(Ouvert(previous_menu))
+
+    def description(self,critere,previous_menu): 
+        &#34;&#34;&#34;Fonction du Résumé statistique adaptée au menu
+
+        Arguments:
+            critere {str} -- Critère à observer
+            previous_menu {list of dict} -- Menu précédent
+        &#34;&#34;&#34;        
+        if not self.connecte : 
+            print (&#34;Vous n&#39;êtes pas connecté \n Veuillez vous connecter&#34;)
+            input( &#34;Appuyez sur Entrer pour continuer&#34;)
+            return(Ouvert(previous_menu))
+        try:
+            data_stat = Affichage_Stat()
+            data_stat.summary(critere)
+        except Exception as e: 
+            print(e) 
+            input(&#34;Une erreur d&#39;argument s&#39;est produite \n Appuyz sur Entrer pour continuer &#34;)
+        return(Ouvert(previous_menu))
+
+    def affichage_seuil_inf(self,critere,previous_menu): 
+        &#34;&#34;&#34;Fonction du affichant les pays dépassant un seuil adaptée au menus
+
+        Arguments:
+            critere {str} -- Critère à observer
+            previous_menu {list of dict} -- Menu précédent
+        &#34;&#34;&#34;        
+        if not self.connecte : 
+            print (&#34;Vous n&#39;êtes pas connecté \n Veuillez vous connecter&#34;)
+            input( &#34;Appuyez sur Entrer pour continuer&#34;)
+            return(Ouvert(previous_menu))
+        try :
+            data_stat = Affichage_Stat()
+            data_stat.informations_seuil_inf(critere)
+        except Exception as e: 
+            print(e) 
+            input(&#34;Une erreur d&#39;argument s&#39;est produite \n Appuyz sur Entrer pour continuer &#34;)
+        return(Ouvert(previous_menu))
+
+    def affichage_seuil_sup(self,critere,previous_menu): 
+        &#34;&#34;&#34;Fonction du affichant les pays ne dépassant pas un seuil adaptée au menus
+
+        Arguments:
+            critere {str} -- Critère à observer
+            previous_menu {list of dict} -- Menu précédent
+        &#34;&#34;&#34;  
+        if not self.connecte : 
+            print (&#34;Vous n&#39;êtes pas connecté \n Veuillez vous connecter&#34;)
+            input( &#34;Appuyez sur Entrer pour continuer&#34;)
+            return(Ouvert(previous_menu))
+        try :
+            data_stat = Affichage_Stat()
+            data_stat.informations_seuil_supp(critere)
+        except Exception as e: 
+            print(e) 
+            input(&#34;Une erreur d&#39;argument s&#39;est produite \n Appuyz sur Entrer pour continuer &#34;)
         return(Ouvert(previous_menu))
         
+    def affichage_tableau_age(self,previous_menu): 
+        &#34;&#34;&#34;Fonction du affichant la répartition des classes d&#39;age adaptée au menu
+
+        Arguments:
+            critere {str} -- Critère à observer
+            previous_menu {list of dict} -- Menu précédent
+        &#34;&#34;&#34;          
+        if not self.connecte : 
+            print (&#34;Vous n&#39;êtes pas connecté \n Veuillez vous connecter&#34;)
+            input( &#34;Appuyez sur Entrer pour continuer&#34;)
+            return(Ouvert(previous_menu))
+        try :
+            data_stat = Affichage_Stat()
+            data_stat.tableau_classe_age()
+        except Exception as e: 
+            print(e) 
+            input(&#34;Une erreur d&#39;argument s&#39;est produite \n Appuyz sur Entrer pour continuer &#34;)
+        return(Ouvert(previous_menu))
+
     def clust(self,methode,previous_menu): 
+        &#34;&#34;&#34;Fonction permettant à l&#39;utilisateur d&#39;effectuer un clustering par la méthode de son choix adaptée au menu
+
+        Arguments:
+            critere {str} -- Critère à observer
+            previous_menu {list of dict} -- Menu précédent
+        &#34;&#34;&#34;  
         if not self.connecte : 
             print (&#34;Vous n&#39;êtes pas connecté \n Veuillez vous connecter&#34;)
             input( &#34;Appuyez sur Entrer pour continuer&#34;)
@@ -1618,11 +2231,12 @@ class Admin(Geographe, DataScientist):
 
     def representationgraphique(self,previous_menu,critere):
         &#34;&#34;&#34; Fonction permettant de générer une représentation graphique du critère demandé et des boxplots des classes d&#39;âges
+
         Arguments:
             previous_menu {list} -- menu précédent l&#39;appel de la fonction
             critere              -- critere entré par le DataScientist    
         Returns:
-            Ouvert(previous_menu) -- Renvoie le menu précédent
+            [Ouvert(previous_menu)] -- [Renvoie le menu précédent]
             
         &#34;&#34;&#34;       
         if not self.connecte : 
@@ -1640,7 +2254,31 @@ class Admin(Geographe, DataScientist):
         tranche5=[]
         crit=[]
         pays=[]    
-
+        print(&#34;Vous pouvez personnaliser votre barplot&#34;)
+        print(&#34;Choisissez une couleur parmi : blue (bleu), yellow (jaune), purple (violet)&#34;)
+        couleur=input()
+        try:
+            couleur=str(couleur)
+            if couleur ==&#39;&#39;:
+                couleur=&#39;b&#39;
+            if couleur != &#39;blue&#39; and  couleur != &#39;yellow&#39; and couleur != &#39;purple&#39;:
+                print(&#39;Couleur non reconnue, le bleu est donc choisi par défaut&#39;)
+                couleur=&#39;b&#39;
+        except:
+            print(&#39;Couleur non reconnue, le bleu est choisi par défaut&#39;)
+            couleur = &#39;b&#39;
+        print(&#34;Choisissez l&#39;épaisseur des barres&#34;)
+        print(&#34;Choisissez un nombre (pour plus de lisibilité limitez vous à 1)&#34;)
+        ep=input()
+        print(type(ep))
+        try:
+            ep=float(ep)
+        except:
+            print(&#34;Cette épaisseur est impossible, 0.8 est donc pris par défaut&#34;)
+            ep=0.8
+        if ep==0:
+          print(&#34;Cette épaisseur est impossible, 0.8 est donc pris par défaut&#34;)
+          ep=0.8
 
         #Séparation des tranches d&#39;âges
         for j in range (len(data)):
@@ -1675,201 +2313,207 @@ class Admin(Geographe, DataScientist):
             
             
         #Pour réaliser le diagramme en barres d’un certain critère  
+       
+        if critere==1:
+           
+         
+            for i in range (len(data)):
+                 superficie = data[i][&#39;Geography&#39;][&#39;Area&#39;][&#39;total&#39;][&#39;text&#39;]
+                 superficie = superficie[:superficie.find(&#39; s&#39;)]
+                 superficie = superficie.replace( &#39;,&#39; , &#39;&#39; )
+                 crit.append(float(superficie))
+                 pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
+           
+             #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,crit, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title(&#34;Diagramme en barre de la superficie&#34;) 
+            plt.ylabel(&#39;en km^2&#39;)
+            plt.show()
+            
+            #Boxplot des tranches d&#39;âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;) 
+             
+            plt.show()
+        elif critere==2:
+          
+            for i in range (len(data)):
+                pop = data[i][&#39;People and Society&#39;][&#39;Population&#39;][&#39;text&#39;]
+                pop = pop[:pop.find(&#39; (&#39;)]
+                pop = pop[:pop.find(&#39; m&#39;)]
+                pop = pop.replace( &#39;,&#39; , &#39;&#39; )
+                crit.append(float(pop))
+                pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])        
+            
+            #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,crit, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title(&#34;Diagramme en barre de la population&#34;) 
+            plt.ylabel(&#39;nombre d\&#39;habitants&#39;)
+            plt.show()
         
-            if critere==1:
-               
-                for i in range (len(data)):
-                    superficie = data[i][&#39;Geography&#39;][&#39;Area&#39;][&#39;total&#39;][&#39;text&#39;]
-                    superficie = superficie[:superficie.find(&#39; s&#39;)]
-                    superficie = superficie.replace( &#39;,&#39; , &#39;&#39; )
-                    crit.append(float(superficie))
+            #Boxplot des tranches d&#39;âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title(&#34;Boxplot par tranche d&#39;âge&#34;) 
+            plt.show()
+        elif critere==3:
+           
+            for i in range (len(data)):
+               pourcent = data[i][&#39;People and Society&#39;][&#39;Population growth rate&#39;][&#39;text&#39;]              
+               pourcent = pourcent[:pourcent.find(&#39;%&#39;)]                   
+               crit.append(float(pourcent))
+               pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
+            
+            #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,crit, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title(&#34;Diagramme en barre de la croissance démographique&#34;) 
+            plt.ylabel(&#39;en pourcent&#39;)
+            plt.show()
+            
+            #Boxplot des tranches d&#39;âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title(&#34;Boxplot par tranche d&#39;âge&#34;) 
+            plt.show()
+        elif critere==4:
+            inf1=[]               
+            for i in range (len(data)):
+                pourcent = data[i][&#39;Economy&#39;][&#39;Inflation rate (consumer prices)&#39;][&#39;text&#39;]                    
+                inf2016 = pourcent[:pourcent.find(&#39;%&#39;)]                  
+                inf1.append(float(inf2016))                   
+                pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
+            
+            #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,inf1, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title(&#34;Diagramme en barre de l&#39;inflation&#34;) 
+            plt.show()
+           
+            #Boxplot des tranches d&#39;âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title(&#34;Boxplot par tranche d&#39;âge&#34;) 
+            plt.show()
+            
+        elif critere==5:
+           
+            for i in range (1,len(data)):
+                dette=data[i][&#39;Economy&#39;][&#39;Debt - external&#39;][&#39;text&#39;]                
+                if &#39;2016&#39; in dette:
+                    
+                    dette=dette[:dette.find(&#39; (&#39;)]
+                    dette=dette.replace(&#39;$&#39;,&#39;&#39;)
+                    dette=dette.replace(&#39; million&#39;,&#39;&#39;)
+                    dette=dette.replace(&#39; billion&#39;,&#39;e3&#39;)
+                    dette=dette.replace(&#39; trillion&#39;,&#39;e6&#39;)
+                    crit.append(float(dette))
                     pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
                 
-                #Diagramme en barre du critère
-                plt.bar(pays,crit)
-                plt.xticks(rotation=90)
-                plt.title(&#34;Diagramme en barre de la superficie&#34;) 
-                plt.ylabel(&#39;en km^2&#39;)
-                plt.show()
-                
-                #Boxplot des tranches d&#39;âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;)
-                plt.show()
-            elif critere==2:
-              
-                for i in range (len(data)):
-                    pop = data[i][&#39;People and Society&#39;][&#39;Population&#39;][&#39;text&#39;]
-                    pop = pop[:pop.find(&#39; (&#39;)]
-                    pop = pop[:pop.find(&#39; m&#39;)]
-                    pop = pop.replace( &#39;,&#39; , &#39;&#39; )
-                    crit.append(float(pop))
-                    pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])        
-                
-                #Diagramme en barre du critère
-                plt.bar(pays,crit)
-                plt.xticks(rotation=90)
-                plt.title(&#34;Diagramme en barre de la population&#34;) 
-                plt.ylabel(&#39;nombre d\&#39;habitants&#39;)
-                plt.show()
+            #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,crit, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title(&#34;Diagramme en barre de la dette en million&#34;) 
+            plt.show()
+           
+            #Boxplot des tranches d&#39;âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title(&#34;Boxplot par tranche d&#39;âge&#34;) 
+            plt.show()
+        elif critere==6:
+            for i in range (len(data)):
+                taux=data[i][&#39;Economy&#39;][&#39;Unemployment rate&#39;][&#39;text&#39;]
+                taux=taux[:taux.find(&#39; ++&#39;)]
+                if &#39;2016&#39;in taux:
+                    taux = taux[:taux.find(&#39;%&#39;)]
+                    crit.append(float(taux))
+                    pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
             
-                #Boxplot des tranches d&#39;âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;) 
-                plt.show()
-            elif critere==3:
-               
-                for i in range (len(data)):
-                   pourcent = data[i][&#39;People and Society&#39;][&#39;Population growth rate&#39;][&#39;text&#39;]              
-                   pourcent = pourcent[:pourcent.find(&#39;%&#39;)]                   
-                   crit.append(float(pourcent))
+            #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,crit, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title(&#34;Diagramme en barre du taux de chômage&#34;) 
+            plt.show()
+           
+            #Boxplot des tranches d&#39;âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title(&#34;Boxplot par tranche d&#39;âge&#34;) 
+            plt.show()
+        elif critere==7:               
+            for i in range (len(data)):
+                pourcent = data[i][&#39;People and Society&#39;][&#39;Health expenditures&#39;][&#39;text&#39;]                  
+                pourcent = pourcent[:pourcent.find(&#39;%&#39;)]
+                crit.append(float(pourcent))
+                pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
+                
+            #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,crit, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title(&#34;Diagramme en barre du taux de dépenses en santé&#34;) 
+            plt.show()
+           
+            #Boxplot des tranches d&#39;âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title(&#34;Boxplot par tranche d&#39;âge&#34;) 
+            plt.show()
+        elif critere==8:
+            
+            for i in range (len(data)):
+                dep=data[i][&#39;People and Society&#39;][&#39;Education expenditures&#39;][&#39;text&#39;]                
+                if &#39;2015&#39; in dep:
+                    dep=dep[:dep.find(&#39;%&#39;)]
+                    crit.append(float(dep))
+                    pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
+          
+            #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,crit, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title(&#34;Diagramme en barre du taux de dépenses en éducation&#34;) 
+            plt.show()
+            
+            #Il n&#39;y a qu&#39;un seul pays pour l&#39;année la plus récente (2016) nous prenons alors l&#39;année 2015
+            
+            #Boxplot des tranches d&#39;âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title(&#34;Boxplot par tranche d&#39;âge&#34;) 
+            plt.show()
+        elif critere==9:
+            for i in range (len(data)):
+               dep=data[i][&#39;Military and Security&#39;][&#39;Military expenditures&#39;][&#39;text&#39;]
+               dep=dep[:dep.find(&#39; ++&#39;)]
+               if &#39;2016&#39; in dep:
+                   dep=dep[:dep.find(&#39;%&#39;)]
+                   crit.append(float(dep)) 
                    pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
-                
-                #Diagramme en barre du critère
-                plt.bar(pays,crit)
-                plt.xticks(rotation=90)
-                plt.title(&#34;Diagramme en barre de la croissance démographique&#34;)
-                plt.ylabel(&#39;en pourcent&#39;)
-                plt.show()
-                
-                #Boxplot des tranches d&#39;âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;)
-                plt.show()
-            elif critere==4:
-                inf1=[]               
-                for i in range (len(data)):
-                    pourcent = data[i][&#39;Economy&#39;][&#39;Inflation rate (consumer prices)&#39;][&#39;text&#39;]                    
-                    inf2016 = pourcent[:pourcent.find(&#39;%&#39;)]                  
-                    inf1.append(float(inf2016))                   
-                    pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
-                
-                #Diagramme en barre du critère
-                plt.bar(pays,inf1)
-                plt.xticks(rotation=90)
-                plt.title(&#34;Diagramme en barre de l&#39;inflation&#34;) 
-                plt.ylabel(&#39;en pourcent&#39;)
-                plt.show()
-               
-                #Boxplot des tranches d&#39;âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;) 
-                plt.show()
-                
-            elif critere==5:
-               
-                for i in range (1,len(data)):
-                    dette=data[i][&#39;Economy&#39;][&#39;Debt - external&#39;][&#39;text&#39;]                
-                    if &#39;2016&#39; in dette:
-                        
-                        dette=dette[:dette.find(&#39; (&#39;)]
-                        dette=dette.replace(&#39;$&#39;,&#39;&#39;)
-                        dette=dette.replace(&#39; million&#39;,&#39;&#39;)
-                        dette=dette.replace(&#39; billion&#39;,&#39;e3&#39;)
-                        dette=dette.replace(&#39; trillion&#39;,&#39;e6&#39;)
-                        crit.append(float(dette))
-                        pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
-                    
-                #Diagramme en barre du critère
-                plt.bar(pays,crit)
-                plt.xticks(rotation=90)
-                plt.title(&#34;Diagramme en barre de la dette en million&#34;) 
-                plt.ylabel(&#39;en dollar&#39;)
-                plt.show()
-               
-                #Boxplot des tranches d&#39;âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;) 
-                plt.show()
-            elif critere==6:
-                for i in range (len(data)):
-                    taux=data[i][&#39;Economy&#39;][&#39;Unemployment rate&#39;][&#39;text&#39;]
-                    taux=taux[:taux.find(&#39; ++&#39;)]
-                    if &#39;2016&#39;in taux:
-                        taux = taux[:taux.find(&#39;%&#39;)]
-                        crit.append(float(taux))
-                        pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
-                
-                #Diagramme en barre du critère
-                plt.bar(pays,crit)
-                plt.xticks(rotation=90)
-                plt.title(&#34;Diagramme en barre du taux de chômage&#34;) 
-                plt.ylabel(&#39;en pourcent&#39;)
-                plt.show()
-               
-                #Boxplot des tranches d&#39;âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;) 
-                plt.show()
-            elif critere==7:               
-                for i in range (len(data)):
-                    pourcent = data[i][&#39;People and Society&#39;][&#39;Health expenditures&#39;][&#39;text&#39;]                  
-                    pourcent = pourcent[:pourcent.find(&#39;%&#39;)]
-                    crit.append(float(pourcent))
-                    pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
-                    
-                #Diagramme en barre du critère
-                plt.bar(pays,crit)
-                plt.xticks(rotation=90)
-                plt.title(&#34;Diagramme en barre du taux de dépenses en santé&#34;) 
-                plt.ylabel(&#39;en pourcent&#39;)
-                plt.show()
-               
-                #Boxplot des tranches d&#39;âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;) 
-                plt.show()
-            elif critere==8:
-                
-                for i in range (len(data)):
-                    dep=data[i][&#39;People and Society&#39;][&#39;Education expenditures&#39;][&#39;text&#39;]                
-                    if &#39;2015&#39; in dep:
-                        dep=dep[:dep.find(&#39;%&#39;)]
-                        crit.append(float(dep))
-                        pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
-              
-                #Diagramme en barre du critère
-                plt.bar(pays,crit)
-                plt.xticks(rotation=90)
-                plt.title(&#34;Diagramme en barre du taux de dépenses en éducation&#34;) 
-                plt.ylabel(&#39;en pourcent&#39;)
-                plt.show()
-                
-                #Il n&#39;y a qu&#39;un seul pays pour l&#39;année la plus récente (2016) nous prenons alors l&#39;année 2015
-                
-                #Boxplot des tranches d&#39;âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;) 
-                plt.show()
-            elif critere==9:
-                for i in range (len(data)):
-                   dep=data[i][&#39;Military and Security&#39;][&#39;Military expenditures&#39;][&#39;text&#39;]
-                   dep=dep[:dep.find(&#39; ++&#39;)]
-                   if &#39;2016&#39; in dep:
-                       dep=dep[:dep.find(&#39;%&#39;)]
-                       crit.append(float(dep)) 
-                       pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
+        
+            #Diagramme en barre du critère
+            plt.figure(figsize=(15,5), dpi=50)
+            plt.bar(pays,crit, color=couleur, width=ep)
+            plt.xticks(rotation=90)
+            plt.title(&#34;Diagramme en barre du taux de dépenses militaires&#34;) 
+            plt.show()
             
-                #Diagramme en barre du critère
-                plt.bar(pays,crit)
-                plt.xticks(rotation=90)
-                plt.title(&#34;Diagramme en barre du taux de dépenses militaires&#34;) 
-                plt.ylabel(&#39;en pourcent&#39;)
-                plt.show()
-                
-                #Boxplot des tranches d&#39;âges
-                plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-                plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;) 
-                plt.show()
-            
-            
-            input(&#34;Appuyez sur Entrer pour continuer&#34;)
-            return(Ouvert(previous_menu))</code></pre>
+            #Boxplot des tranches d&#39;âges
+            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+            plt.title(&#34;Boxplot par tranche d&#39;âge&#34;) 
+            plt.show()
+        
+       
+        input(&#34;Appuyez sur Entrer pour continuer&#34;)
+        return(Ouvert(previous_menu))</code></pre>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="Acteurs.Consultant" href="#Acteurs.Consultant">Consultant</a></li>
 <li><a title="Acteurs.Individu" href="#Acteurs.Individu">Individu</a></li>
+<li>Fonction_resume_2.Affichage_Stat</li>
 </ul>
 <h3>Subclasses</h3>
 <ul class="hlist">
@@ -1877,16 +2521,121 @@ class Admin(Geographe, DataScientist):
 </ul>
 <h3>Methods</h3>
 <dl>
+<dt id="Acteurs.DataScientist.affichage_seuil_inf"><code class="name flex">
+<span>def <span class="ident">affichage_seuil_inf</span></span>(<span>self, critere, previous_menu)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Fonction du affichant les pays dépassant un seuil adaptée au menus</p>
+<h2 id="arguments">Arguments</h2>
+<p>critere {str} &ndash; Critère à observer
+previous_menu {list of dict} &ndash; Menu précédent</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def affichage_seuil_inf(self,critere,previous_menu): 
+    &#34;&#34;&#34;Fonction du affichant les pays dépassant un seuil adaptée au menus
+
+    Arguments:
+        critere {str} -- Critère à observer
+        previous_menu {list of dict} -- Menu précédent
+    &#34;&#34;&#34;        
+    if not self.connecte : 
+        print (&#34;Vous n&#39;êtes pas connecté \n Veuillez vous connecter&#34;)
+        input( &#34;Appuyez sur Entrer pour continuer&#34;)
+        return(Ouvert(previous_menu))
+    try :
+        data_stat = Affichage_Stat()
+        data_stat.informations_seuil_inf(critere)
+    except Exception as e: 
+        print(e) 
+        input(&#34;Une erreur d&#39;argument s&#39;est produite \n Appuyz sur Entrer pour continuer &#34;)
+    return(Ouvert(previous_menu))</code></pre>
+</details>
+</dd>
+<dt id="Acteurs.DataScientist.affichage_seuil_sup"><code class="name flex">
+<span>def <span class="ident">affichage_seuil_sup</span></span>(<span>self, critere, previous_menu)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Fonction du affichant les pays ne dépassant pas un seuil adaptée au menus</p>
+<h2 id="arguments">Arguments</h2>
+<p>critere {str} &ndash; Critère à observer
+previous_menu {list of dict} &ndash; Menu précédent</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def affichage_seuil_sup(self,critere,previous_menu): 
+    &#34;&#34;&#34;Fonction du affichant les pays ne dépassant pas un seuil adaptée au menus
+
+    Arguments:
+        critere {str} -- Critère à observer
+        previous_menu {list of dict} -- Menu précédent
+    &#34;&#34;&#34;  
+    if not self.connecte : 
+        print (&#34;Vous n&#39;êtes pas connecté \n Veuillez vous connecter&#34;)
+        input( &#34;Appuyez sur Entrer pour continuer&#34;)
+        return(Ouvert(previous_menu))
+    try :
+        data_stat = Affichage_Stat()
+        data_stat.informations_seuil_supp(critere)
+    except Exception as e: 
+        print(e) 
+        input(&#34;Une erreur d&#39;argument s&#39;est produite \n Appuyz sur Entrer pour continuer &#34;)
+    return(Ouvert(previous_menu))</code></pre>
+</details>
+</dd>
+<dt id="Acteurs.DataScientist.affichage_tableau_age"><code class="name flex">
+<span>def <span class="ident">affichage_tableau_age</span></span>(<span>self, previous_menu)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Fonction du affichant la répartition des classes d'age adaptée au menu</p>
+<h2 id="arguments">Arguments</h2>
+<p>critere {str} &ndash; Critère à observer
+previous_menu {list of dict} &ndash; Menu précédent</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def affichage_tableau_age(self,previous_menu): 
+    &#34;&#34;&#34;Fonction du affichant la répartition des classes d&#39;age adaptée au menu
+
+    Arguments:
+        critere {str} -- Critère à observer
+        previous_menu {list of dict} -- Menu précédent
+    &#34;&#34;&#34;          
+    if not self.connecte : 
+        print (&#34;Vous n&#39;êtes pas connecté \n Veuillez vous connecter&#34;)
+        input( &#34;Appuyez sur Entrer pour continuer&#34;)
+        return(Ouvert(previous_menu))
+    try :
+        data_stat = Affichage_Stat()
+        data_stat.tableau_classe_age()
+    except Exception as e: 
+        print(e) 
+        input(&#34;Une erreur d&#39;argument s&#39;est produite \n Appuyz sur Entrer pour continuer &#34;)
+    return(Ouvert(previous_menu))</code></pre>
+</details>
+</dd>
 <dt id="Acteurs.DataScientist.clust"><code class="name flex">
 <span>def <span class="ident">clust</span></span>(<span>self, methode, previous_menu)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Fonction permettant à l'utilisateur d'effectuer un clustering par la méthode de son choix adaptée au menu</p>
+<h2 id="arguments">Arguments</h2>
+<p>critere {str} &ndash; Critère à observer
+previous_menu {list of dict} &ndash; Menu précédent</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def clust(self,methode,previous_menu): 
+    &#34;&#34;&#34;Fonction permettant à l&#39;utilisateur d&#39;effectuer un clustering par la méthode de son choix adaptée au menu
+
+    Arguments:
+        critere {str} -- Critère à observer
+        previous_menu {list of dict} -- Menu précédent
+    &#34;&#34;&#34;  
     if not self.connecte : 
         print (&#34;Vous n&#39;êtes pas connecté \n Veuillez vous connecter&#34;)
         input( &#34;Appuyez sur Entrer pour continuer&#34;)
@@ -1940,6 +2689,38 @@ class Admin(Geographe, DataScientist):
     return self.connecte</code></pre>
 </details>
 </dd>
+<dt id="Acteurs.DataScientist.description"><code class="name flex">
+<span>def <span class="ident">description</span></span>(<span>self, critere, previous_menu)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Fonction du Résumé statistique adaptée au menu</p>
+<h2 id="arguments">Arguments</h2>
+<p>critere {str} &ndash; Critère à observer
+previous_menu {list of dict} &ndash; Menu précédent</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def description(self,critere,previous_menu): 
+    &#34;&#34;&#34;Fonction du Résumé statistique adaptée au menu
+
+    Arguments:
+        critere {str} -- Critère à observer
+        previous_menu {list of dict} -- Menu précédent
+    &#34;&#34;&#34;        
+    if not self.connecte : 
+        print (&#34;Vous n&#39;êtes pas connecté \n Veuillez vous connecter&#34;)
+        input( &#34;Appuyez sur Entrer pour continuer&#34;)
+        return(Ouvert(previous_menu))
+    try:
+        data_stat = Affichage_Stat()
+        data_stat.summary(critere)
+    except Exception as e: 
+        print(e) 
+        input(&#34;Une erreur d&#39;argument s&#39;est produite \n Appuyz sur Entrer pour continuer &#34;)
+    return(Ouvert(previous_menu))</code></pre>
+</details>
+</dd>
 <dt id="Acteurs.DataScientist.representationgraphique"><code class="name flex">
 <span>def <span class="ident">representationgraphique</span></span>(<span>self, previous_menu, critere)</span>
 </code></dt>
@@ -1951,21 +2732,19 @@ critere
 &ndash; critere entré par le DataScientist
 </p>
 <h2 id="returns">Returns</h2>
-<dl>
-<dt><code>Ouvert(previous_menu) -- Renvoie le menu précédent</code></dt>
-<dd>&nbsp;</dd>
-</dl></div>
+<p>[Ouvert(previous_menu)] &ndash; [Renvoie le menu précédent]</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def representationgraphique(self,previous_menu,critere):
     &#34;&#34;&#34; Fonction permettant de générer une représentation graphique du critère demandé et des boxplots des classes d&#39;âges
+
     Arguments:
         previous_menu {list} -- menu précédent l&#39;appel de la fonction
         critere              -- critere entré par le DataScientist    
     Returns:
-        Ouvert(previous_menu) -- Renvoie le menu précédent
+        [Ouvert(previous_menu)] -- [Renvoie le menu précédent]
         
     &#34;&#34;&#34;       
     if not self.connecte : 
@@ -1983,7 +2762,31 @@ critere
     tranche5=[]
     crit=[]
     pays=[]    
-
+    print(&#34;Vous pouvez personnaliser votre barplot&#34;)
+    print(&#34;Choisissez une couleur parmi : blue (bleu), yellow (jaune), purple (violet)&#34;)
+    couleur=input()
+    try:
+        couleur=str(couleur)
+        if couleur ==&#39;&#39;:
+            couleur=&#39;b&#39;
+        if couleur != &#39;blue&#39; and  couleur != &#39;yellow&#39; and couleur != &#39;purple&#39;:
+            print(&#39;Couleur non reconnue, le bleu est donc choisi par défaut&#39;)
+            couleur=&#39;b&#39;
+    except:
+        print(&#39;Couleur non reconnue, le bleu est choisi par défaut&#39;)
+        couleur = &#39;b&#39;
+    print(&#34;Choisissez l&#39;épaisseur des barres&#34;)
+    print(&#34;Choisissez un nombre (pour plus de lisibilité limitez vous à 1)&#34;)
+    ep=input()
+    print(type(ep))
+    try:
+        ep=float(ep)
+    except:
+        print(&#34;Cette épaisseur est impossible, 0.8 est donc pris par défaut&#34;)
+        ep=0.8
+    if ep==0:
+      print(&#34;Cette épaisseur est impossible, 0.8 est donc pris par défaut&#34;)
+      ep=0.8
 
     #Séparation des tranches d&#39;âges
     for j in range (len(data)):
@@ -2018,217 +2821,264 @@ critere
         
         
     #Pour réaliser le diagramme en barres d’un certain critère  
+   
+    if critere==1:
+       
+     
+        for i in range (len(data)):
+             superficie = data[i][&#39;Geography&#39;][&#39;Area&#39;][&#39;total&#39;][&#39;text&#39;]
+             superficie = superficie[:superficie.find(&#39; s&#39;)]
+             superficie = superficie.replace( &#39;,&#39; , &#39;&#39; )
+             crit.append(float(superficie))
+             pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
+       
+         #Diagramme en barre du critère
+        plt.figure(figsize=(15,5), dpi=50)
+        plt.bar(pays,crit, color=couleur, width=ep)
+        plt.xticks(rotation=90)
+        plt.title(&#34;Diagramme en barre de la superficie&#34;) 
+        plt.ylabel(&#39;en km^2&#39;)
+        plt.show()
+        
+        #Boxplot des tranches d&#39;âges
+        plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+        plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;) 
+         
+        plt.show()
+    elif critere==2:
+      
+        for i in range (len(data)):
+            pop = data[i][&#39;People and Society&#39;][&#39;Population&#39;][&#39;text&#39;]
+            pop = pop[:pop.find(&#39; (&#39;)]
+            pop = pop[:pop.find(&#39; m&#39;)]
+            pop = pop.replace( &#39;,&#39; , &#39;&#39; )
+            crit.append(float(pop))
+            pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])        
+        
+        #Diagramme en barre du critère
+        plt.figure(figsize=(15,5), dpi=50)
+        plt.bar(pays,crit, color=couleur, width=ep)
+        plt.xticks(rotation=90)
+        plt.title(&#34;Diagramme en barre de la population&#34;) 
+        plt.ylabel(&#39;nombre d\&#39;habitants&#39;)
+        plt.show()
     
-        if critere==1:
-           
-            for i in range (len(data)):
-                superficie = data[i][&#39;Geography&#39;][&#39;Area&#39;][&#39;total&#39;][&#39;text&#39;]
-                superficie = superficie[:superficie.find(&#39; s&#39;)]
-                superficie = superficie.replace( &#39;,&#39; , &#39;&#39; )
-                crit.append(float(superficie))
+        #Boxplot des tranches d&#39;âges
+        plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+        plt.title(&#34;Boxplot par tranche d&#39;âge&#34;) 
+        plt.show()
+    elif critere==3:
+       
+        for i in range (len(data)):
+           pourcent = data[i][&#39;People and Society&#39;][&#39;Population growth rate&#39;][&#39;text&#39;]              
+           pourcent = pourcent[:pourcent.find(&#39;%&#39;)]                   
+           crit.append(float(pourcent))
+           pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
+        
+        #Diagramme en barre du critère
+        plt.figure(figsize=(15,5), dpi=50)
+        plt.bar(pays,crit, color=couleur, width=ep)
+        plt.xticks(rotation=90)
+        plt.title(&#34;Diagramme en barre de la croissance démographique&#34;) 
+        plt.ylabel(&#39;en pourcent&#39;)
+        plt.show()
+        
+        #Boxplot des tranches d&#39;âges
+        plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+        plt.title(&#34;Boxplot par tranche d&#39;âge&#34;) 
+        plt.show()
+    elif critere==4:
+        inf1=[]               
+        for i in range (len(data)):
+            pourcent = data[i][&#39;Economy&#39;][&#39;Inflation rate (consumer prices)&#39;][&#39;text&#39;]                    
+            inf2016 = pourcent[:pourcent.find(&#39;%&#39;)]                  
+            inf1.append(float(inf2016))                   
+            pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
+        
+        #Diagramme en barre du critère
+        plt.figure(figsize=(15,5), dpi=50)
+        plt.bar(pays,inf1, color=couleur, width=ep)
+        plt.xticks(rotation=90)
+        plt.title(&#34;Diagramme en barre de l&#39;inflation&#34;) 
+        plt.show()
+       
+        #Boxplot des tranches d&#39;âges
+        plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+        plt.title(&#34;Boxplot par tranche d&#39;âge&#34;) 
+        plt.show()
+        
+    elif critere==5:
+       
+        for i in range (1,len(data)):
+            dette=data[i][&#39;Economy&#39;][&#39;Debt - external&#39;][&#39;text&#39;]                
+            if &#39;2016&#39; in dette:
+                
+                dette=dette[:dette.find(&#39; (&#39;)]
+                dette=dette.replace(&#39;$&#39;,&#39;&#39;)
+                dette=dette.replace(&#39; million&#39;,&#39;&#39;)
+                dette=dette.replace(&#39; billion&#39;,&#39;e3&#39;)
+                dette=dette.replace(&#39; trillion&#39;,&#39;e6&#39;)
+                crit.append(float(dette))
                 pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
             
-            #Diagramme en barre du critère
-            plt.bar(pays,crit)
-            plt.xticks(rotation=90)
-            plt.title(&#34;Diagramme en barre de la superficie&#34;) 
-            plt.ylabel(&#39;en km^2&#39;)
-            plt.show()
-            
-            #Boxplot des tranches d&#39;âges
-            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-            plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;)
-            plt.show()
-        elif critere==2:
-          
-            for i in range (len(data)):
-                pop = data[i][&#39;People and Society&#39;][&#39;Population&#39;][&#39;text&#39;]
-                pop = pop[:pop.find(&#39; (&#39;)]
-                pop = pop[:pop.find(&#39; m&#39;)]
-                pop = pop.replace( &#39;,&#39; , &#39;&#39; )
-                crit.append(float(pop))
-                pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])        
-            
-            #Diagramme en barre du critère
-            plt.bar(pays,crit)
-            plt.xticks(rotation=90)
-            plt.title(&#34;Diagramme en barre de la population&#34;) 
-            plt.ylabel(&#39;nombre d\&#39;habitants&#39;)
-            plt.show()
+        #Diagramme en barre du critère
+        plt.figure(figsize=(15,5), dpi=50)
+        plt.bar(pays,crit, color=couleur, width=ep)
+        plt.xticks(rotation=90)
+        plt.title(&#34;Diagramme en barre de la dette en million&#34;) 
+        plt.show()
+       
+        #Boxplot des tranches d&#39;âges
+        plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+        plt.title(&#34;Boxplot par tranche d&#39;âge&#34;) 
+        plt.show()
+    elif critere==6:
+        for i in range (len(data)):
+            taux=data[i][&#39;Economy&#39;][&#39;Unemployment rate&#39;][&#39;text&#39;]
+            taux=taux[:taux.find(&#39; ++&#39;)]
+            if &#39;2016&#39;in taux:
+                taux = taux[:taux.find(&#39;%&#39;)]
+                crit.append(float(taux))
+                pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
         
-            #Boxplot des tranches d&#39;âges
-            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-            plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;) 
-            plt.show()
-        elif critere==3:
-           
-            for i in range (len(data)):
-               pourcent = data[i][&#39;People and Society&#39;][&#39;Population growth rate&#39;][&#39;text&#39;]              
-               pourcent = pourcent[:pourcent.find(&#39;%&#39;)]                   
-               crit.append(float(pourcent))
+        #Diagramme en barre du critère
+        plt.figure(figsize=(15,5), dpi=50)
+        plt.bar(pays,crit, color=couleur, width=ep)
+        plt.xticks(rotation=90)
+        plt.title(&#34;Diagramme en barre du taux de chômage&#34;) 
+        plt.show()
+       
+        #Boxplot des tranches d&#39;âges
+        plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+        plt.title(&#34;Boxplot par tranche d&#39;âge&#34;) 
+        plt.show()
+    elif critere==7:               
+        for i in range (len(data)):
+            pourcent = data[i][&#39;People and Society&#39;][&#39;Health expenditures&#39;][&#39;text&#39;]                  
+            pourcent = pourcent[:pourcent.find(&#39;%&#39;)]
+            crit.append(float(pourcent))
+            pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
+            
+        #Diagramme en barre du critère
+        plt.figure(figsize=(15,5), dpi=50)
+        plt.bar(pays,crit, color=couleur, width=ep)
+        plt.xticks(rotation=90)
+        plt.title(&#34;Diagramme en barre du taux de dépenses en santé&#34;) 
+        plt.show()
+       
+        #Boxplot des tranches d&#39;âges
+        plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+        plt.title(&#34;Boxplot par tranche d&#39;âge&#34;) 
+        plt.show()
+    elif critere==8:
+        
+        for i in range (len(data)):
+            dep=data[i][&#39;People and Society&#39;][&#39;Education expenditures&#39;][&#39;text&#39;]                
+            if &#39;2015&#39; in dep:
+                dep=dep[:dep.find(&#39;%&#39;)]
+                crit.append(float(dep))
+                pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
+      
+        #Diagramme en barre du critère
+        plt.figure(figsize=(15,5), dpi=50)
+        plt.bar(pays,crit, color=couleur, width=ep)
+        plt.xticks(rotation=90)
+        plt.title(&#34;Diagramme en barre du taux de dépenses en éducation&#34;) 
+        plt.show()
+        
+        #Il n&#39;y a qu&#39;un seul pays pour l&#39;année la plus récente (2016) nous prenons alors l&#39;année 2015
+        
+        #Boxplot des tranches d&#39;âges
+        plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+        plt.title(&#34;Boxplot par tranche d&#39;âge&#34;) 
+        plt.show()
+    elif critere==9:
+        for i in range (len(data)):
+           dep=data[i][&#39;Military and Security&#39;][&#39;Military expenditures&#39;][&#39;text&#39;]
+           dep=dep[:dep.find(&#39; ++&#39;)]
+           if &#39;2016&#39; in dep:
+               dep=dep[:dep.find(&#39;%&#39;)]
+               crit.append(float(dep)) 
                pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
-            
-            #Diagramme en barre du critère
-            plt.bar(pays,crit)
-            plt.xticks(rotation=90)
-            plt.title(&#34;Diagramme en barre de la croissance démographique&#34;)
-            plt.ylabel(&#39;en pourcent&#39;)
-            plt.show()
-            
-            #Boxplot des tranches d&#39;âges
-            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-            plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;)
-            plt.show()
-        elif critere==4:
-            inf1=[]               
-            for i in range (len(data)):
-                pourcent = data[i][&#39;Economy&#39;][&#39;Inflation rate (consumer prices)&#39;][&#39;text&#39;]                    
-                inf2016 = pourcent[:pourcent.find(&#39;%&#39;)]                  
-                inf1.append(float(inf2016))                   
-                pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
-            
-            #Diagramme en barre du critère
-            plt.bar(pays,inf1)
-            plt.xticks(rotation=90)
-            plt.title(&#34;Diagramme en barre de l&#39;inflation&#34;) 
-            plt.ylabel(&#39;en pourcent&#39;)
-            plt.show()
-           
-            #Boxplot des tranches d&#39;âges
-            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-            plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;) 
-            plt.show()
-            
-        elif critere==5:
-           
-            for i in range (1,len(data)):
-                dette=data[i][&#39;Economy&#39;][&#39;Debt - external&#39;][&#39;text&#39;]                
-                if &#39;2016&#39; in dette:
-                    
-                    dette=dette[:dette.find(&#39; (&#39;)]
-                    dette=dette.replace(&#39;$&#39;,&#39;&#39;)
-                    dette=dette.replace(&#39; million&#39;,&#39;&#39;)
-                    dette=dette.replace(&#39; billion&#39;,&#39;e3&#39;)
-                    dette=dette.replace(&#39; trillion&#39;,&#39;e6&#39;)
-                    crit.append(float(dette))
-                    pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
-                
-            #Diagramme en barre du critère
-            plt.bar(pays,crit)
-            plt.xticks(rotation=90)
-            plt.title(&#34;Diagramme en barre de la dette en million&#34;) 
-            plt.ylabel(&#39;en dollar&#39;)
-            plt.show()
-           
-            #Boxplot des tranches d&#39;âges
-            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-            plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;) 
-            plt.show()
-        elif critere==6:
-            for i in range (len(data)):
-                taux=data[i][&#39;Economy&#39;][&#39;Unemployment rate&#39;][&#39;text&#39;]
-                taux=taux[:taux.find(&#39; ++&#39;)]
-                if &#39;2016&#39;in taux:
-                    taux = taux[:taux.find(&#39;%&#39;)]
-                    crit.append(float(taux))
-                    pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
-            
-            #Diagramme en barre du critère
-            plt.bar(pays,crit)
-            plt.xticks(rotation=90)
-            plt.title(&#34;Diagramme en barre du taux de chômage&#34;) 
-            plt.ylabel(&#39;en pourcent&#39;)
-            plt.show()
-           
-            #Boxplot des tranches d&#39;âges
-            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-            plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;) 
-            plt.show()
-        elif critere==7:               
-            for i in range (len(data)):
-                pourcent = data[i][&#39;People and Society&#39;][&#39;Health expenditures&#39;][&#39;text&#39;]                  
-                pourcent = pourcent[:pourcent.find(&#39;%&#39;)]
-                crit.append(float(pourcent))
-                pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
-                
-            #Diagramme en barre du critère
-            plt.bar(pays,crit)
-            plt.xticks(rotation=90)
-            plt.title(&#34;Diagramme en barre du taux de dépenses en santé&#34;) 
-            plt.ylabel(&#39;en pourcent&#39;)
-            plt.show()
-           
-            #Boxplot des tranches d&#39;âges
-            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-            plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;) 
-            plt.show()
-        elif critere==8:
-            
-            for i in range (len(data)):
-                dep=data[i][&#39;People and Society&#39;][&#39;Education expenditures&#39;][&#39;text&#39;]                
-                if &#39;2015&#39; in dep:
-                    dep=dep[:dep.find(&#39;%&#39;)]
-                    crit.append(float(dep))
-                    pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
-          
-            #Diagramme en barre du critère
-            plt.bar(pays,crit)
-            plt.xticks(rotation=90)
-            plt.title(&#34;Diagramme en barre du taux de dépenses en éducation&#34;) 
-            plt.ylabel(&#39;en pourcent&#39;)
-            plt.show()
-            
-            #Il n&#39;y a qu&#39;un seul pays pour l&#39;année la plus récente (2016) nous prenons alors l&#39;année 2015
-            
-            #Boxplot des tranches d&#39;âges
-            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-            plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;) 
-            plt.show()
-        elif critere==9:
-            for i in range (len(data)):
-               dep=data[i][&#39;Military and Security&#39;][&#39;Military expenditures&#39;][&#39;text&#39;]
-               dep=dep[:dep.find(&#39; ++&#39;)]
-               if &#39;2016&#39; in dep:
-                   dep=dep[:dep.find(&#39;%&#39;)]
-                   crit.append(float(dep)) 
-                   pays.append(data[i][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
+    
+        #Diagramme en barre du critère
+        plt.figure(figsize=(15,5), dpi=50)
+        plt.bar(pays,crit, color=couleur, width=ep)
+        plt.xticks(rotation=90)
+        plt.title(&#34;Diagramme en barre du taux de dépenses militaires&#34;) 
+        plt.show()
         
-            #Diagramme en barre du critère
-            plt.bar(pays,crit)
-            plt.xticks(rotation=90)
-            plt.title(&#34;Diagramme en barre du taux de dépenses militaires&#34;) 
-            plt.ylabel(&#39;en pourcent&#39;)
-            plt.show()
-            
-            #Boxplot des tranches d&#39;âges
-            plt.boxplot([TR1,TR2,TR3,TR4,TR5])
-            plt.title(&#34;Boxplot par tranche d&#39;âge en pourcent&#34;) 
-            plt.show()
-        
-        
-        input(&#34;Appuyez sur Entrer pour continuer&#34;)
-        return(Ouvert(previous_menu))</code></pre>
+        #Boxplot des tranches d&#39;âges
+        plt.boxplot([TR1,TR2,TR3,TR4,TR5])
+        plt.title(&#34;Boxplot par tranche d&#39;âge&#34;) 
+        plt.show()
+    
+   
+    input(&#34;Appuyez sur Entrer pour continuer&#34;)
+    return(Ouvert(previous_menu))</code></pre>
 </details>
 </dd>
-<dt id="Acteurs.DataScientist.resume"><code class="name flex">
-<span>def <span class="ident">resume</span></span>(<span>self, critere, previous_menu)</span>
+<dt id="Acteurs.DataScientist.tricrois"><code class="name flex">
+<span>def <span class="ident">tricrois</span></span>(<span>self, critere, previous_menu)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Fonction du Tri Croissant adaptée au menus</p>
+<h2 id="arguments">Arguments</h2>
+<p>critere {str} &ndash; Critère à observer
+previous_menu {list of dict} &ndash; Menu précédent</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def resume(self,critere,previous_menu): 
+<pre><code class="python">def tricrois(self,critere,previous_menu): 
+    &#34;&#34;&#34;Fonction du Tri Croissant adaptée au menus
+
+    Arguments:
+        critere {str} -- Critère à observer
+        previous_menu {list of dict} -- Menu précédent
+    &#34;&#34;&#34;        
     if not self.connecte : 
         print (&#34;Vous n&#39;êtes pas connecté \n Veuillez vous connecter&#34;)
         input( &#34;Appuyez sur Entrer pour continuer&#34;)
         return(Ouvert(previous_menu))
     try :
-        r.resume_information(critere)
+        data_stat = Affichage_Stat()
+        data_stat.tri_croissant(critere)
     except Exception as e: 
         print(e) 
-        input(&#34;Une erreur dans d&#39;argument s&#39;est produite \n Appuyz sur Entrer pour continuer &#34;)
+        input(&#34;Une erreur d&#39;argument s&#39;est produite \n Appuyz sur Entrer pour continuer &#34;)
+    return(Ouvert(previous_menu))</code></pre>
+</details>
+</dd>
+<dt id="Acteurs.DataScientist.tridecrois"><code class="name flex">
+<span>def <span class="ident">tridecrois</span></span>(<span>self, critere, previous_menu)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Fonction du Tri Décroissant adaptée au menus</p>
+<h2 id="arguments">Arguments</h2>
+<p>critere {str} &ndash; Critère à observer
+previous_menu {list of dict} &ndash; Menu précédent</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def tridecrois(self,critere,previous_menu): 
+    &#34;&#34;&#34;Fonction du Tri Décroissant adaptée au menus
+
+    Arguments:
+        critere {str} -- Critère à observer
+        previous_menu {list of dict} -- Menu précédent
+    &#34;&#34;&#34;        
+    if not self.connecte : 
+        print (&#34;Vous n&#39;êtes pas connecté \n Veuillez vous connecter&#34;)
+        input( &#34;Appuyez sur Entrer pour continuer&#34;)
+        return(Ouvert(previous_menu))
+    try :
+        data_stat = Affichage_Stat()
+        data_stat.tri_decroissant(critere)
+    except Exception as e: 
+        print(e) 
+        input(&#34;Une erreur d&#39;argument s&#39;est produite \n Appuyz sur Entrer pour continuer &#34;)
     return(Ouvert(previous_menu))</code></pre>
 </details>
 </dd>
@@ -2320,82 +3170,170 @@ critere
             print(&#34;Le pays entré n&#39;existe pas, un nouveau pays va être crée&#34;)
         finally :
             # La fonction demande à l&#39;utilisateur s&#39;il souhaite ajouter des informations
-            complementaire = input(&#39;Voulez vous ajouter des informations ? (Y/N)&#39;)
+            input(&#39;Nous allons maintenant ajouter des information complémentaires, cette étape est obligatoire\nAppuyez sur Entrer pour continuer&#39;)
             liste_info = []
-            # Si l&#39;utilisateur accepte 
-            if complementaire in [&#34;Y&#34;,&#34;y&#34;]: 
-                superficie = input(&#39;Entrez la superficie du pays en km2 totale, tapez None pour passer la question :&#39;)
-                liste_info.append(superficie)
-                superficie2 = input(&#39;Entrez la superficie du pays en km2 métropolitaine, tapez None pour passer la question :&#39;)
-                liste_info.append(superficie2)
-                pop = input(&#39;Entrez la population du pays, tapez None pour passer la question :&#39;)
-                liste_info.append(pop)
-                crois = input(&#39;Entrez la croissance demographique du pays en pourcentage , tapez None pour passer la question :&#39;)
-                liste_info.append(crois)
-                inflation = input(&#39;Entrez l\&#39;inflation du pays en pourcentage pour l\&#39;année 2016, tapez None pour passer la question :&#39;)
-                liste_info.append(inflation)
-                inflation2 = input(&#39;Entrez l\&#39;inflation du pays en pourcentage pour l\&#39;année 2015, tapez None pour passer la question :&#39;)
-                liste_info.append(inflation2)
-                dette = input(&#39;Entrez la dette en dollars - unité incluse (trillion, billion...) - pour l\&#39;année 2016, tapez None pour passer la question :&#39;)
-                liste_info.append(dette)
-                dette2 = input(&#39;Entrez la dette en dollars - unité incluse (trillion, billion...) - pour l\&#39;année 2016, tapez None pour passer la question :&#39;)
-                liste_info.append(dette2)
-                chom = input(&#39;Entrez la taux de chomage du pays en pourcentage pour l\&#39;année 2015, tapez None pour passer la question :&#39;)
-                liste_info.append(chom)
-                chom2 = input(&#39;Entrez la taux de chomage du pays en pourcentage pour l\&#39;année 2016, tapez None pour passer la question :&#39;)
-                liste_info.append(chom2)
-                sante = input(&#39;Entrez le taux de depense en sante du pays en pourcentage pour l\&#39;année 2014, tapez None pour passer la question :&#39;)
-                liste_info.append(sante)
-                edu = input(&#39;Entrez le taux de depense en education du pays en pourcentage pour l\&#39;année 2013, tapez None pour passer la question :&#39;)
-                liste_info.append(edu)
-                army = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2014, tapez None pour passer la question :&#39;)
-                liste_info.append(army)
-                army2 = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2013, tapez None pour passer la question :&#39;)
-                liste_info.append(army2)
-                army3 = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2012, tapez None pour passer la question :&#39;)
-                liste_info.append(army3)
+            while True :
+                superficie = input(&#39;Entrez la superficie du pays en km2 totale:&#39;)
+                if fbd.is_number(superficie): 
+                    break
+            liste_info.append(superficie)
+            while True :
+                superficie2 = input(&#39;Entrez la superficie du pays en km2 métropolitaine:&#39;)
+                if fbd.is_number(superficie2): 
+                    break
+            liste_info.append(superficie2)
+            while True :
+                pop = input(&#39;Entrez la population du pays:&#39;)
+                if fbd.is_number(pop): 
+                    break
+            liste_info.append(pop)
+            while True :
+                crois = input(&#39;Entrez la croissance demographique du pays en pourcentage :&#39;)
+                if fbd.is_number(crois): 
+                    break
+            liste_info.append(crois)
+            while True :
+                inflation = input(&#39;Entrez l\&#39;inflation du pays en pourcentage pour l\&#39;année 2016:&#39;)
+                if fbd.is_number(inflation): 
+                    break
+            liste_info.append(inflation)
+            while True : 
+                inflation2 = input(&#39;Entrez l\&#39;inflation du pays en pourcentage pour l\&#39;année 2015:&#39;)
+                if fbd.is_number(inflation2): 
+                    break
+            liste_info.append(inflation2)
+            while True : 
+                dette = input(&#39;Entrez la dette en dollars pour l\&#39;année 2016:&#39;)
+                if fbd.is_number(dette): 
+                    break
+            liste_info.append(dette)
+            while True :
+                dette2 = input(&#39;Entrez la dette en dollars pour l\&#39;année 2016:&#39;)
+                if fbd.is_number(crois): 
+                    break
+            liste_info.append(dette2)
+            while True : 
+                chom = input(&#39;Entrez la taux de chomage du pays en pourcentage pour l\&#39;année 2015:&#39;)
+                if fbd.is_number(chom): 
+                    break
+            liste_info.append(chom)
+            while True : 
+                chom2 = input(&#39;Entrez la taux de chomage du pays en pourcentage pour l\&#39;année 2016:&#39;)
+                if fbd.is_number(chom2): 
+                    break
+            liste_info.append(chom2)
+            while True : 
+                sante = input(&#39;Entrez le taux de depense en sante du pays en pourcentage pour l\&#39;année 2014:&#39;)
+                if fbd.is_number(sante): 
+                    break
+            liste_info.append(sante)
+            while True : 
+                edu = input(&#39;Entrez le taux de depense en education du pays en pourcentage pour l\&#39;année 2013:&#39;)
+                if fbd.is_number(edu): 
+                    break
+            liste_info.append(edu)
+            while True : 
+                army = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2014:&#39;)
+                if fbd.is_number(army): 
+                    break
+            liste_info.append(army)
+            while True : 
+                army2 = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2013:&#39;)
+                if fbd.is_number(army2): 
+                    break
+            liste_info.append(army2)
+            while True : 
+                army3 = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2012:&#39;)
+                if fbd.is_number(army3): 
+                    break
+            liste_info.append(army3)
 
-                # Entree des 5 classes d\&#39;age
-                age1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans total, tapez None pour passer la question :&#39;)
-                liste_info.append(age1)
-                age1_1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans masculin, tapez None pour passer la question :&#39;)
-                liste_info.append(age1_1)
-                age1_2 = input(&#39;Entrez le pourcentage de la classe [0-14] ans feminin, tapez None pour passer la question :&#39;)
-                liste_info.append(age1_2)
+            # Entree des 5 classes d\&#39;age
+            while True : 
+                age1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans total:&#39;)
+                if fbd.is_number(age1): 
+                    break
+            liste_info.append(age1)
+            while True :
+                age1_1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans masculin:&#39;)
+                if fbd.is_number(age1_1): 
+                    break
+            liste_info.append(age1_1)
+            while True : 
+                age1_2 = input(&#39;Entrez le pourcentage de la classe [0-14] ans feminin:&#39;)
+                if fbd.is_number(age1_2): 
+                    break
+            liste_info.append(age1_2)
 
-                age2 = input(&#39;Entrez le pourcentage de la classe [0-14] ans total, tapez None pour passer la question :&#39;)
-                liste_info.append(age2)
-                age2_1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans masculin, tapez None pour passer la question :&#39;)
-                liste_info.append(age2_1)
-                age2_2 = input(&#39;Entrez le pourcentage de la classe [0-14] ans feminin, tapez None pour passer la question :&#39;)
-                liste_info.append(age2_2)
+            while True : 
+                age2 = input(&#39;Entrez le pourcentage de la classe [15-24] ans total:&#39;)
+                if fbd.is_number(age2): 
+                    break
+            liste_info.append(age2)
+            while True :
+                age2_1 = input(&#39;Entrez le pourcentage de la classe [15-24] ans masculin:&#39;)
+                if fbd.is_number(age2_1): 
+                    break
+            liste_info.append(age2_1)
+            while True : 
+                age2_2 = input(&#39;Entrez le pourcentage de la classe [15-24] ans feminin:&#39;)
+                if fbd.is_number(age2_2): 
+                    break
+            liste_info.append(age2_2)
 
-                age3 = input(&#39;Entrez le pourcentage de la classe [25-54] ans total, tapez None pour passer la question :&#39;)
-                liste_info.append(age3)
-                age3_1 = input(&#39;Entrez le pourcentage de la classe [25-54] ans masculin, tapez None pour passer la question :&#39;)
-                liste_info.append(age3_1)
-                age3_2 = input(&#39;Entrez le pourcentage de la classe [25-54] ans feminin, tapez None pour passer la question :&#39;)
-                liste_info.append(age3_2)
+            while True : 
+                age3 = input(&#39;Entrez le pourcentage de la classe [25-54] ans total:&#39;)
+                if fbd.is_number(age3): 
+                    break
+            liste_info.append(age3)
+            while True :
+                age3_1 = input(&#39;Entrez le pourcentage de la classe [25-54] ans masculin:&#39;)
+                if fbd.is_number(age3_1): 
+                    break
+            liste_info.append(age3_1)
+            while True : 
+                age3_2 = input(&#39;Entrez le pourcentage de la classe [25-54] ans feminin:&#39;)
+                if fbd.is_number(age3_2): 
+                    break
+            liste_info.append(age3_2)
 
-                age4 = input(&#39;Entrez le pourcentage de la classe [55-64] ans total, tapez None pour passer la question :&#39;)
-                liste_info.append(age4)
-                age4_1 = input(&#39;Entrez le pourcentage de la classe [55-64] ans masculin, tapez None pour passer la question :&#39;)
-                liste_info.append(age4_1)
-                age4_2 = input(&#39;Entrez le pourcentage de la classe [55-64] ans feminin, tapez None pour passer la question :&#39;)
-                liste_info.append(age4_2)
+            while True : 
+                age4 = input(&#39;Entrez le pourcentage de la classe [55-64] ans total:&#39;)
+                if fbd.is_number(age4): 
+                    break
+            liste_info.append(age4)
+            while True :
+                age4_1 = input(&#39;Entrez le pourcentage de la classe [55-64] ans masculin:&#39;)
+                if fbd.is_number(age4_1): 
+                    break
+            liste_info.append(age4_1)
+            while True : 
+                age4_2 = input(&#39;Entrez le pourcentage de la classe [55-64] ans feminin:&#39;)
+                if fbd.is_number(age4_2): 
+                    break
+            liste_info.append(age4_2)
 
-                age5 = input(&#39;Entrez le pourcentage de la classe [65 ans et plus] total, tapez None pour passer la question :&#39;)
-                liste_info.append(age5)
-                age5_1 = input(&#39;Entrez le pourcentage de la classe [65 ans et plus] masculin, tapez None pour passer la question :&#39;)
-                liste_info.append(age5_1)
-                age5_2 = input(&#39;Entrez le pourcentage de la classe [65 ans et plus] feminin, tapez None pour passer la question :&#39;)
-                liste_info.append(age5_2)
+            while True : 
+                age5 = input(&#39;Entrez le pourcentage de la classe [+65] ans total:&#39;)
+                if fbd.is_number(age5): 
+                    break
+            liste_info.append(age5)
+            while True :
+                age5_1 = input(&#39;Entrez le pourcentage de la classe [+65] ans masculin:&#39;)
+                if fbd.is_number(age1_1): 
+                    break
+            liste_info.append(age5_1)
+            while True : 
+                age5_2 = input(&#39;Entrez le pourcentage de la classe [+65] ans feminin:&#39;)
+                if fbd.is_number(age5_2): 
+                    break
+            liste_info.append(age5_2)
 
             # Creation de l&#39;entree
             entree = fbd.pays_vide()
             entree[&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;] = Nom
-            print(&#34;Votre pays a bien été initialisé &#34;)
             if len(liste_info) &gt;0 : 
+                # Les tests provient d&#39;une version antérieure de la fonction (à retirer si j&#39;ai le temps)
                 if liste_info[0] not in [&#39;None&#39;,&#39;none&#39;]: 
                     entree[&#39;Geography&#39;][&#39;Area&#39;][&#39;total&#39;][&#39;text&#39;] = str(liste_info[0])+&#34; sq km; &#34;+str(liste_info[1])+&#34; sq km (metropolitan &#34;+ Nom +&#34;)&#34;
                 if liste_info[1] not in [&#39;None&#39;,&#39;none&#39;]: 
@@ -2415,15 +3353,15 @@ critere
                 if liste_info[8] not in [&#39;None&#39;,&#39;none&#39;]: 
                     entree[&#39;Military and Security&#39;][&#39;Military expenditures&#39;][&#39;text&#39;] = str(liste_info[12])+&#34;% of GDP (2014) ++ &#34;+str(liste_info[12])+&#34;% of GDP (2013) ++ &#34;+str(liste_info[13])+&#34;% of GDP (2012)&#34;
                 if liste_info[9] not in [&#39;None&#39;,&#39;none&#39;]: 
-                    entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;0-14 years&#39;][&#39;text&#39;] = str(liste_info[14])+&#34;% (male &#34;+str(liste_info[15])+&#34;% / female &#34;+str(liste_info[16])+&#34;)&#34;
+                    entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;0-14 years&#39;][&#39;text&#39;] = str(liste_info[14])+&#34;% (male &#34;+str(liste_info[15])+&#34;% / female &#34;+str(liste_info[16])+&#34;%)&#34;
                 if liste_info[10] not in [&#39;None&#39;,&#39;none&#39;]: 
-                    entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;15-24 years&#39;][&#39;text&#39;] = str(liste_info[17])+&#34;% (male &#34;+str(liste_info[18])+&#34;% / female &#34;+str(liste_info[19])+&#34;)&#34;
+                    entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;15-24 years&#39;][&#39;text&#39;] = str(liste_info[17])+&#34;% (male &#34;+str(liste_info[18])+&#34;% / female &#34;+str(liste_info[19])+&#34;%)&#34;
                 if liste_info[11] not in [&#39;None&#39;,&#39;none&#39;]: 
-                    entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;25-54 years&#39;][&#39;text&#39;] = str(liste_info[10])+&#34;% (male &#34;+str(liste_info[21])+&#34;% / female &#34;+str(liste_info[22])+&#34;)&#34;
+                    entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;25-54 years&#39;][&#39;text&#39;] = str(liste_info[10])+&#34;% (male &#34;+str(liste_info[21])+&#34;% / female &#34;+str(liste_info[22])+&#34;%)&#34;
                 if liste_info[12] not in [&#39;None&#39;,&#39;none&#39;]: 
-                    entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;55-64 years&#39;][&#39;text&#39;] = str(liste_info[23])+&#34;% (male &#34;+str(liste_info[24])+&#34;% / female &#34;+str(liste_info[25])+&#34;)&#34;
+                    entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;55-64 years&#39;][&#39;text&#39;] = str(liste_info[23])+&#34;% (male &#34;+str(liste_info[24])+&#34;% / female &#34;+str(liste_info[25])+&#34;%)&#34;
                 if liste_info[13] not in [&#39;None&#39;,&#39;none&#39;]: 
-                    entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;65 years and over&#39;][&#39;text&#39;] = str(liste_info[26])+&#34;% (male &#34;+str(liste_info[27])+&#34;% / female &#34;+str(liste_info[28])+&#34;)&#34;
+                    entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;65 years and over&#39;][&#39;text&#39;] = str(liste_info[26])+&#34;% (male &#34;+str(liste_info[27])+&#34;% / female &#34;+str(liste_info[28])+&#34;%)&#34;
                 print(&#39;Vos informations complementaires ont bien ete enregistrees&#39;)
             with open(r&#34;App\Functions\DataTreatment\country.json&#34;) as json_file: 
                 data =json.load(json_file)
@@ -2464,7 +3402,7 @@ critere
         while n &gt; 0 :
             liste_info= sugges[0]
             nom_pays = liste_info.pop(0) # Recupere le nom du pays pour le placer correctement
-            print(&#34;#####################################################&#34;)
+            print(&#34;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&#34;)
             print(&#34;Voici la suggestion : &#34;) 
             print(&#34;Nom du pays : &#34;, nom_pays)
             print(&#34;Superficie du pays : &#34;, str(liste_info[0])+&#34; sq km; &#34;+str(liste_info[1])+&#34; sq km (metropolitan &#34;+ nom_pays +&#34;)&#34;)
@@ -2476,12 +3414,12 @@ critere
             print(&#34;Depense santé du pays : &#34;, str(liste_info[10])+ &#34;% of GDP (2014)&#34;)
             print(&#34;Depense education du pays : &#34;, str(liste_info[11])+ &#34;% of GDP (2013)&#34;)
             print(&#34;Depense militaire du pays : &#34;,str(liste_info[12])+&#34;% of GDP (2014) ++ &#34;+str(liste_info[12])+&#34;% of GDP (2013) ++ &#34;+str(liste_info[13])+&#34;% of GDP (2012)&#34;)
-            print(&#34;Taux [0 - 14] ans  : &#34;, str(liste_info[14])+&#34;% (male &#34;+str(liste_info[15])+&#34;% / female &#34;+str(liste_info[16])+&#34;)&#34;)
-            print(&#34;Taux [15 - 24] ans : &#34;, str(liste_info[17])+&#34;% (male &#34;+str(liste_info[18])+&#34;% / female &#34;+str(liste_info[19])+&#34;)&#34;)
-            print(&#34;Taux [25 - 54] ans : &#34;, str(liste_info[10])+&#34;% (male &#34;+str(liste_info[21])+&#34;% / female &#34;+str(liste_info[22])+&#34;)&#34;)
-            print(&#34;Taux [55 - 64] ans : &#34;, str(liste_info[23])+&#34;% (male &#34;+str(liste_info[24])+&#34;% / female &#34;+str(liste_info[25])+&#34;)&#34;)
-            print(&#34;Taux [65 ans et plus] &#34;, sugges[0][14])
-            print(&#34;#####################################################&#34;)
+            print(&#34;Taux [0 - 14] ans  : &#34;, str(liste_info[14])+&#34;% (male &#34;+str(liste_info[15])+&#34;% / female &#34;+str(liste_info[16])+&#34;%)&#34;)
+            print(&#34;Taux [15 - 24] ans : &#34;, str(liste_info[17])+&#34;% (male &#34;+str(liste_info[18])+&#34;% / female &#34;+str(liste_info[19])+&#34;%)&#34;)
+            print(&#34;Taux [25 - 54] ans : &#34;, str(liste_info[10])+&#34;% (male &#34;+str(liste_info[21])+&#34;% / female &#34;+str(liste_info[22])+&#34;%)&#34;)
+            print(&#34;Taux [55 - 64] ans : &#34;, str(liste_info[23])+&#34;% (male &#34;+str(liste_info[24])+&#34;% / female &#34;+str(liste_info[25])+&#34;%)&#34;)
+            print(&#34;Taux [65 ans et plus] &#34;, str(liste_info[26])+&#34;% (male &#34;+str(liste_info[27])+&#34;% / female &#34;+str(liste_info[28])+&#34;%)&#34;)
+            print(&#34;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&#34;)
             while True : 
                 res = input(&#34;Vous pouvez accepter (A) ou rejeter (R) cette suggestion : &#34;)
                 if res in [&#34;A&#34;,&#34;a&#34;,&#34;R&#34;,&#34;r&#34;]: 
@@ -2513,15 +3451,15 @@ critere
                     if liste_info[8] not in [&#39;None&#39;,&#39;none&#39;]: 
                         data[nom_pays][&#39;Military and Security&#39;][&#39;Military expenditures&#39;][&#39;text&#39;] = str(liste_info[12])+&#34;% of GDP (2014) ++ &#34;+str(liste_info[12])+&#34;% of GDP (2013) ++ &#34;+str(liste_info[13])+&#34;% of GDP (2012)&#34;
                     if liste_info[9] not in [&#39;None&#39;,&#39;none&#39;]: 
-                        data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;0-14 years&#39;][&#39;text&#39;] = str(liste_info[14])+&#34;% (male &#34;+str(liste_info[15])+&#34;% / female &#34;+str(liste_info[16])+&#34;)&#34;
+                        data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;0-14 years&#39;][&#39;text&#39;] = str(liste_info[14])+&#34;% (male &#34;+str(liste_info[15])+&#34;% / female &#34;+str(liste_info[16])+&#34;%)&#34;
                     if liste_info[10] not in [&#39;None&#39;,&#39;none&#39;]: 
-                        data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;15-24 years&#39;][&#39;text&#39;] = str(liste_info[17])+&#34;% (male &#34;+str(liste_info[18])+&#34;% / female &#34;+str(liste_info[19])+&#34;)&#34;
+                        data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;15-24 years&#39;][&#39;text&#39;] = str(liste_info[17])+&#34;% (male &#34;+str(liste_info[18])+&#34;% / female &#34;+str(liste_info[19])+&#34;%)&#34;
                     if liste_info[11] not in [&#39;None&#39;,&#39;none&#39;]: 
-                        data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;25-54 years&#39;][&#39;text&#39;] = str(liste_info[10])+&#34;% (male &#34;+str(liste_info[21])+&#34;% / female &#34;+str(liste_info[22])+&#34;)&#34;
+                        data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;25-54 years&#39;][&#39;text&#39;] = str(liste_info[10])+&#34;% (male &#34;+str(liste_info[21])+&#34;% / female &#34;+str(liste_info[22])+&#34;%)&#34;
                     if liste_info[12] not in [&#39;None&#39;,&#39;none&#39;]: 
-                        data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;55-64 years&#39;][&#39;text&#39;] = str(liste_info[23])+&#34;% (male &#34;+str(liste_info[24])+&#34;% / female &#34;+str(liste_info[25])+&#34;)&#34;
+                        data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;55-64 years&#39;][&#39;text&#39;] = str(liste_info[23])+&#34;% (male &#34;+str(liste_info[24])+&#34;% / female &#34;+str(liste_info[25])+&#34;%)&#34;
                     if liste_info[13] not in [&#39;None&#39;,&#39;none&#39;]: 
-                        data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;65 years and over&#39;][&#39;text&#39;] = str(liste_info[26])+&#34;% (male &#34;+str(liste_info[27])+&#34;% / female &#34;+str(liste_info[28])+&#34;)&#34;
+                        data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;65 years and over&#39;][&#39;text&#39;] = str(liste_info[26])+&#34;% (male &#34;+str(liste_info[27])+&#34;% / female &#34;+str(liste_info[28])+&#34;%)&#34;
                     print(&#39;Vos informations complementaires ont bien ete enregistrees : &#39;)
 
             
@@ -2597,82 +3535,170 @@ critere
         print(&#34;Le pays entré n&#39;existe pas, un nouveau pays va être crée&#34;)
     finally :
         # La fonction demande à l&#39;utilisateur s&#39;il souhaite ajouter des informations
-        complementaire = input(&#39;Voulez vous ajouter des informations ? (Y/N)&#39;)
+        input(&#39;Nous allons maintenant ajouter des information complémentaires, cette étape est obligatoire\nAppuyez sur Entrer pour continuer&#39;)
         liste_info = []
-        # Si l&#39;utilisateur accepte 
-        if complementaire in [&#34;Y&#34;,&#34;y&#34;]: 
-            superficie = input(&#39;Entrez la superficie du pays en km2 totale, tapez None pour passer la question :&#39;)
-            liste_info.append(superficie)
-            superficie2 = input(&#39;Entrez la superficie du pays en km2 métropolitaine, tapez None pour passer la question :&#39;)
-            liste_info.append(superficie2)
-            pop = input(&#39;Entrez la population du pays, tapez None pour passer la question :&#39;)
-            liste_info.append(pop)
-            crois = input(&#39;Entrez la croissance demographique du pays en pourcentage , tapez None pour passer la question :&#39;)
-            liste_info.append(crois)
-            inflation = input(&#39;Entrez l\&#39;inflation du pays en pourcentage pour l\&#39;année 2016, tapez None pour passer la question :&#39;)
-            liste_info.append(inflation)
-            inflation2 = input(&#39;Entrez l\&#39;inflation du pays en pourcentage pour l\&#39;année 2015, tapez None pour passer la question :&#39;)
-            liste_info.append(inflation2)
-            dette = input(&#39;Entrez la dette en dollars - unité incluse (trillion, billion...) - pour l\&#39;année 2016, tapez None pour passer la question :&#39;)
-            liste_info.append(dette)
-            dette2 = input(&#39;Entrez la dette en dollars - unité incluse (trillion, billion...) - pour l\&#39;année 2016, tapez None pour passer la question :&#39;)
-            liste_info.append(dette2)
-            chom = input(&#39;Entrez la taux de chomage du pays en pourcentage pour l\&#39;année 2015, tapez None pour passer la question :&#39;)
-            liste_info.append(chom)
-            chom2 = input(&#39;Entrez la taux de chomage du pays en pourcentage pour l\&#39;année 2016, tapez None pour passer la question :&#39;)
-            liste_info.append(chom2)
-            sante = input(&#39;Entrez le taux de depense en sante du pays en pourcentage pour l\&#39;année 2014, tapez None pour passer la question :&#39;)
-            liste_info.append(sante)
-            edu = input(&#39;Entrez le taux de depense en education du pays en pourcentage pour l\&#39;année 2013, tapez None pour passer la question :&#39;)
-            liste_info.append(edu)
-            army = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2014, tapez None pour passer la question :&#39;)
-            liste_info.append(army)
-            army2 = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2013, tapez None pour passer la question :&#39;)
-            liste_info.append(army2)
-            army3 = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2012, tapez None pour passer la question :&#39;)
-            liste_info.append(army3)
+        while True :
+            superficie = input(&#39;Entrez la superficie du pays en km2 totale:&#39;)
+            if fbd.is_number(superficie): 
+                break
+        liste_info.append(superficie)
+        while True :
+            superficie2 = input(&#39;Entrez la superficie du pays en km2 métropolitaine:&#39;)
+            if fbd.is_number(superficie2): 
+                break
+        liste_info.append(superficie2)
+        while True :
+            pop = input(&#39;Entrez la population du pays:&#39;)
+            if fbd.is_number(pop): 
+                break
+        liste_info.append(pop)
+        while True :
+            crois = input(&#39;Entrez la croissance demographique du pays en pourcentage :&#39;)
+            if fbd.is_number(crois): 
+                break
+        liste_info.append(crois)
+        while True :
+            inflation = input(&#39;Entrez l\&#39;inflation du pays en pourcentage pour l\&#39;année 2016:&#39;)
+            if fbd.is_number(inflation): 
+                break
+        liste_info.append(inflation)
+        while True : 
+            inflation2 = input(&#39;Entrez l\&#39;inflation du pays en pourcentage pour l\&#39;année 2015:&#39;)
+            if fbd.is_number(inflation2): 
+                break
+        liste_info.append(inflation2)
+        while True : 
+            dette = input(&#39;Entrez la dette en dollars pour l\&#39;année 2016:&#39;)
+            if fbd.is_number(dette): 
+                break
+        liste_info.append(dette)
+        while True :
+            dette2 = input(&#39;Entrez la dette en dollars pour l\&#39;année 2016:&#39;)
+            if fbd.is_number(crois): 
+                break
+        liste_info.append(dette2)
+        while True : 
+            chom = input(&#39;Entrez la taux de chomage du pays en pourcentage pour l\&#39;année 2015:&#39;)
+            if fbd.is_number(chom): 
+                break
+        liste_info.append(chom)
+        while True : 
+            chom2 = input(&#39;Entrez la taux de chomage du pays en pourcentage pour l\&#39;année 2016:&#39;)
+            if fbd.is_number(chom2): 
+                break
+        liste_info.append(chom2)
+        while True : 
+            sante = input(&#39;Entrez le taux de depense en sante du pays en pourcentage pour l\&#39;année 2014:&#39;)
+            if fbd.is_number(sante): 
+                break
+        liste_info.append(sante)
+        while True : 
+            edu = input(&#39;Entrez le taux de depense en education du pays en pourcentage pour l\&#39;année 2013:&#39;)
+            if fbd.is_number(edu): 
+                break
+        liste_info.append(edu)
+        while True : 
+            army = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2014:&#39;)
+            if fbd.is_number(army): 
+                break
+        liste_info.append(army)
+        while True : 
+            army2 = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2013:&#39;)
+            if fbd.is_number(army2): 
+                break
+        liste_info.append(army2)
+        while True : 
+            army3 = input(&#39;Entrez le taux de depense militaire du pays en pourcentage pour 2012:&#39;)
+            if fbd.is_number(army3): 
+                break
+        liste_info.append(army3)
 
-            # Entree des 5 classes d\&#39;age
-            age1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans total, tapez None pour passer la question :&#39;)
-            liste_info.append(age1)
-            age1_1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans masculin, tapez None pour passer la question :&#39;)
-            liste_info.append(age1_1)
-            age1_2 = input(&#39;Entrez le pourcentage de la classe [0-14] ans feminin, tapez None pour passer la question :&#39;)
-            liste_info.append(age1_2)
+        # Entree des 5 classes d\&#39;age
+        while True : 
+            age1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans total:&#39;)
+            if fbd.is_number(age1): 
+                break
+        liste_info.append(age1)
+        while True :
+            age1_1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans masculin:&#39;)
+            if fbd.is_number(age1_1): 
+                break
+        liste_info.append(age1_1)
+        while True : 
+            age1_2 = input(&#39;Entrez le pourcentage de la classe [0-14] ans feminin:&#39;)
+            if fbd.is_number(age1_2): 
+                break
+        liste_info.append(age1_2)
 
-            age2 = input(&#39;Entrez le pourcentage de la classe [0-14] ans total, tapez None pour passer la question :&#39;)
-            liste_info.append(age2)
-            age2_1 = input(&#39;Entrez le pourcentage de la classe [0-14] ans masculin, tapez None pour passer la question :&#39;)
-            liste_info.append(age2_1)
-            age2_2 = input(&#39;Entrez le pourcentage de la classe [0-14] ans feminin, tapez None pour passer la question :&#39;)
-            liste_info.append(age2_2)
+        while True : 
+            age2 = input(&#39;Entrez le pourcentage de la classe [15-24] ans total:&#39;)
+            if fbd.is_number(age2): 
+                break
+        liste_info.append(age2)
+        while True :
+            age2_1 = input(&#39;Entrez le pourcentage de la classe [15-24] ans masculin:&#39;)
+            if fbd.is_number(age2_1): 
+                break
+        liste_info.append(age2_1)
+        while True : 
+            age2_2 = input(&#39;Entrez le pourcentage de la classe [15-24] ans feminin:&#39;)
+            if fbd.is_number(age2_2): 
+                break
+        liste_info.append(age2_2)
 
-            age3 = input(&#39;Entrez le pourcentage de la classe [25-54] ans total, tapez None pour passer la question :&#39;)
-            liste_info.append(age3)
-            age3_1 = input(&#39;Entrez le pourcentage de la classe [25-54] ans masculin, tapez None pour passer la question :&#39;)
-            liste_info.append(age3_1)
-            age3_2 = input(&#39;Entrez le pourcentage de la classe [25-54] ans feminin, tapez None pour passer la question :&#39;)
-            liste_info.append(age3_2)
+        while True : 
+            age3 = input(&#39;Entrez le pourcentage de la classe [25-54] ans total:&#39;)
+            if fbd.is_number(age3): 
+                break
+        liste_info.append(age3)
+        while True :
+            age3_1 = input(&#39;Entrez le pourcentage de la classe [25-54] ans masculin:&#39;)
+            if fbd.is_number(age3_1): 
+                break
+        liste_info.append(age3_1)
+        while True : 
+            age3_2 = input(&#39;Entrez le pourcentage de la classe [25-54] ans feminin:&#39;)
+            if fbd.is_number(age3_2): 
+                break
+        liste_info.append(age3_2)
 
-            age4 = input(&#39;Entrez le pourcentage de la classe [55-64] ans total, tapez None pour passer la question :&#39;)
-            liste_info.append(age4)
-            age4_1 = input(&#39;Entrez le pourcentage de la classe [55-64] ans masculin, tapez None pour passer la question :&#39;)
-            liste_info.append(age4_1)
-            age4_2 = input(&#39;Entrez le pourcentage de la classe [55-64] ans feminin, tapez None pour passer la question :&#39;)
-            liste_info.append(age4_2)
+        while True : 
+            age4 = input(&#39;Entrez le pourcentage de la classe [55-64] ans total:&#39;)
+            if fbd.is_number(age4): 
+                break
+        liste_info.append(age4)
+        while True :
+            age4_1 = input(&#39;Entrez le pourcentage de la classe [55-64] ans masculin:&#39;)
+            if fbd.is_number(age4_1): 
+                break
+        liste_info.append(age4_1)
+        while True : 
+            age4_2 = input(&#39;Entrez le pourcentage de la classe [55-64] ans feminin:&#39;)
+            if fbd.is_number(age4_2): 
+                break
+        liste_info.append(age4_2)
 
-            age5 = input(&#39;Entrez le pourcentage de la classe [65 ans et plus] total, tapez None pour passer la question :&#39;)
-            liste_info.append(age5)
-            age5_1 = input(&#39;Entrez le pourcentage de la classe [65 ans et plus] masculin, tapez None pour passer la question :&#39;)
-            liste_info.append(age5_1)
-            age5_2 = input(&#39;Entrez le pourcentage de la classe [65 ans et plus] feminin, tapez None pour passer la question :&#39;)
-            liste_info.append(age5_2)
+        while True : 
+            age5 = input(&#39;Entrez le pourcentage de la classe [+65] ans total:&#39;)
+            if fbd.is_number(age5): 
+                break
+        liste_info.append(age5)
+        while True :
+            age5_1 = input(&#39;Entrez le pourcentage de la classe [+65] ans masculin:&#39;)
+            if fbd.is_number(age1_1): 
+                break
+        liste_info.append(age5_1)
+        while True : 
+            age5_2 = input(&#39;Entrez le pourcentage de la classe [+65] ans feminin:&#39;)
+            if fbd.is_number(age5_2): 
+                break
+        liste_info.append(age5_2)
 
         # Creation de l&#39;entree
         entree = fbd.pays_vide()
         entree[&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;] = Nom
-        print(&#34;Votre pays a bien été initialisé &#34;)
         if len(liste_info) &gt;0 : 
+            # Les tests provient d&#39;une version antérieure de la fonction (à retirer si j&#39;ai le temps)
             if liste_info[0] not in [&#39;None&#39;,&#39;none&#39;]: 
                 entree[&#39;Geography&#39;][&#39;Area&#39;][&#39;total&#39;][&#39;text&#39;] = str(liste_info[0])+&#34; sq km; &#34;+str(liste_info[1])+&#34; sq km (metropolitan &#34;+ Nom +&#34;)&#34;
             if liste_info[1] not in [&#39;None&#39;,&#39;none&#39;]: 
@@ -2692,15 +3718,15 @@ critere
             if liste_info[8] not in [&#39;None&#39;,&#39;none&#39;]: 
                 entree[&#39;Military and Security&#39;][&#39;Military expenditures&#39;][&#39;text&#39;] = str(liste_info[12])+&#34;% of GDP (2014) ++ &#34;+str(liste_info[12])+&#34;% of GDP (2013) ++ &#34;+str(liste_info[13])+&#34;% of GDP (2012)&#34;
             if liste_info[9] not in [&#39;None&#39;,&#39;none&#39;]: 
-                entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;0-14 years&#39;][&#39;text&#39;] = str(liste_info[14])+&#34;% (male &#34;+str(liste_info[15])+&#34;% / female &#34;+str(liste_info[16])+&#34;)&#34;
+                entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;0-14 years&#39;][&#39;text&#39;] = str(liste_info[14])+&#34;% (male &#34;+str(liste_info[15])+&#34;% / female &#34;+str(liste_info[16])+&#34;%)&#34;
             if liste_info[10] not in [&#39;None&#39;,&#39;none&#39;]: 
-                entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;15-24 years&#39;][&#39;text&#39;] = str(liste_info[17])+&#34;% (male &#34;+str(liste_info[18])+&#34;% / female &#34;+str(liste_info[19])+&#34;)&#34;
+                entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;15-24 years&#39;][&#39;text&#39;] = str(liste_info[17])+&#34;% (male &#34;+str(liste_info[18])+&#34;% / female &#34;+str(liste_info[19])+&#34;%)&#34;
             if liste_info[11] not in [&#39;None&#39;,&#39;none&#39;]: 
-                entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;25-54 years&#39;][&#39;text&#39;] = str(liste_info[10])+&#34;% (male &#34;+str(liste_info[21])+&#34;% / female &#34;+str(liste_info[22])+&#34;)&#34;
+                entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;25-54 years&#39;][&#39;text&#39;] = str(liste_info[10])+&#34;% (male &#34;+str(liste_info[21])+&#34;% / female &#34;+str(liste_info[22])+&#34;%)&#34;
             if liste_info[12] not in [&#39;None&#39;,&#39;none&#39;]: 
-                entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;55-64 years&#39;][&#39;text&#39;] = str(liste_info[23])+&#34;% (male &#34;+str(liste_info[24])+&#34;% / female &#34;+str(liste_info[25])+&#34;)&#34;
+                entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;55-64 years&#39;][&#39;text&#39;] = str(liste_info[23])+&#34;% (male &#34;+str(liste_info[24])+&#34;% / female &#34;+str(liste_info[25])+&#34;%)&#34;
             if liste_info[13] not in [&#39;None&#39;,&#39;none&#39;]: 
-                entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;65 years and over&#39;][&#39;text&#39;] = str(liste_info[26])+&#34;% (male &#34;+str(liste_info[27])+&#34;% / female &#34;+str(liste_info[28])+&#34;)&#34;
+                entree[&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;65 years and over&#39;][&#39;text&#39;] = str(liste_info[26])+&#34;% (male &#34;+str(liste_info[27])+&#34;% / female &#34;+str(liste_info[28])+&#34;%)&#34;
             print(&#39;Vos informations complementaires ont bien ete enregistrees&#39;)
         with open(r&#34;App\Functions\DataTreatment\country.json&#34;) as json_file: 
             data =json.load(json_file)
@@ -2794,7 +3820,7 @@ critere
     while n &gt; 0 :
         liste_info= sugges[0]
         nom_pays = liste_info.pop(0) # Recupere le nom du pays pour le placer correctement
-        print(&#34;#####################################################&#34;)
+        print(&#34;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&#34;)
         print(&#34;Voici la suggestion : &#34;) 
         print(&#34;Nom du pays : &#34;, nom_pays)
         print(&#34;Superficie du pays : &#34;, str(liste_info[0])+&#34; sq km; &#34;+str(liste_info[1])+&#34; sq km (metropolitan &#34;+ nom_pays +&#34;)&#34;)
@@ -2806,12 +3832,12 @@ critere
         print(&#34;Depense santé du pays : &#34;, str(liste_info[10])+ &#34;% of GDP (2014)&#34;)
         print(&#34;Depense education du pays : &#34;, str(liste_info[11])+ &#34;% of GDP (2013)&#34;)
         print(&#34;Depense militaire du pays : &#34;,str(liste_info[12])+&#34;% of GDP (2014) ++ &#34;+str(liste_info[12])+&#34;% of GDP (2013) ++ &#34;+str(liste_info[13])+&#34;% of GDP (2012)&#34;)
-        print(&#34;Taux [0 - 14] ans  : &#34;, str(liste_info[14])+&#34;% (male &#34;+str(liste_info[15])+&#34;% / female &#34;+str(liste_info[16])+&#34;)&#34;)
-        print(&#34;Taux [15 - 24] ans : &#34;, str(liste_info[17])+&#34;% (male &#34;+str(liste_info[18])+&#34;% / female &#34;+str(liste_info[19])+&#34;)&#34;)
-        print(&#34;Taux [25 - 54] ans : &#34;, str(liste_info[10])+&#34;% (male &#34;+str(liste_info[21])+&#34;% / female &#34;+str(liste_info[22])+&#34;)&#34;)
-        print(&#34;Taux [55 - 64] ans : &#34;, str(liste_info[23])+&#34;% (male &#34;+str(liste_info[24])+&#34;% / female &#34;+str(liste_info[25])+&#34;)&#34;)
-        print(&#34;Taux [65 ans et plus] &#34;, sugges[0][14])
-        print(&#34;#####################################################&#34;)
+        print(&#34;Taux [0 - 14] ans  : &#34;, str(liste_info[14])+&#34;% (male &#34;+str(liste_info[15])+&#34;% / female &#34;+str(liste_info[16])+&#34;%)&#34;)
+        print(&#34;Taux [15 - 24] ans : &#34;, str(liste_info[17])+&#34;% (male &#34;+str(liste_info[18])+&#34;% / female &#34;+str(liste_info[19])+&#34;%)&#34;)
+        print(&#34;Taux [25 - 54] ans : &#34;, str(liste_info[10])+&#34;% (male &#34;+str(liste_info[21])+&#34;% / female &#34;+str(liste_info[22])+&#34;%)&#34;)
+        print(&#34;Taux [55 - 64] ans : &#34;, str(liste_info[23])+&#34;% (male &#34;+str(liste_info[24])+&#34;% / female &#34;+str(liste_info[25])+&#34;%)&#34;)
+        print(&#34;Taux [65 ans et plus] &#34;, str(liste_info[26])+&#34;% (male &#34;+str(liste_info[27])+&#34;% / female &#34;+str(liste_info[28])+&#34;%)&#34;)
+        print(&#34;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&#34;)
         while True : 
             res = input(&#34;Vous pouvez accepter (A) ou rejeter (R) cette suggestion : &#34;)
             if res in [&#34;A&#34;,&#34;a&#34;,&#34;R&#34;,&#34;r&#34;]: 
@@ -2843,15 +3869,15 @@ critere
                 if liste_info[8] not in [&#39;None&#39;,&#39;none&#39;]: 
                     data[nom_pays][&#39;Military and Security&#39;][&#39;Military expenditures&#39;][&#39;text&#39;] = str(liste_info[12])+&#34;% of GDP (2014) ++ &#34;+str(liste_info[12])+&#34;% of GDP (2013) ++ &#34;+str(liste_info[13])+&#34;% of GDP (2012)&#34;
                 if liste_info[9] not in [&#39;None&#39;,&#39;none&#39;]: 
-                    data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;0-14 years&#39;][&#39;text&#39;] = str(liste_info[14])+&#34;% (male &#34;+str(liste_info[15])+&#34;% / female &#34;+str(liste_info[16])+&#34;)&#34;
+                    data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;0-14 years&#39;][&#39;text&#39;] = str(liste_info[14])+&#34;% (male &#34;+str(liste_info[15])+&#34;% / female &#34;+str(liste_info[16])+&#34;%)&#34;
                 if liste_info[10] not in [&#39;None&#39;,&#39;none&#39;]: 
-                    data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;15-24 years&#39;][&#39;text&#39;] = str(liste_info[17])+&#34;% (male &#34;+str(liste_info[18])+&#34;% / female &#34;+str(liste_info[19])+&#34;)&#34;
+                    data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;15-24 years&#39;][&#39;text&#39;] = str(liste_info[17])+&#34;% (male &#34;+str(liste_info[18])+&#34;% / female &#34;+str(liste_info[19])+&#34;%)&#34;
                 if liste_info[11] not in [&#39;None&#39;,&#39;none&#39;]: 
-                    data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;25-54 years&#39;][&#39;text&#39;] = str(liste_info[10])+&#34;% (male &#34;+str(liste_info[21])+&#34;% / female &#34;+str(liste_info[22])+&#34;)&#34;
+                    data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;25-54 years&#39;][&#39;text&#39;] = str(liste_info[10])+&#34;% (male &#34;+str(liste_info[21])+&#34;% / female &#34;+str(liste_info[22])+&#34;%)&#34;
                 if liste_info[12] not in [&#39;None&#39;,&#39;none&#39;]: 
-                    data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;55-64 years&#39;][&#39;text&#39;] = str(liste_info[23])+&#34;% (male &#34;+str(liste_info[24])+&#34;% / female &#34;+str(liste_info[25])+&#34;)&#34;
+                    data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;55-64 years&#39;][&#39;text&#39;] = str(liste_info[23])+&#34;% (male &#34;+str(liste_info[24])+&#34;% / female &#34;+str(liste_info[25])+&#34;%)&#34;
                 if liste_info[13] not in [&#39;None&#39;,&#39;none&#39;]: 
-                    data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;65 years and over&#39;][&#39;text&#39;] = str(liste_info[26])+&#34;% (male &#34;+str(liste_info[27])+&#34;% / female &#34;+str(liste_info[28])+&#34;)&#34;
+                    data[nom_pays][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;65 years and over&#39;][&#39;text&#39;] = str(liste_info[26])+&#34;% (male &#34;+str(liste_info[27])+&#34;% / female &#34;+str(liste_info[28])+&#34;%)&#34;
                 print(&#39;Vos informations complementaires ont bien ete enregistrees : &#39;)
 
         
@@ -3171,10 +4197,15 @@ nom_ou_code_pays {string} &ndash; Nom ou code du pays à afficher</p>
 <li>
 <h4><code><a title="Acteurs.DataScientist" href="#Acteurs.DataScientist">DataScientist</a></code></h4>
 <ul class="">
+<li><code><a title="Acteurs.DataScientist.affichage_seuil_inf" href="#Acteurs.DataScientist.affichage_seuil_inf">affichage_seuil_inf</a></code></li>
+<li><code><a title="Acteurs.DataScientist.affichage_seuil_sup" href="#Acteurs.DataScientist.affichage_seuil_sup">affichage_seuil_sup</a></code></li>
+<li><code><a title="Acteurs.DataScientist.affichage_tableau_age" href="#Acteurs.DataScientist.affichage_tableau_age">affichage_tableau_age</a></code></li>
 <li><code><a title="Acteurs.DataScientist.clust" href="#Acteurs.DataScientist.clust">clust</a></code></li>
 <li><code><a title="Acteurs.DataScientist.connexion" href="#Acteurs.DataScientist.connexion">connexion</a></code></li>
+<li><code><a title="Acteurs.DataScientist.description" href="#Acteurs.DataScientist.description">description</a></code></li>
 <li><code><a title="Acteurs.DataScientist.representationgraphique" href="#Acteurs.DataScientist.representationgraphique">representationgraphique</a></code></li>
-<li><code><a title="Acteurs.DataScientist.resume" href="#Acteurs.DataScientist.resume">resume</a></code></li>
+<li><code><a title="Acteurs.DataScientist.tricrois" href="#Acteurs.DataScientist.tricrois">tricrois</a></code></li>
+<li><code><a title="Acteurs.DataScientist.tridecrois" href="#Acteurs.DataScientist.tridecrois">tridecrois</a></code></li>
 </ul>
 </li>
 <li>

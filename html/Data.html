@@ -28,9 +28,11 @@
 <pre><code class="python">&#34;&#34;&#34;Importation et traitement des données du fichier json 
 &#34;&#34;&#34;### Importation des donnees ### 
 import json
-with open(&#34;DataTreatment/Country - Backup - FirstVer.json&#34;) as json_file:
-    data = json.load(json_file)
 from FonctionBD import pays_vide
+
+
+with open(r&#34;DataTreatment\Country - Backup - FirstVer.json&#34;) as json_file:
+    data = json.load(json_file)
 
 
 ### Tentative de suppression des valeurs manquantes ####
@@ -45,7 +47,7 @@ def clean_table(data):
     Returns : 
         data_clean {list of dict} -- Base de donnée nettoyée 
     &#34;&#34;&#34;    
-    n=len( data)
+    n=len(data)
     Table=[]
     for i in range(n):
         Intermed=11*[0]
@@ -139,7 +141,7 @@ def clean_table(data):
 
 data_clean = clean_table(data) 
 
-with open(&#34;country.json&#34;, &#34;w&#34;) as write_file:
+with open(r&#34;DataTreatment\country.json&#34;, &#34;w&#34;) as write_file:
     json.dump(data_clean, write_file)</code></pre>
 </details>
 </section>
@@ -176,7 +178,7 @@ Ne garde également que les critères utilisés </p>
     Returns : 
         data_clean {list of dict} -- Base de donnée nettoyée 
     &#34;&#34;&#34;    
-    n=len( data)
+    n=len(data)
     Table=[]
     for i in range(n):
         Intermed=11*[0]

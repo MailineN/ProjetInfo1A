@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.8.1" />
 <title>Fonction_bonus API documentation</title>
-<meta name="description" content="" />
+<meta name="description" content="Fonction bonus de l&#39;application.
+Elle consiste à la réalisation d&#39;un clustering sur les données de l&#39;application …" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
@@ -20,11 +21,26 @@
 <h1 class="title">Module <code>Fonction_bonus</code></h1>
 </header>
 <section id="section-intro">
+<p>Fonction bonus de l'application.
+Elle consiste à la réalisation d'un clustering sur les données de l'application.</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>Exception</code></dt>
+<dd>L'erreur d'argument indique que l'utilisateur a outrepassé les menus, normalement impossible</dd>
+</dl>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">import pandas as pd
+<pre><code class="python">&#34;&#34;&#34;Fonction bonus de l&#39;application. 
+Elle consiste à la réalisation d&#39;un clustering sur les données de l&#39;application.
+
+Raises:
+    Exception: L&#39;erreur d&#39;argument indique que l&#39;utilisateur a outrepassé les menus, normalement impossible
+
+
+&#34;&#34;&#34;
+import pandas as pd
 import json
 import numpy as np 
 import matplotlib.pyplot as plt
@@ -33,157 +49,40 @@ from scipy.cluster.hierarchy import dendrogram, linkage
 from sklearn.preprocessing import StandardScaler 
 from sklearn.decomposition import PCA
 from sklearn import metrics
+from FonctionBD import to_df
 #générer la matrice des liens
 
-class Clustering: 
+class clustering:
+    &#34;&#34;&#34;Classe regroupant les méthodes de clustering, ici le CAH et les K-means
+    &#34;&#34;&#34;    
     def __init__(self): 
+        &#34;&#34;&#34;Transformation de la base de donnée initiale en pandas df afin de faire le clustering plus facilement
+        &#34;&#34;&#34;        
+        self.df,self.pays=to_df()
 
-        &#34;&#34;&#34;Transforme la base de donnée json en dataframe plus adaptée pour le clustering 
-        Retire le pays &#39;Inde&#39; qui pose problème 
-
-        Returns:
-            df {pandas dataframe} -- Dataframe contenant les informations pays 
-            pays {list} -- Liste des pays 
-        &#34;&#34;&#34;    
-        filename=&#34;DataTreatment/country.json&#34;
-        with open(filename) as json_file:
-            data = json.load(json_file)     
-
-        pays=[]         
-        tranche1=[]
-        tranche2=[]
-        tranche3=[]
-        tranche4=[]
-        tranche5=[]
-        area = []
-        hab = []
-        growth = []
-        debt = []
-        unemploy = []
-        healthcare = []
-        education = []
-        military = []
-
-        #Récupération des données numériques
-        for j in range (len(data)):
-            pays.append(data[j][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
-
-            superficie = data[j][&#39;Geography&#39;][&#39;Area&#39;][&#39;total&#39;][&#39;text&#39;]
-            superficie = superficie[:superficie.find(&#39; s&#39;)]
-            superficie = superficie.replace( &#39;,&#39; , &#39;&#39; )    
-            area.append(float(superficie))
-
-            pop = data[j][&#39;People and Society&#39;][&#39;Population&#39;][&#39;text&#39;]
-            pop = pop[:pop.find(&#39; (&#39;)]
-            pop = pop[:pop.find(&#39; m&#39;)]
-            pop = pop.replace( &#39;,&#39; , &#39;&#39; )
-            hab.append(float(pop))
-
-            pourcent = data[j][&#39;People and Society&#39;][&#39;Population growth rate&#39;][&#39;text&#39;]
-            pourcent = pourcent[:pourcent.find(&#39;%&#39;)]   
-            growth.append(float(pourcent)) 
-
-            dette=data[j][&#39;Economy&#39;][&#39;Debt - external&#39;][&#39;text&#39;]                
-            dette=dette[:dette.find(&#39; (&#39;)]
-            dette=dette.replace(&#39;$&#39;,&#39;&#39;)
-            dette=dette.replace(&#39; million&#39;,&#39;&#39;)
-            dette=dette.replace(&#39; billion&#39;,&#39;e3&#39;)
-            dette=dette.replace(&#39; trillion&#39;,&#39;e6&#39;)
-            debt.append(float(dette))
-
-            taux=data[j][&#39;Economy&#39;][&#39;Unemployment rate&#39;][&#39;text&#39;]
-            taux=taux[:taux.find(&#39; ++&#39;)]
-            taux = taux[:taux.find(&#39;%&#39;)]
-            unemploy.append(float(taux))
-
-            pourcent = data[j][&#39;People and Society&#39;][&#39;Health expenditures&#39;][&#39;text&#39;]                  
-            pourcent = pourcent[:pourcent.find(&#39;%&#39;)]
-            healthcare.append(float(pourcent))
-
-            dep=data[j][&#39;People and Society&#39;][&#39;Education expenditures&#39;][&#39;text&#39;]                
-            dep=dep[:dep.find(&#39;%&#39;)]
-            education.append(float(dep))
-
-            dep=data[j][&#39;Military and Security&#39;][&#39;Military expenditures&#39;][&#39;text&#39;]
-            dep=dep[:dep.find(&#39; ++&#39;)]
-            dep=dep[:dep.find(&#39;%&#39;)]
-            military.append(float(dep)) 
-
-            tranche1.append(data[j][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;0-14 years&#39;][&#39;text&#39;])
-            tranche2.append(data[j][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;15-24 years&#39;][&#39;text&#39;])
-            tranche3.append(data[j][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;25-54 years&#39;][&#39;text&#39;])
-            tranche4.append(data[j][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;55-64 years&#39;][&#39;text&#39;])
-            tranche5.append(data[j][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;65 years and over&#39;][&#39;text&#39;])
-
-            TR1=[]
-            for z in range(len(tranche1)):
-                TR1.append(float(tranche1[z][:tranche1[z].find(&#39;%&#39;)]))
-                                
-            TR2=[]
-            for z in range(len(tranche2)):
-                TR2.append(float(tranche2[z][:tranche2[z].find(&#39;%&#39;)]))
-            
-            TR3=[]
-            for z in range(len(tranche3)):
-                TR3.append(float(tranche3[z][:tranche3[z].find(&#39;%&#39;)]))    
-            
-            TR4=[]
-            for z in range(len(tranche4)):
-                TR4.append(float(tranche4[z][:tranche4[z].find(&#39;%&#39;)]))    
-        
-            TR5=[]
-            for z in range(len(tranche5)):
-                TR5.append(float(tranche5[z][:tranche5[z].find(&#39;%&#39;)]))
-
-        Data = {
-            &#39;Superficie&#39; : area,
-            &#39;Population&#39; : hab,
-            &#39;Croissance démographique&#39; : growth,
-            &#39;Dette&#39; : debt,
-            &#39;Taux de chômage&#39; : unemploy,
-            &#39;Taux de dépense en santé&#39; : healthcare,
-            &#39;Taux de dépense en éducation&#39; : education,
-            &#39;Taux de dépense militaire&#39; : military,
-            &#39;Classe des 0-14 ans&#39;: TR1,
-            &#39;Classe des 15-24 ans&#39;: TR2,
-            &#39;Classe des 25-54 ans&#39;: TR3,
-            &#39;Classe des 55-64 ans&#39;: TR4,
-            &#39;Classe des plus de 65 ans&#39;: TR5,
-        }
-        
-        df = pd.DataFrame(Data,columns=[
-            &#39;Superficie&#39;,
-            &#39;Population&#39;,
-            &#39;Croissance démographique&#39;,
-            &#39;Dette&#39;,
-            &#39;Taux de chômage&#39;,
-            &#39;Taux de dépense en santé&#39;,
-            &#39;Taux de dépense en éducation&#39;,
-            &#39;Taux de dépense militaire&#39;,
-            &#39;Classe des 0-14 ans&#39;,
-            &#39;Classe des 15-24 ans&#39;,
-            &#39;Classe des 25-54 ans&#39;,
-            &#39;Classe des 55-64 ans&#39;,
-            &#39;Classe des plus de 65 ans&#39;])
-
-        df=df.drop(pays.index(&#39;India&#39;))
-        pays.remove(&#39;India&#39;)
-        self.df = df
-        self.pays = pays
 
     def clust_CAH(self):
+        &#34;&#34;&#34;Réalisation d&#39;un clustering selon la méthode du CAH
+
+        Arguments:
+            self {clustering.class} -- jeu de données utilisées pour le clustering 
+        &#34;&#34;&#34;        
         Z = linkage(self.df,method=&#39;ward&#39;,metric=&#39;euclidean&#39;)
         #affichage du dendrogramme
         plt.title(&#34;CAH&#34;)
         dendrogram(Z,labels=self.pays,orientation=&#39;left&#39;,color_threshold=1.5*(10**7))
         plt.show() 
 
-
     def clust_Kmeans(self):
+        &#34;&#34;&#34;Réalisation d&#39;un clustering selon la méthode du CAH
+
+        Arguments:
+            self {clustering.class} -- jeu de données utilisées pour le clustering 
+        &#34;&#34;&#34;    
         ss = StandardScaler()
         ss.fit_transform(self.df)
         
-        kmeans = cluster.KMeans(n_clusters=3).fit(self.df)
+        kmeans = cluster.KMeans(n_clusters=4).fit(self.df)
 
         acp = PCA(n_components=2).fit_transform(self.df)
 
@@ -204,172 +103,47 @@ class Clustering:
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="Fonction_bonus.Clustering"><code class="flex name class">
-<span>class <span class="ident">Clustering</span></span>
+<dt id="Fonction_bonus.clustering"><code class="flex name class">
+<span>class <span class="ident">clustering</span></span>
 </code></dt>
 <dd>
-<div class="desc"><p>Transforme la base de donnée json en dataframe plus adaptée pour le clustering
-Retire le pays 'Inde' qui pose problème </p>
-<h2 id="returns">Returns</h2>
-<dl>
-<dt><code>df {pandas dataframe} -- Dataframe contenant les informations pays</code></dt>
-<dd>&nbsp;</dd>
-<dt><code>pays {list} -- Liste des pays</code></dt>
-<dd>&nbsp;</dd>
-</dl></div>
+<div class="desc"><p>Classe regroupant les méthodes de clustering, ici le CAH et les K-means</p>
+<p>Transformation de la base de donnée initiale en pandas df afin de faire le clustering plus facilement</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">class Clustering: 
+<pre><code class="python">class clustering:
+    &#34;&#34;&#34;Classe regroupant les méthodes de clustering, ici le CAH et les K-means
+    &#34;&#34;&#34;    
     def __init__(self): 
+        &#34;&#34;&#34;Transformation de la base de donnée initiale en pandas df afin de faire le clustering plus facilement
+        &#34;&#34;&#34;        
+        self.df,self.pays=to_df()
 
-        &#34;&#34;&#34;Transforme la base de donnée json en dataframe plus adaptée pour le clustering 
-        Retire le pays &#39;Inde&#39; qui pose problème 
-
-        Returns:
-            df {pandas dataframe} -- Dataframe contenant les informations pays 
-            pays {list} -- Liste des pays 
-        &#34;&#34;&#34;    
-        filename=&#34;DataTreatment/country.json&#34;
-        with open(filename) as json_file:
-            data = json.load(json_file)     
-
-        pays=[]         
-        tranche1=[]
-        tranche2=[]
-        tranche3=[]
-        tranche4=[]
-        tranche5=[]
-        area = []
-        hab = []
-        growth = []
-        debt = []
-        unemploy = []
-        healthcare = []
-        education = []
-        military = []
-
-        #Récupération des données numériques
-        for j in range (len(data)):
-            pays.append(data[j][&#39;Government&#39;][&#39;Country name&#39;][&#39;conventional short form&#39;][&#39;text&#39;])
-
-            superficie = data[j][&#39;Geography&#39;][&#39;Area&#39;][&#39;total&#39;][&#39;text&#39;]
-            superficie = superficie[:superficie.find(&#39; s&#39;)]
-            superficie = superficie.replace( &#39;,&#39; , &#39;&#39; )    
-            area.append(float(superficie))
-
-            pop = data[j][&#39;People and Society&#39;][&#39;Population&#39;][&#39;text&#39;]
-            pop = pop[:pop.find(&#39; (&#39;)]
-            pop = pop[:pop.find(&#39; m&#39;)]
-            pop = pop.replace( &#39;,&#39; , &#39;&#39; )
-            hab.append(float(pop))
-
-            pourcent = data[j][&#39;People and Society&#39;][&#39;Population growth rate&#39;][&#39;text&#39;]
-            pourcent = pourcent[:pourcent.find(&#39;%&#39;)]   
-            growth.append(float(pourcent)) 
-
-            dette=data[j][&#39;Economy&#39;][&#39;Debt - external&#39;][&#39;text&#39;]                
-            dette=dette[:dette.find(&#39; (&#39;)]
-            dette=dette.replace(&#39;$&#39;,&#39;&#39;)
-            dette=dette.replace(&#39; million&#39;,&#39;&#39;)
-            dette=dette.replace(&#39; billion&#39;,&#39;e3&#39;)
-            dette=dette.replace(&#39; trillion&#39;,&#39;e6&#39;)
-            debt.append(float(dette))
-
-            taux=data[j][&#39;Economy&#39;][&#39;Unemployment rate&#39;][&#39;text&#39;]
-            taux=taux[:taux.find(&#39; ++&#39;)]
-            taux = taux[:taux.find(&#39;%&#39;)]
-            unemploy.append(float(taux))
-
-            pourcent = data[j][&#39;People and Society&#39;][&#39;Health expenditures&#39;][&#39;text&#39;]                  
-            pourcent = pourcent[:pourcent.find(&#39;%&#39;)]
-            healthcare.append(float(pourcent))
-
-            dep=data[j][&#39;People and Society&#39;][&#39;Education expenditures&#39;][&#39;text&#39;]                
-            dep=dep[:dep.find(&#39;%&#39;)]
-            education.append(float(dep))
-
-            dep=data[j][&#39;Military and Security&#39;][&#39;Military expenditures&#39;][&#39;text&#39;]
-            dep=dep[:dep.find(&#39; ++&#39;)]
-            dep=dep[:dep.find(&#39;%&#39;)]
-            military.append(float(dep)) 
-
-            tranche1.append(data[j][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;0-14 years&#39;][&#39;text&#39;])
-            tranche2.append(data[j][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;15-24 years&#39;][&#39;text&#39;])
-            tranche3.append(data[j][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;25-54 years&#39;][&#39;text&#39;])
-            tranche4.append(data[j][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;55-64 years&#39;][&#39;text&#39;])
-            tranche5.append(data[j][&#39;People and Society&#39;][&#39;Age structure&#39;][&#39;65 years and over&#39;][&#39;text&#39;])
-
-            TR1=[]
-            for z in range(len(tranche1)):
-                TR1.append(float(tranche1[z][:tranche1[z].find(&#39;%&#39;)]))
-                                
-            TR2=[]
-            for z in range(len(tranche2)):
-                TR2.append(float(tranche2[z][:tranche2[z].find(&#39;%&#39;)]))
-            
-            TR3=[]
-            for z in range(len(tranche3)):
-                TR3.append(float(tranche3[z][:tranche3[z].find(&#39;%&#39;)]))    
-            
-            TR4=[]
-            for z in range(len(tranche4)):
-                TR4.append(float(tranche4[z][:tranche4[z].find(&#39;%&#39;)]))    
-        
-            TR5=[]
-            for z in range(len(tranche5)):
-                TR5.append(float(tranche5[z][:tranche5[z].find(&#39;%&#39;)]))
-
-        Data = {
-            &#39;Superficie&#39; : area,
-            &#39;Population&#39; : hab,
-            &#39;Croissance démographique&#39; : growth,
-            &#39;Dette&#39; : debt,
-            &#39;Taux de chômage&#39; : unemploy,
-            &#39;Taux de dépense en santé&#39; : healthcare,
-            &#39;Taux de dépense en éducation&#39; : education,
-            &#39;Taux de dépense militaire&#39; : military,
-            &#39;Classe des 0-14 ans&#39;: TR1,
-            &#39;Classe des 15-24 ans&#39;: TR2,
-            &#39;Classe des 25-54 ans&#39;: TR3,
-            &#39;Classe des 55-64 ans&#39;: TR4,
-            &#39;Classe des plus de 65 ans&#39;: TR5,
-        }
-        
-        df = pd.DataFrame(Data,columns=[
-            &#39;Superficie&#39;,
-            &#39;Population&#39;,
-            &#39;Croissance démographique&#39;,
-            &#39;Dette&#39;,
-            &#39;Taux de chômage&#39;,
-            &#39;Taux de dépense en santé&#39;,
-            &#39;Taux de dépense en éducation&#39;,
-            &#39;Taux de dépense militaire&#39;,
-            &#39;Classe des 0-14 ans&#39;,
-            &#39;Classe des 15-24 ans&#39;,
-            &#39;Classe des 25-54 ans&#39;,
-            &#39;Classe des 55-64 ans&#39;,
-            &#39;Classe des plus de 65 ans&#39;])
-
-        df=df.drop(pays.index(&#39;India&#39;))
-        pays.remove(&#39;India&#39;)
-        self.df = df
-        self.pays = pays
 
     def clust_CAH(self):
+        &#34;&#34;&#34;Réalisation d&#39;un clustering selon la méthode du CAH
+
+        Arguments:
+            self {clustering.class} -- jeu de données utilisées pour le clustering 
+        &#34;&#34;&#34;        
         Z = linkage(self.df,method=&#39;ward&#39;,metric=&#39;euclidean&#39;)
         #affichage du dendrogramme
         plt.title(&#34;CAH&#34;)
         dendrogram(Z,labels=self.pays,orientation=&#39;left&#39;,color_threshold=1.5*(10**7))
         plt.show() 
 
-
     def clust_Kmeans(self):
+        &#34;&#34;&#34;Réalisation d&#39;un clustering selon la méthode du CAH
+
+        Arguments:
+            self {clustering.class} -- jeu de données utilisées pour le clustering 
+        &#34;&#34;&#34;    
         ss = StandardScaler()
         ss.fit_transform(self.df)
         
-        kmeans = cluster.KMeans(n_clusters=3).fit(self.df)
+        kmeans = cluster.KMeans(n_clusters=4).fit(self.df)
 
         acp = PCA(n_components=2).fit_transform(self.df)
 
@@ -382,16 +156,23 @@ Retire le pays 'Inde' qui pose problème </p>
 </details>
 <h3>Methods</h3>
 <dl>
-<dt id="Fonction_bonus.Clustering.clust_CAH"><code class="name flex">
+<dt id="Fonction_bonus.clustering.clust_CAH"><code class="name flex">
 <span>def <span class="ident">clust_CAH</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Réalisation d'un clustering selon la méthode du CAH</p>
+<h2 id="arguments">Arguments</h2>
+<p>self {clustering.class} &ndash; jeu de données utilisées pour le clustering</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def clust_CAH(self):
+    &#34;&#34;&#34;Réalisation d&#39;un clustering selon la méthode du CAH
+
+    Arguments:
+        self {clustering.class} -- jeu de données utilisées pour le clustering 
+    &#34;&#34;&#34;        
     Z = linkage(self.df,method=&#39;ward&#39;,metric=&#39;euclidean&#39;)
     #affichage du dendrogramme
     plt.title(&#34;CAH&#34;)
@@ -399,20 +180,27 @@ Retire le pays 'Inde' qui pose problème </p>
     plt.show() </code></pre>
 </details>
 </dd>
-<dt id="Fonction_bonus.Clustering.clust_Kmeans"><code class="name flex">
+<dt id="Fonction_bonus.clustering.clust_Kmeans"><code class="name flex">
 <span>def <span class="ident">clust_Kmeans</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Réalisation d'un clustering selon la méthode du CAH</p>
+<h2 id="arguments">Arguments</h2>
+<p>self {clustering.class} &ndash; jeu de données utilisées pour le clustering</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def clust_Kmeans(self):
+    &#34;&#34;&#34;Réalisation d&#39;un clustering selon la méthode du CAH
+
+    Arguments:
+        self {clustering.class} -- jeu de données utilisées pour le clustering 
+    &#34;&#34;&#34;    
     ss = StandardScaler()
     ss.fit_transform(self.df)
     
-    kmeans = cluster.KMeans(n_clusters=3).fit(self.df)
+    kmeans = cluster.KMeans(n_clusters=4).fit(self.df)
 
     acp = PCA(n_components=2).fit_transform(self.df)
 
@@ -438,10 +226,10 @@ Retire le pays 'Inde' qui pose problème </p>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="Fonction_bonus.Clustering" href="#Fonction_bonus.Clustering">Clustering</a></code></h4>
+<h4><code><a title="Fonction_bonus.clustering" href="#Fonction_bonus.clustering">clustering</a></code></h4>
 <ul class="">
-<li><code><a title="Fonction_bonus.Clustering.clust_CAH" href="#Fonction_bonus.Clustering.clust_CAH">clust_CAH</a></code></li>
-<li><code><a title="Fonction_bonus.Clustering.clust_Kmeans" href="#Fonction_bonus.Clustering.clust_Kmeans">clust_Kmeans</a></code></li>
+<li><code><a title="Fonction_bonus.clustering.clust_CAH" href="#Fonction_bonus.clustering.clust_CAH">clust_CAH</a></code></li>
+<li><code><a title="Fonction_bonus.clustering.clust_Kmeans" href="#Fonction_bonus.clustering.clust_Kmeans">clust_Kmeans</a></code></li>
 </ul>
 </li>
 </ul>

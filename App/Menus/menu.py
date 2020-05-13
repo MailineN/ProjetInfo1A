@@ -468,7 +468,7 @@ def menu_clust(previous_menu):
     return(Ouvert(menu_act))
 
 def menu_des(previous_menu): 
-    """Création du menu intermédaire pour la fonction du tri croissant
+    """Création du menu intermédaire pour la fonction de l'affichage du résumé statistique
 
     Arguments:
         previous_menu {List} -- Menu précédent correspondant à l'utilisateur 
@@ -506,7 +506,7 @@ def menu_des(previous_menu):
     return(Ouvert(menu_act))
 
 def menu_age_des(previous_menu): 
-    """Création du menu intermédaire pour les tranches d'age pour la fonction résumé d'information
+    """Création du menu intermédaire pour les tranches d'age pour la fonction résumé statistique
 
     Arguments:
         previous_menu {List} -- Menu précédent correspondant à l'utilisateur 
